@@ -1,0 +1,18 @@
+{
+  "common":{
+    "welcome": "Welcome",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "topbar": {
+    "dashboard": "Home",
+    "services": "Services",
+    "contact": "Contact Us",
+    "islamic": "Islamy" ,
+    "orders": "Orders",
+    "profile": "Profile",
+    "navigation": "Main Navigation",
+    "languageMenu": "Language Menu",
+    "notifications": "Notifications"
+  }
+}

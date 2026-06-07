@@ -1,0 +1,246 @@
+.otp {
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.otp::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.otp>* {
+    z-index: 2;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 380px;
+    padding: 35px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+    color: var(--text-main);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
+}
+
+.iconBox {
+    width: 60px;
+    height: 60px;
+    background: rgba(12, 104, 57, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 16px;
+    color: var(--primary-kemya);
+}
+
+.title {
+    margin-top: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--text-main);
+}
+
+.desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+.otpBox {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    direction: ltr;
+}
+
+.otpInput {
+    width: 45px;
+    height: 55px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    outline: none;
+    text-align: center;
+    font-size: 18px;
+    background: var(--bg-light);
+    color: var(--text-main);
+    transition: 0.3s;
+}
+
+.otpInput:focus {
+    transform: scale(1.1);
+    background: var(--bg-light);
+    border-color: var(--primary-kemya) !important;
+    box-shadow: 0 0 10px rgba(12, 104, 57, 0.2);
+}
+
+.timer {
+    margin-top: 15px;
+    font-size: 13px;
+    color: var(--primary-kemya);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: var(--primary-kemya);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    transform: scale(1.03);
+    background: var(--primary-light);
+}
+
+.resend {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.resend span {
+    color: var(--primary-kemya);
+    cursor: pointer;
+}
+
+.emailHighlight {
+    color: var(--primary-kemya);
+    font-weight: 700;
+    word-break: break-all;
+}
+
+.errorBanner {
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    text-align: center;
+    width: 100%;
+}
+
+.otpFilled {
+    border-color: var(--primary-kemya) !important;
+    color: var(--primary-kemya) !important;
+    background: rgba(12, 104, 57, 0.05) !important;
+}
+
+.otpError {
+    border-color: rgba(239, 68, 68, 0.5) !important;
+    color: #f87171 !important;
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.resendBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0;
+    transition: all 0.2s;
+    color: var(--primary-kemya) !important;
+}
+
+.resendActive {
+    color: var(--primary-kemya);
+}
+
+.resendActive:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+.resendDisabled {
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .otp {
+        align-items: flex-start;
+        padding: 40px 15px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 320px;
+        padding: 25px 18px;
+        border-radius: 14px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .otpInput {
+        width: 38px;
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .timer {
+        color: var(--primary-kemya) !important;
+    }
+
+    .timer span {
+        color: var(--primary-kemya) !important;
+        display: inline !important;
+        visibility: visible !important;
+    }
+}

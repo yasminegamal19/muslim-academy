@@ -1,0 +1,267 @@
+.page {
+    min-height: 100vh;
+    background: #f7f8fa;
+    padding: 28px 0 60px;
+    font-family: 'Alexandria', 'Rubik', sans-serif;
+}
+
+.container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    direction: rtl;
+}
+
+.backBtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid #e5e7eb;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #374151;
+    transition: all .15s;
+    flex-shrink: 0;
+}
+
+.backBtn:hover {
+    border-color: #8bc34a;
+    color: #8bc34a;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #8bc34a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    direction: rtl;
+}
+
+/* ── Categories ── */
+.catList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    direction: rtl;
+}
+
+.catCard {
+    background: var(--cat-bg, #e8f5e9);
+    border: 1.5px solid transparent;
+    border-radius: 18px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all .2s;
+    outline: none;
+}
+
+.catCard:hover {
+    border-color: #8bc34a;
+    transform: translateX(-4px);
+}
+
+.catIcon {
+    font-size: 28px;
+}
+
+.catLabel {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1f1c;
+}
+
+/* ── Athkar list ── */
+.athkarList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    direction: rtl;
+}
+
+.athkarItem {
+    background: #fff;
+    border: 1.5px solid #f0f4f0;
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all .15s;
+}
+
+.athkarItem:hover {
+    border-color: #8bc34a;
+    background: #f0f9e6;
+}
+
+.athkarText {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1f1c;
+    flex: 1;
+    text-align: right;
+    line-height: 1.5;
+}
+
+.athkarArrow {
+    color: #9ca3af;
+    flex-shrink: 0;
+}
+
+/* ── Detail / counter ── */
+.tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    direction: rtl;
+    margin-bottom: 16px;
+}
+
+.tab {
+    background: #f3f4f6;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all .15s;
+    font-family: inherit;
+}
+
+.tabActive {
+    background: #e8f5e9;
+    border-color: #8bc34a;
+    color: #2e7d32;
+}
+
+.tabDot {
+    color: #8bc34a;
+}
+
+.dhikrContent {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    direction: rtl;
+}
+
+.dhikrArabic {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1a1f1c;
+    text-align: center;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.dhikrPronunciation {
+    font-size: 15px;
+    color: #374151;
+    text-align: center;
+    line-height: 1.7;
+    margin: 0;
+    font-style: italic;
+}
+
+.dhikrMeaning {
+    font-size: 14px;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.repeatLabel {
+    text-align: center;
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 8px;
+    direction: rtl;
+}
+
+.counterDisplay {
+    background: #f0f9e6;
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: monospace;
+}
+
+.counterNum {
+    font-size: 40px;
+    font-weight: 700;
+    color: #558b2f;
+    letter-spacing: 4px;
+}
+
+.navRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.navBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid #e5e7eb;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #374151;
+    transition: all .15s;
+}
+
+.navBtn:hover {
+    border-color: #8bc34a;
+    color: #8bc34a;
+}
+
+.tapBtn {
+    flex: 1;
+    height: 80px;
+    background: radial-gradient(circle, #8bc34a, #558b2f);
+    border: none;
+    border-radius: 50%;
+    max-width: 80px;
+    margin: 0 auto;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(139, 195, 74, 0.4);
+    transition: transform .1s, box-shadow .1s;
+}
+
+.tapBtn:active {
+    transform: scale(0.93);
+    box-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
+}

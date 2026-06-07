@@ -1,38 +1,42 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+}
+
+body {
+  --primary-kemya: #0C6839;
+  --primary-light: #13854b;
+  --bg-light: #ffffff;
+  --bg-card: #f8f9fa;
+  --text-main: #1a1f1c;
+  --text-muted: #5c6460;
+  --border-color: #e9ecef;
+}
+
+.gradient-title {
+  background: linear-gradient(90deg, #0C6839, #02aab0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.MuiDataGrid-columnHeader {
+  background-color: #0d1428 !important;
+}
+
+[dir="rtl"] body {
+  font-family: 'Alexandria', sans-serif !important;
+}
+
+[dir="ltr"] body {
+  font-family: 'Rubik', sans-serif !important;
+}
+
+.loader {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  height: 60vh;
+  font-size: 1.2rem;
+  color: var(--blue-color);
+  background: var(--background-color);
+  width: 100%;
 }

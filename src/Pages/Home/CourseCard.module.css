@@ -1,0 +1,110 @@
+/* CourseCard.module.css */
+
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+}
+
+/* Image */
+.imgWrap {
+  position: relative;
+  overflow: hidden;
+}
+.img {
+  width: 100%;
+  height: 176px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+}
+.card:hover .img {
+  transform: scale(1.05);
+}
+.imgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.42) 0%, transparent 60%);
+}
+.tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: #f5c518;
+  color: #1a2e1a;
+}
+.category {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 99px;
+  background: rgba(44, 96, 53, 0.9);
+  color: white;
+}
+
+/* Body */
+.body {
+  padding: 16px;
+}
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #1a2e1a;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price {
+  font-size: 14px;
+  font-weight: 900;
+  color: #3a7d44;
+}
+.btn {
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  background: #3a7d44;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover {
+  opacity: 0.88;
+}

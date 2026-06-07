@@ -1,0 +1,18 @@
+{
+  "common":{
+   "welcome": "مرحباً",
+   "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج"
+  },
+  "topbar": {
+    "dashboard": " الرئيسية",
+    "services": "الخدمات",
+    "contact": "تواصل",
+    "islamic":"اسلامى" ,
+    "orders": "الطلبات والمشتريات",
+    "profile": "الملف الشخصي",
+    "navigation": "قائمة التنقل الرئيسية",
+    "languageMenu": "قائمة تغيير اللغة",
+    "notifications": "الإشعارات"
+  }
+}

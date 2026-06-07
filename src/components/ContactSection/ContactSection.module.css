@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700&display=swap');
+
+.chatPage {
+    height: 100vh;
+    background: #f4f6f8;
+    padding: 24px;
+    font-family: 'Alexandria', sans-serif;
+    direction: rtl;
+    box-sizing: border-box;
+}
+
+/* لوحة المحادثة الرئيسية - دمج كامل للشاشات الكبيرة */
+.chatContainer {
+    max-width: 1300px;
+    height: calc(100vh - 48px);
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid #eaedf1;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    overflow: hidden;
+}
+
+/* ── العمود الأيمن (Sidebar) ── */
+.sidebar {
+    border-left: 1px solid #eaedf1;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarHeader {
+    padding: 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #eaedf1;
+}
+
+.pageTitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1f1c;
+    margin: 0 0 16px 0;
+}
+
+.searchWrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.searchInput {
+    flex: 1;
+    background: #f1f5f9;
+    border: 1px solid transparent;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.searchInput:focus {
+    background: #ffffff;
+    border-color: #8bc34a;
+    box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.15);
+}
+
+.filterBtn {
+    background: #ffffff;
+    border: 1px solid #eaedf1;
+    width: 45px;
+    height: 45px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.filterBtn:hover {
+    color: #8bc34a;
+    border-color: #8bc34a;
+    background: #f1f8e9;
+}
+
+.contactList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+}
+
+.contactCard {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+}
+
+.contactCard:hover {
+    background: #f1f5f9;
+}
+
+.contactCardActive {
+    background: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border: 1px solid #eaedf1;
+}
+
+.avatarWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+}
+
+.statusDot {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+.statusDot.online { background: #22c55e; }
+.statusDot.offline { background: #94a3b8; }
+
+.contactInfo {
+    flex: 1;
+}
+
+.contactName {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+}
+
+.contactRole {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+}
+
+.actionBadge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #558b2f;
+    background: #f1f8e9;
+    padding: 4px 10px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.contactCardActive .actionBadge {
+    background: #8bc34a;
+    color: #ffffff;
+}
+
+/* ── العمود الأيسر (Chat Area) ── */
+.chatArea {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+}
+
+.chatHeader {
+    padding: 16px 24px;
+    border-bottom: 1px solid #eaedf1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+}
+
+.activeUserMeta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatarSmall {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.activeUserName {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 2px 0;
+}
+
+.activeUserStatus {
+    font-size: 12px;
+    color: #22c55e;
+    font-weight: 500;
+}
+
+.headerActions {
+    display: flex;
+    gap: 8px;
+}
+
+.iconCallBtn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid #eaedf1;
+    background: #ffffff;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.iconCallBtn:hover {
+    background: #f8fafc;
+    color: #8bc34a;
+    border-color: #8bc34a;
+}
+
+/* مساحة الرسائل الفخمة وعرض التنبيهات */
+.messagesContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* البانر التحذيري المطور والمدمج بذكاء */
+.auditWarning {
+    background: #ffffff;
+    border-right: 4px solid #8bc34a;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.warningInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.warningIcon {
+    color: #8bc34a;
+    flex-shrink: 0;
+}
+
+.auditWarning p {
+    font-size: 12.5px;
+    color: #475569;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.closeWarningBtn {
+    background: #8bc34a;
+    color: #ffffff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.closeWarningBtn:hover {
+    background: #558b2f;
+}
+
+/* فقاعات الرسائل وتنسيقها */
+.messageRow {
+    display: flex;
+    width: 100%;
+}
+
+.messageBubble {
+    max-width: 65%;
+    padding: 14px 18px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+}
+
+.msgText {
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0 0 6px 0;
+}
+
+.msgTime {
+    font-size: 10px;
+    display: block;
+    text-align: left;
+}
+
+/* رسائلي أنا (المرسل) */
+.msgMe {
+    justify-content: flex-start;
+}
+
+.msgMe .messageBubble {
+    background: #8bc34a;
+    color: #ffffff;
+    border-top-right-radius: 4px;
+}
+
+.msgMe .msgTime {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* رسائل الطرف الآخر */
+.msgThem {
+    justify-content: flex-end;
+}
+
+.msgThem .messageBubble {
+    background: #ffffff;
+    color: #1e293b;
+    border-top-left-radius: 4px;
+    border: 1px solid #eaedf1;
+}
+
+.msgThem .msgTime {
+    color: #94a3b8;
+}
+
+/* شريط الإدخال السفلي الاحترافي والمحاكي */
+.inputArea {
+    padding: 16px 24px;
+    border-top: 1px solid #eaedf1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+}
+
+.actionMenuBtn {
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.actionMenuBtn:hover {
+    color: #8bc34a;
+}
+
+.chatInput {
+    flex: 1;
+    background: #f1f5f9;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 13.5px;
+    outline: none;
+}
+
+.voiceBtn {
+    background: none;
+    border: none;
+    color: #8bc34a;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.voiceBtn:hover {
+    transform: scale(1.1);
+}
+
+.sendBtn {
+    background: linear-gradient(135deg, #8bc34a 0%, #558b2f 100%);
+    color: #ffffff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(139, 195, 74, 0.2);
+    transition: all 0.2s;
+}
+
+.sendBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(139, 195, 74, 0.35);
+}
+
+/* التجاوب السلس مع الشاشات اللوحية الصغيره */
+@media (max-width: 900px) {
+    .chatContainer {
+        grid-template-columns: 80px 1fr;
+    }
+    .contactInfo, .pageTitle, .searchInput, .filterBtn, .actionBadge {
+        display: none;
+    }
+    .sidebarHeader {
+        padding: 12px;
+    }
+    .contactList {
+        padding: 8px;
+    }
+}

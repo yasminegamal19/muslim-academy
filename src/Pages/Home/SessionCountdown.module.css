@@ -1,0 +1,277 @@
+/* SessionCountdown.module.css */
+
+.section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+}
+
+/* Section header */
+.head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    color: #3a7d44;
+    margin: 0 0 4px;
+}
+
+.title {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 900;
+    color: #1a2e1a;
+    margin: 0;
+}
+
+.viewAll {
+    font-size: 13px;
+    font-weight: 700;
+    color: #3a7d44;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.viewAll:hover {
+    text-decoration: underline;
+}
+
+/* Card */
+.card {
+    border-radius: 24px;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #1e4d2b 0%, #2e7d32 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.cardBg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.cardInner {
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Badges */
+.badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badgeLive {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.badgeLiveDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f87171;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+.badgeFree {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: #f5c518;
+    color: #1a2e1a;
+}
+
+.cardTitle {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.cardTeacher {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+}
+
+.details {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.joinBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 20px;
+    font-weight: 900;
+    font-size: 15px;
+    background: #f5c518;
+    color: #1a2e1a;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    width: fit-content;
+}
+
+.joinBtn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.countdownLabel {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.countdownSlots {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.countdownSlot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.countdownBox {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: white;
+}
+
+.countdownUnit {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.countdownSep {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 20px;
+}
+
+/* Avatars */
+.avatarsRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.avatarStack {
+    display: flex;
+}
+
+.avatarCircle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    margin-left: -8px;
+    display: block;
+}
+
+.avatarCircle:last-child {
+    margin-left: 0;
+}
+
+.avatarsText {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section {
+        padding: 0 1rem 3rem;
+    }
+
+    .cardInner {
+        flex-direction: column;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
