@@ -11,7 +11,6 @@
     padding: 0 24px;
 }
 
-/* ── Header ── */
 .header {
     display: flex;
     align-items: center;
@@ -47,14 +46,12 @@
     direction: rtl;
 }
 
-/* ── Grid ── */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
 
-/* ── Book Card ── */
 .bookCard {
     background: #fff;
     border-radius: 16px;
@@ -133,7 +130,6 @@
     background: #388e3c;
 }
 
-/* ── Skeleton ── */
 .skeleton {
     height: 240px;
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);

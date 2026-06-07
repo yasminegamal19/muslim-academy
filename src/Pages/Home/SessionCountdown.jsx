@@ -43,7 +43,6 @@ export function SessionCountdown({ session }) {
 
   return (
     <section className={styles.section}>
-      {/* Header */}
       <div className={styles.head}>
         <div>
           <p className={styles.eyebrow}>لا تفوّت أي جلسة</p>
@@ -54,9 +53,7 @@ export function SessionCountdown({ session }) {
         </a>
       </div>
 
-      {/* Card */}
       <div className={styles.card}>
-        {/* Decorative dots */}
         <div className={styles.cardBg}>
           <svg width="100%" height="100%">
             <defs>
@@ -76,7 +73,6 @@ export function SessionCountdown({ session }) {
         </div>
 
         <div className={styles.cardInner}>
-          {/* Info */}
           <div className={styles.info}>
             <div className={styles.badges}>
               <span className={styles.badgeLive}>
@@ -116,8 +112,7 @@ export function SessionCountdown({ session }) {
             </button>
           </div>
 
-          {/* Countdown */}
-          <div className={styles.countdown}>
+=          <div className={styles.countdown}>
             <p className={styles.countdownLabel}>تبدأ بعد</p>
 
             <div className={styles.countdownSlots}>

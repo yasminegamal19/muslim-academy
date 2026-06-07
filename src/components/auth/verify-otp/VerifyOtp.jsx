@@ -21,7 +21,6 @@ export default function VerifyOtp() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  // تعديل: استقبال البريد الإلكتروني بدلاً من الهاتف من الـ state
   const email = location.state?.email || "";
 
   const { otpLoading, otpVerified, otpResent, error } = useSelector(
@@ -52,7 +51,6 @@ export default function VerifyOtp() {
   };
 
   useEffect(() => {
-    // تعديل التحقق ليكون على الـ email
     if (!email) {
       console.warn(
         "[VerifyOtp] email not found in location.state — redirecting",
@@ -130,7 +128,6 @@ export default function VerifyOtp() {
     }
 
     setSubmitted(true);
-    // تعديل: بعبث الـ email والـ token للـ API الجديدة
     dispatch(verifyOtp({ email, token }));
   };
 
@@ -142,14 +139,12 @@ export default function VerifyOtp() {
       return;
     }
 
-    // تعديل التحقق ليكون على الـ email
     if (!email) {
       toast.error("البريد الإلكتروني غير موجود، من فضلك ارجع وحاول مرة أخرى");
       return;
     }
 
     console.log("[handleResend] dispatching resendOtp with email:", email);
-    // تعديل: إرسال الـ email لإعادة التفعيل
     dispatch(resendOtp(email));
   };
 
@@ -172,7 +167,6 @@ export default function VerifyOtp() {
           </div>
           <h2 className={styles.title}>{t("otp.title")}</h2>
           <p className={styles.desc}>
-            {/* تعديل النص ليناسب البريد الإلكتروني */}
             {t("otp.emailDesc") || "تم إرسال كود التحقق إلى البريد الإلكتروني"}
             {email && <span className={styles.emailHighlight}> {email}</span>}
           </p>

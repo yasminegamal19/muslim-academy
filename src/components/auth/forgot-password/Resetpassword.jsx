@@ -17,7 +17,6 @@ export default function ResetPassword() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // تعديل: استقبال الـ email القادم من صفحة التحقق السابقة بدل الـ phone
   const email = location.state?.email || "";
 
   const { loading, passwordReset, error } = useSelector((s) => s.auth);
@@ -66,14 +65,12 @@ export default function ResetPassword() {
     if (password !== password_confirmation)
       return setLocalError("كلمتا المرور غير متطابقتين");
 
-    // تعديل: إرسال الـ email مع كلمة المرور الجديدة وتأكيدها للـ API
     dispatch(resetPassword({ email, password, password_confirmation }));
   };
 
   return (
     <div className={styles.ForgotContainer}>
       <div className={styles.ForgotCard}>
-        {/* تحديث مسار اللوجو الجديد للمشروع */}
         <img src="/logo raw-kemya.jfif" alt="logo" className={styles.logo} />
 
         <h2>{t("forgotPassword.resetTitle") || "تعيين كلمة مرور جديدة"}</h2>

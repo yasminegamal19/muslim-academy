@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════
-   HeroSection.module.css — Muslim Academy
-═══════════════════════════════════════ */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Amiri:wght@400;700&display=swap');
 
@@ -16,14 +14,12 @@
     --bg-page: #f7faf5;
 }
 
-/* ── Hero wrapper ── */
 .hero {
     position: relative;
     overflow: hidden;
     background: var(--bg-page);
 }
 
-/* ── Background image ── */
 .heroBg {
     position: absolute;
     inset: 0;
@@ -46,7 +42,6 @@
     background: linear-gradient(135deg, rgb(205 215 208 / 97%) 0%, rgba(7, 18, 11, 0.88) 30%, rgba(12, 28, 18, 0.55) 40%);
 }
 
-/* ── Inner grid ── */
 .heroInner {
     position: relative;
     z-index: 2;
@@ -57,9 +52,6 @@
     margin: 0 auto;
 }
 
-/* ════════════════════════
-   LEFT — content
-════════════════════════ */
 .heroLeft {
     padding: 64px 36px 64px 48px;
     display: flex;
@@ -237,9 +229,6 @@ background: linear-gradient(135deg,
     }
 }
 
-/* ════════════════════════
-   RIGHT — slider
-════════════════════════ */
 .heroRight {
     display: flex;
     align-items: center;
@@ -247,7 +236,6 @@ background: linear-gradient(135deg,
     padding: 48px 40px 48px 0;
 }
 
-/* ── Slider wrap ── */
 .sliderWrap {
     position: relative;
     display: flex;
@@ -256,7 +244,6 @@ background: linear-gradient(135deg,
     gap: 16px;
 }
 
-/* ── Phone frame ── */
 .phoneFrame {
     position: relative;
     width: 218px;
@@ -295,7 +282,6 @@ background: linear-gradient(135deg,
     z-index: 10;
 }
 
-/* ── Slides track ── */
 .slidesTrack {
     position: relative;
     width: 100%;
@@ -323,7 +309,6 @@ background: linear-gradient(135deg,
     pointer-events: none;
 }
 
-/* ── Dots ── */
 .dots {
     display: flex;
     gap: 8px;
@@ -348,7 +333,6 @@ background: linear-gradient(135deg,
     transform: none;
 }
 
-/* ── Slide label ── */
 .slideLabel {
     font-family: 'Cairo', sans-serif;
     font-size: 0.78rem;
@@ -370,7 +354,6 @@ background: linear-gradient(135deg,
     }
 }
 
-/* ── Floating cards ── */
 .floatCard {
     position: absolute;
     background: #fff;
@@ -439,9 +422,6 @@ background: linear-gradient(135deg,
     margin: 0;
 }
 
-/* ════════════════════════
-   RESPONSIVE
-════════════════════════ */
 @media (max-width: 768px) {
     .heroInner {
         grid-template-columns: 1fr;

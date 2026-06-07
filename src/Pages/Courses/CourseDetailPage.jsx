@@ -24,7 +24,6 @@ export default function CourseDetailPage() {
 
   return (
     <div className="cdp" dir="rtl">
-      {/* Hero image */}
       <div className="cdp-hero-wrapper">
         <button className="cdp-back" onClick={() => navigate(-1)}>
           ←
@@ -42,7 +41,6 @@ export default function CourseDetailPage() {
       </div>
 
       <div className="cdp-body">
-        {/* Stats strip */}
         <div className="cdp-stats">
           <div className="cdp-stat">
             <span className="cdp-stat-icon">⭐</span>
@@ -66,15 +64,12 @@ export default function CourseDetailPage() {
           </div>
         </div>
 
-        {/* Description */}
         <div className="cdp-section">
           <h2 className="cdp-section-title">نبذة عن الدورة</h2>
           <p className="cdp-description">{course.description}</p>
         </div>
 
-        {/* Accordion items */}
         <div className="cdp-accordion">
-          {/* What you'll learn */}
           <div className="cdp-acc-item">
             <button className="cdp-acc-header" onClick={() => toggle("learn")}>
               <span>ماذا ستتعلم؟</span>
@@ -98,7 +93,6 @@ export default function CourseDetailPage() {
             )}
           </div>
 
-          {/* Features */}
           <div className="cdp-acc-item">
             <button
               className="cdp-acc-header"
@@ -125,7 +119,6 @@ export default function CourseDetailPage() {
             )}
           </div>
 
-          {/* Curriculum */}
           <div className="cdp-acc-item">
             <button
               className="cdp-acc-header"
@@ -153,7 +146,6 @@ export default function CourseDetailPage() {
             )}
           </div>
 
-          {/* Unique features */}
           <div className="cdp-acc-item">
             <button className="cdp-acc-header" onClick={() => toggle("unique")}>
               <span>نظام دقيق</span>
@@ -177,7 +169,6 @@ export default function CourseDetailPage() {
           </div>
         </div>
 
-        {/* Instructor */}
         <div className="cdp-section">
           <h2 className="cdp-section-title">توصيات الطالب</h2>
           <p className="cdp-tip">
@@ -200,7 +191,6 @@ export default function CourseDetailPage() {
           </div>
         </div>
 
-        {/* Reviews */}
         {course.reviews && course.reviews.length > 0 && (
           <div className="cdp-section">
             <h2 className="cdp-section-title">آراء الطلاب</h2>
@@ -223,7 +213,6 @@ export default function CourseDetailPage() {
         )}
       </div>
 
-      {/* CTA Button */}
       <div className="cdp-cta-bar">
         <button className="cdp-cta-btn">ابدأ الدورة الآن</button>
       </div>

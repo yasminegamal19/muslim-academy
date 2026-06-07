@@ -5,8 +5,7 @@ import styles from "./IslamicSection.module.css";
 const PRAYER_NAMES = ["الفجر", "الشروق", "الظهر", "العصر", "المغرب", "العشاء"];
 const PRAYER_ICONS = ["🌙", "🌅", "☀️", "🌤️", "🌇", "🌃"];
 const MOCK_TIMES = ["04:55", "06:22", "11:45", "15:10", "17:44", "19:08"];
-const CURRENT_PRAYER = 2; // الظهر
-
+const CURRENT_PRAYER = 2;
 const SERVICES = [
   { id: "athkar", label: "الأذكار", path: "/islamic/athkar" },
   { id: "tafseer", label: "التفسير", path: "/islamic/quran" },
@@ -26,7 +25,6 @@ export default function IslamicSection() {
   return (
     <div className={styles.page}>
       <div className={styles.webContainer}>
-        {/* ── الجانب الأيمن: لوحة المواقيت والتاريخ ── */}
         <aside className={styles.sidePanel}>
           <div className={styles.locationCard}>
             <div className={styles.geoBadge}>
@@ -56,9 +54,7 @@ export default function IslamicSection() {
           </div>
         </aside>
 
-        {/* ── الجانب الأيسر: البانر الرئيسي والخدمات ── */}
         <main className={styles.mainContent}>
-          {/* البانر الاحترافي العريض */}
           <div
             className={styles.heroBanner}
             onClick={() => navigate("/islamic/prayer-times")}
@@ -77,7 +73,6 @@ export default function IslamicSection() {
               </p>
             </div>
 
-            {/* خلفية مساجد مدمجة بالـ CSS بشكل ناعم واحترافي */}
             <div className={styles.skylineOverlay}>
               <svg
                 viewBox="0 0 500 150"
@@ -92,7 +87,6 @@ export default function IslamicSection() {
             </div>
           </div>
 
-          {/* شبكة الخدمات بحجم وتوزيع الويب */}
           <div className={styles.servicesGrid}>
             {SERVICES.map((s) => (
               <div
@@ -121,7 +115,6 @@ export default function IslamicSection() {
         </main>
       </div>
 
-      {/* ── WhatsApp FAB ── */}
       <a
         href="https://wa.me/"
         className={styles.whatsappFab}
@@ -137,7 +130,6 @@ export default function IslamicSection() {
   );
 }
 
-// ── الـ SVGs الأصلية بتاعتك مع الحفاظ على الكلاسات الجديدة الفخمة ──
 function AthkarIcon() {
   return (
     <svg viewBox="0 0 40 40" width="32" height="32">

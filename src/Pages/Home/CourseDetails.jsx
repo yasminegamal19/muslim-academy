@@ -3,14 +3,12 @@ import { ArrowRight, Star, ChevronDown, ChevronUp } from "lucide-react";
 import styles from "./CourseDetails.module.css";
 
 export function CourseDetails({ course, onBack }) {
-  // تجميع الـ Accordions في State واحدة للتحكم بفتح وغلق العناصر
   const [openSection, setOpenSection] = useState(null);
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);
   };
 
-  // بيانات تفصيلية ثابتة (يمكن جلبها بناءً على الـ id لاحقاً)
   const ACCORDION_DATA = [
     {
       id: "what",
@@ -63,7 +61,6 @@ export function CourseDetails({ course, onBack }) {
 
   return (
     <div className={styles.detailsPage}>
-      {/* شريط علوي للعودة */}
       <div className={styles.topBar}>
         <button className={styles.backBtn} onClick={onBack}>
           <ArrowRight size={20} />
@@ -71,7 +68,6 @@ export function CourseDetails({ course, onBack }) {
         </button>
       </div>
 
-      {/* صورة الدورة الأساسية */}
       <div className={styles.mainVisual}>
         <img
           src={course.image}
@@ -80,7 +76,6 @@ export function CourseDetails({ course, onBack }) {
         />
       </div>
 
-      {/* تفاصيل الكورس */}
       <div className={styles.contentContainer}>
         <h1 className={styles.title}>{course.title}</h1>
 
@@ -91,7 +86,6 @@ export function CourseDetails({ course, onBack }) {
           </span>
         </div>
 
-        {/* نبذة عن الدورة */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>نبذة عن الدورة</h2>
           <p className={styles.description}>
@@ -103,7 +97,6 @@ export function CourseDetails({ course, onBack }) {
           </p>
         </section>
 
-        {/* قوائم الأكورديون (Accordions) */}
         <section className={styles.accordionContainer}>
           {ACCORDION_DATA.map((item) => (
             <div key={item.id} className={styles.accordionItem}>
@@ -127,7 +120,6 @@ export function CourseDetails({ course, onBack }) {
           ))}
         </section>
 
-        {/* توصيات الطلاب (Reviews) */}
         <section className={styles.reviewsSection}>
           <h2 className={styles.sectionTitleCenter}>توصيات الطلاب</h2>
           <p className={styles.reviewsSubtitle}>
@@ -163,7 +155,6 @@ export function CourseDetails({ course, onBack }) {
         </section>
       </div>
 
-      {/* الزر السفلي المثبت (Sticky Action Button) المتواجد في الصورة */}
       <div className={styles.stickyFooter}>
         <button className={styles.actionBtn}>ابتداء الدورة الآن</button>
       </div>

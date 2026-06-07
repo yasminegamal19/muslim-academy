@@ -13,7 +13,6 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { toast } from "react-toastify";
 
-// كلمات دلالية للتحقق من وجود الحساب مسبقاً
 const EMAIL_EXISTS_KEYWORDS = [
   "already",
   "taken",
@@ -66,12 +65,10 @@ export default function RegisterPage() {
     password_confirmation: "",
   });
 
-  // التأثير عند نجاح التسجيل
   useEffect(() => {
     if (!registerSuccess) return;
     dispatch(clearRegisterSuccess());
 
-    // التوجه لصفحة التحقق (تأكد أن السيستم الجديد يطلب OTP بعد التسجيل)
     navigate("/verify-otp", {
       state: {
         phone: `+${phoneValue}`,
@@ -80,7 +77,6 @@ export default function RegisterPage() {
     });
   }, [registerSuccess, dispatch, navigate, phoneValue, formData.email]);
 
-  // معالجة أخطاء الـ API
   useEffect(() => {
     if (!error) return;
 
@@ -149,7 +145,6 @@ export default function RegisterPage() {
     data.append("birth_date", formData.birth_date);
     data.append("phone", `+${phoneValue}`);
 
-    // القيم الإضافية المطلوبة في الـ API الجديدة (Apidog)
     data.append("governorate_id", "1");
     data.append("country_id", "1");
 
@@ -175,7 +170,6 @@ export default function RegisterPage() {
           <p className={styles.desc}>{t("register.desc")}</p>
 
           <form onSubmit={handleSubmit} noValidate>
-            {/* الحقل: الاسم بالكامل */}
             <div className={styles.inputGroup}>
               <label htmlFor="name">{t("register.fullName")}</label>
               <input
@@ -192,7 +186,6 @@ export default function RegisterPage() {
               )}
             </div>
 
-            {/* الحقل: تاريخ الميلاد */}
             <div className={styles.inputGroup}>
               <label htmlFor="birth_date">
                 {t("register.birthDate") || "تاريخ الميلاد"}
@@ -208,7 +201,6 @@ export default function RegisterPage() {
             </div>
 
             <div className="row">
-              {/* الحقل: البريد الإلكتروني */}
               <div className={`${styles.inputGroup} col-12 col-md-6`}>
                 <label htmlFor="email">{t("register.email")}</label>
                 <input
@@ -224,7 +216,6 @@ export default function RegisterPage() {
                 )}
               </div>
 
-              {/* الحقل: رقم الهاتف */}
               <div className={`${styles.inputGroup} col-12 col-md-6`}>
                 <label htmlFor="phone">{t("register.phone")}</label>
                 <div className={errors.phone ? styles.phoneError : ""}>
@@ -247,7 +238,6 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* حقل تحميل الصورة الشخصية (اختياري حسب الصورة) */}
             <div className={styles.inputGroup}>
               <label>الصورة الشخصية</label>
               <input
@@ -265,7 +255,6 @@ export default function RegisterPage() {
             </div>
 
             <div className="row">
-              {/* الحقل: كلمة المرور */}
               <div
                 className={`${styles.inputGroup} ${styles.passwordGroup} col-12 col-md-6`}
               >
@@ -291,7 +280,6 @@ export default function RegisterPage() {
                 )}
               </div>
 
-              {/* الحقل: تأكيد كلمة المرور */}
               <div
                 className={`${styles.inputGroup} ${styles.passwordGroup} col-12 col-md-6`}
               >

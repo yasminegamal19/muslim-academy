@@ -89,7 +89,6 @@ function Navbar() {
       }
     } catch (err) {
       console.error("Notifications fetch error:", err);
-      // بيانات محاكية (Mock Data) تطابق الصور تماماً لضمان عمل الواجهة بشكل مثالي
       setNotifications([
         {
           id: 1,
@@ -151,7 +150,7 @@ function Navbar() {
   };
 
   const handleDeleteNotif = (id, e) => {
-    e.stopPropagation(); // منع إغلاق الـ Dropdown عند الحذف
+    e.stopPropagation(); 
     setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
 
@@ -164,7 +163,6 @@ function Navbar() {
     document.documentElement.lang = nextLang;
   };
 
-  // دالة لاختيار الأيقونة المناسبة بناءً على نوع الإشعار كما في التصميم
   const getNotifIcon = (type) => {
     switch (type) {
       case "session_start":
@@ -185,7 +183,6 @@ function Navbar() {
     }
   };
 
-  // تجميع الإشعارات حسب التصنيف الزمني المعروض بالصور
   const groupedNotifications = notifications.reduce((groups, notif) => {
     const group = notif.group || "أخرى";
     if (!groups[group]) groups[group] = [];
@@ -227,7 +224,6 @@ function Navbar() {
           </nav>
 
           <div className={styles.right}>
-            {/* ── مطور: قسم الإشعارات الجديد بالكامل ── */}
             <div className={styles.notifWrapper} ref={notifRef}>
               <button
                 className={styles.iconBtn}
@@ -255,7 +251,6 @@ function Navbar() {
                         <p>جاري تحميل الإشعارات...</p>
                       </div>
                     ) : notifications.length === 0 ? (
-                      /* شاشة لا توجد إشعارات (طبقاً لـ image_c7ff5c.png) */
                       <div className={styles.notifEmptyState}>
                         <div className={styles.emptyBellIcon}>
                           <Bell size={48} strokeWidth={1.2} />
@@ -264,7 +259,6 @@ function Navbar() {
                         <p>سيتم إعلامك عندما يكون هناك شيء جديد.</p>
                       </div>
                     ) : (
-                      /* عرض الإشعارات المقسمة زمنياً (طبقاً لـ image_c7ff05.png) */
                       <div className={styles.notifScrollArea}>
                         {Object.keys(groupedNotifications).map((groupName) => (
                           <div key={groupName} className={styles.notifGroup}>
@@ -276,7 +270,6 @@ function Navbar() {
                                 key={n.id}
                                 className={`${styles.notifCard} ${!n.read_at ? styles.unreadCard : ""} ${n.type === "payment_required" ? styles.paymentRequiredBg : ""}`}
                               >
-                                {/* زر الحذف المخفي يظهر عند التمرير Hover (طبقاً لـ image_c7fc1c.png) */}
                                 <button
                                   className={styles.deleteNotifBtn}
                                   onClick={(e) => handleDeleteNotif(n.id, e)}
@@ -291,7 +284,6 @@ function Navbar() {
                                     <p>{n.body}</p>
                                   </div>
 
-                                  {/* الأيقونة الجانبية مع الخلفية الدائرية */}
                                   <div
                                     className={`${styles.notifIconContainer} ${styles[n.type]}`}
                                   >
@@ -309,7 +301,6 @@ function Navbar() {
               )}
             </div>
 
-            {/* Profile */}
             <div className={styles.profileDropdown} ref={profileRef}>
               <button
                 className={`${styles.profileBtn} ${isAuthenticated ? styles.profileBtnAuth : ""}`}
@@ -348,7 +339,6 @@ function Navbar() {
               )}
             </div>
 
-            {/* Language */}
             <div className={`dropdown ${styles.langDropdown}`}>
               <button className={styles.langTrigger} data-bs-toggle="dropdown">
                 <span>{currentLang === "ar" ? "العربية" : "English"}</span>

@@ -78,7 +78,6 @@ export default function ContactSection() {
   return (
     <div className={styles.chatPage}>
       <div className={styles.chatContainer}>
-        {/* ── العمود الأيمن: قائمة الجهات والبحث ── */}
         <aside className={styles.sidebar}>
           <div className={styles.sidebarHeader}>
             <h2 className={styles.pageTitle}>تواصل</h2>
@@ -112,7 +111,7 @@ export default function ContactSection() {
                 className={`${styles.contactCard} ${activeContact.id === contact.id ? styles.contactCardActive : ""}`}
                 onClick={() => {
                   setActiveContact(contact);
-                  setShowWarning(true); // إعادة إظهار التنبيه عند تغيير المعلم لتأكيد الرقابة والشفافية
+                  setShowWarning(true); 
                 }}
               >
                 <div className={styles.avatarWrapper}>
@@ -135,9 +134,7 @@ export default function ContactSection() {
           </div>
         </aside>
 
-        {/* ── العمود الأيسر: شاشة المحادثة المفتوحة ── */}
         <main className={styles.chatArea}>
-          {/* هيدر المحادثة */}
           <div className={styles.chatHeader}>
             <div className={styles.activeUserMeta}>
               <div className={styles.avatarWrapper}>
@@ -187,9 +184,7 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* مساحة الرسائل */}
           <div className={styles.messagesContainer}>
-            {/* إشعار الرقابة والإشراف الإرشادي مدمج بشكل فخم بداخل المحادثة أو كـ Banner علوي */}
             {showWarning && (
               <div className={styles.auditWarning}>
                 <div className={styles.warningInfo}>
@@ -233,7 +228,6 @@ export default function ContactSection() {
             ))}
           </div>
 
-          {/* شريط الإدخال السفلي الاحترافي */}
           <form className={styles.inputArea} onSubmit={handleSendMessage}>
             <button
               type="button"

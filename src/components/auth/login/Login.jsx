@@ -14,7 +14,6 @@ import {
 import { MdOutlineLanguage } from "react-icons/md";
 import { toast } from "react-toastify";
 
-// كلمات دلالية للتحقق من أن الحساب لم يتم تفعيله بعد
 const UNVERIFIED_KEYWORDS = [
   "not verified",
   "unverified",
@@ -40,7 +39,6 @@ export default function LoginPage() {
   const { loading, googleLoading, error, isAuthenticated, otpLoading } =
     useSelector((s) => s.auth);
 
-  // تم تغيير الحالة من phone إلى email بناءً على الـ API الجديدة
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -67,7 +65,6 @@ export default function LoginPage() {
 
     setErrors((p) => ({
       ...p,
-      // عرض رسالة الخطأ القادمة من الـ API
       password: typeof error === "string" ? error : "بيانات الدخول غير صحيحة",
     }));
     dispatch(clearError());
@@ -76,7 +73,6 @@ export default function LoginPage() {
   const validate = () => {
     const newErrors = { email: "", password: "" };
 
-    // التحقق من البريد الإلكتروني بدل رقم الهاتف
     if (!email.trim()) {
       newErrors.email = "البريد الإلكتروني مطلوب";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
@@ -96,7 +92,7 @@ export default function LoginPage() {
 
     dispatch(
       loginUser({
-        email: email.trim(), // إرسال email بدلاً من phone
+        email: email.trim(), 
         password,
       }),
     );
@@ -112,7 +108,6 @@ export default function LoginPage() {
     }
 
     try {
-      // ملحوظة: تأكد من أن resendOtp في الـ slice تقبل email الآن
       await dispatch(resendOtp(email.trim())).unwrap();
 
       dispatch(clearOtpState());

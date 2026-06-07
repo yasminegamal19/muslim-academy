@@ -232,7 +232,6 @@ export function AthkarDetailPage() {
           </h1>
         </div>
 
-        {/* Tabs */}
         <div className={styles.tabs}>
           {[
             { key: "arabic", label: "اللغة العربية" },
@@ -252,7 +251,6 @@ export function AthkarDetailPage() {
           ))}
         </div>
 
-        {/* Content */}
         <div className={styles.dhikrContent}>
           {activeTab === "arabic" && (
             <p className={styles.dhikrArabic}>{item.arabic}</p>
@@ -265,7 +263,6 @@ export function AthkarDetailPage() {
           )}
         </div>
 
-        {/* Counter */}
         <p className={styles.repeatLabel}>تكرار {item.repeat} مرات</p>
         <div className={styles.counterDisplay}>
           <span className={styles.counterNum}>
@@ -273,7 +270,6 @@ export function AthkarDetailPage() {
           </span>
         </div>
 
-        {/* Navigation */}
         <div className={styles.navRow}>
           <button className={styles.navBtn} onClick={handlePrev}>
             <ChevronRight size={20} />

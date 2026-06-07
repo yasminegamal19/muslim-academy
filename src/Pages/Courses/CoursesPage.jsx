@@ -1,4 +1,3 @@
-// src/Pages/Courses/CoursesPage.jsx
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { kidsCoursesData, adultCoursesData } from "../../components/data/CourseData";
@@ -39,7 +38,7 @@ function CourseCard({ course }) {
 }
 
 export default function CoursesPage() {
-  const { type } = useParams(); // "kids" or "adults"
+  const { type } = useParams(); 
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState(type || "kids");
@@ -71,7 +70,6 @@ export default function CoursesPage() {
         </p>
       </div>
 
-      {/* Main Tabs */}
       <div className="cp-tabs-wrapper">
         <div className="cp-tabs">
           <button
@@ -89,7 +87,6 @@ export default function CoursesPage() {
         </div>
       </div>
 
-      {/* Category filter */}
       <div className="cp-categories-wrapper">
         <div className="cp-categories">
           {categories.map((cat) => (
@@ -104,7 +101,6 @@ export default function CoursesPage() {
         </div>
       </div>
 
-      {/* Results count */}
       <div className="cp-results-info">
         <span>
           {filtered.length} دورة متاحة
@@ -112,7 +108,6 @@ export default function CoursesPage() {
         </span>
       </div>
 
-      {/* Grid */}
       <div className="cp-grid">
         {filtered.map((course) => (
           <CourseCard key={course.id} course={course} />

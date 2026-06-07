@@ -184,7 +184,6 @@ export default function IslamicAcademy() {
         {books.map((book, idx) => (
           <div key={idx} className={styles.bookCard}>
             <div className={styles.bookImgPlaceholder}>
-              {/* استبدل بمكون Image الفعلي عند توفر الصور */}
               <span>Tajweed Book</span>
             </div>
             <h3>{book.title}</h3>

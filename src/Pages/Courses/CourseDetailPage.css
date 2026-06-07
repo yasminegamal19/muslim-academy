@@ -1,4 +1,3 @@
-/* src/Pages/Courses/CourseDetailPage.css */
 
 .cdp {
     min-height: 100vh;
@@ -6,7 +5,6 @@
     padding-bottom: 80px;
 }
 
-/* Not found */
 .cdp-not-found {
     padding: 60px 24px;
     text-align: center;
@@ -23,7 +21,6 @@
     font-family: inherit;
 }
 
-/* Hero */
 .cdp-hero-wrapper {
     position: relative;
     height: 260px;
@@ -85,14 +82,12 @@
     margin: 0;
 }
 
-/* Body */
 .cdp-body {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 16px;
 }
 
-/* Stats */
 .cdp-stats {
     display: flex;
     gap: 0;
@@ -133,7 +128,6 @@
     color: #aaa;
 }
 
-/* Section */
 .cdp-section {
     margin-bottom: 24px;
 }
@@ -161,7 +155,6 @@
     margin-bottom: 16px;
 }
 
-/* Accordion */
 .cdp-accordion {
     margin-bottom: 28px;
 }
@@ -209,7 +202,6 @@
     border-top: 1px solid #f5f5f5;
 }
 
-/* Learn list */
 .cdp-learn-list {
     list-style: none;
     padding: 0;
@@ -240,7 +232,6 @@
     color: #4caf50;
 }
 
-/* Curriculum */
 .cdp-curriculum-item {
     display: flex;
     align-items: flex-start;
@@ -276,7 +267,6 @@
     color: #888;
 }
 
-/* Instructor */
 .cdp-instructor-card {
     display: flex;
     align-items: center;
@@ -312,7 +302,6 @@
     color: #aaa;
 }
 
-/* Reviews */
 .cdp-review {
     display: flex;
     gap: 14px;
@@ -354,7 +343,6 @@
     margin-top: 4px;
 }
 
-/* CTA */
 .cdp-cta-bar {
     position: fixed;
     bottom: 0;

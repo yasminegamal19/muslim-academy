@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ServicesPage.module.css";
 import { useTranslation } from "react-i18next";
 
-// ── أيقونات SVG مدمجة (مش محتاجة مكتبة) ──
 const icons = {
   library: (
     <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -324,7 +323,6 @@ export default function ServicesPage() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        {/* ── Header ── */}
         <div className={styles.header}>
           <h1 className={styles.title}>{t("services.title", "الخدمات")}</h1>
           <div className={styles.searchBox}>
@@ -345,7 +343,6 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        {/* ── Services Grid ── */}
         <div className={styles.grid}>
           {SERVICES.map((service, idx) => (
             <div

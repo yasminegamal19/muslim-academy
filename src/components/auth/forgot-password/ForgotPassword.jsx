@@ -17,7 +17,6 @@ export default function ForgotPassword() {
 
   const { otpLoading, forgotOtpSent, error } = useSelector((s) => s.auth);
 
-  // تعديل: استخدام email بدل phone
   const [email, setEmail] = useState("");
   const [localError, setLocalError] = useState("");
 
@@ -30,7 +29,6 @@ export default function ForgotPassword() {
       position: "top-center",
     });
 
-    // تعديل: تمرير الـ email لصفحة التحقق
     navigate("/forgot-verify-otp", { state: { email: email.trim() } });
   }, [forgotOtpSent, dispatch, navigate, email]);
 
@@ -48,7 +46,6 @@ export default function ForgotPassword() {
       setLocalError("البريد الإلكتروني مطلوب");
       return false;
     }
-    // تحقق بسيط من صيغة الإيميل
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.trim())) {
       setLocalError("يرجى إدخال بريد إلكتروني صحيح");
@@ -63,14 +60,12 @@ export default function ForgotPassword() {
 
     if (!validate()) return;
 
-    // إرسال الإيميل للـ API
     dispatch(forgotPassword(email.trim()));
   };
 
   return (
     <div className={styles.ForgotContainer}>
       <div className={styles.ForgotCard}>
-        {/* تأكد من مسار اللوجو الصحيح */}
         <img src="/logo raw-kemya.jfif" alt="logo" className={styles.logo} />
 
         <h2>{t("forgotPassword.title") || "استعادة كلمة المرور"}</h2>

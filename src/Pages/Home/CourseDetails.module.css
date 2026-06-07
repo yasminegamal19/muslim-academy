@@ -4,7 +4,6 @@
     background-color: #fbfbfb;
     min-height: 100vh;
     padding-bottom: 80px;
-    /* لمساحة الزر الثابت السفلي */
 }
 
 .topBar {
@@ -106,7 +105,6 @@
     line-height: 1.7;
 }
 
-/* Accordion Styling */
 .accordionContainer {
     margin-bottom: 30px;
 }
@@ -137,7 +135,6 @@
     line-height: 1.6;
 }
 
-/* Reviews Styling */
 .reviewsGrid {
     display: flex;
     gap: 16px;
@@ -197,7 +194,6 @@
     color: #a0aec0;
 }
 
-/* Sticky Action Button */
 .stickyFooter {
     position: fixed;
     bottom: 0;

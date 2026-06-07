@@ -54,7 +54,6 @@ function AnalogClock({ timeStr }) {
             />
           );
         })}
-        {/* Hour hand */}
         <line
           x1="80"
           y1="80"
@@ -64,7 +63,6 @@ function AnalogClock({ timeStr }) {
           strokeWidth="4"
           strokeLinecap="round"
         />
-        {/* Minute hand */}
         <line
           x1="80"
           y1="80"
@@ -74,7 +72,6 @@ function AnalogClock({ timeStr }) {
           strokeWidth="3"
           strokeLinecap="round"
         />
-        {/* Second hand */}
         <line
           x1="80"
           y1="80"
@@ -105,7 +102,6 @@ export default function PrayerTimesPage() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        {/* ── Header ── */}
         <div className={styles.header}>
           <button className={styles.backBtn} onClick={() => navigate(-1)}>
             <ChevronRight size={20} />
@@ -115,7 +111,6 @@ export default function PrayerTimesPage() {
           </h1>
         </div>
 
-        {/* ── Date & Location ── */}
         <div className={styles.meta}>
           <div>
             <span className={styles.metaLabel}>المكان</span>
@@ -127,16 +122,13 @@ export default function PrayerTimesPage() {
           </div>
         </div>
 
-        {/* ── Clock ── */}
         <AnalogClock />
 
-        {/* ── Next prayer ── */}
         <p className={styles.nextLabel}>
           الوقت المتبقي لصلاة{" "}
           <span className={styles.nextHighlight}>الظهر</span>
         </p>
 
-        {/* ── Prayers list ── */}
         <div className={styles.list}>
           {PRAYERS.map((p, i) => (
             <div

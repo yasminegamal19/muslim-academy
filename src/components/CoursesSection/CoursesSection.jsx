@@ -1,4 +1,3 @@
-// src/components/CoursesSection/CoursesSection.jsx
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { kidsCoursesData, adultCoursesData } from "../../components/data/CourseData";
@@ -60,8 +59,6 @@ export default function CoursesSection() {
           تأسست دورات الأكاديمية الإسلامية عبر الإنترنت للأطفال والبالغين
         </p>
       </div>
-
-      {/* Kids Courses */}
       <div className="courses-group">
         <div className="courses-group-header">
           <div className="courses-group-label kids">
@@ -94,7 +91,6 @@ export default function CoursesSection() {
         </div>
       </div>
 
-      {/* Adults Courses */}
       <div className="courses-group">
         <div className="courses-group-header">
           <div className="courses-group-label adults">

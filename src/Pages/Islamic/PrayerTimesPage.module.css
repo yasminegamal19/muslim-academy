@@ -75,7 +75,6 @@
     color: #1a1f1c;
 }
 
-/* Clock */
 .clockWrap {
     display: flex;
     justify-content: center;
@@ -100,7 +99,6 @@
     font-weight: 700;
 }
 
-/* List */
 .list {
     display: flex;
     flex-direction: column;

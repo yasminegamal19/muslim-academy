@@ -5,7 +5,6 @@ import { CourseDetails } from "./CourseDetails";
 import { SessionCountdown } from "./SessionCountdown";
 import styles from "./HomePage.module.css";
 
-// الداتا الخاصة بك (تم الإبقاء عليها كما هي لتغذية الـ Components)
 const KIDS_COURSES = [
   {
     id: 1,
@@ -103,7 +102,6 @@ const ADULTS_COURSES = [
 function HeroSection() {
   return (
     <section className={styles.hero}>
-      {/* بقية كود الهيرو الخاص بك بدون تعديل */}
       <div className={styles.heroInner}>
         <div className={styles.heroContent}>
           <div className={styles.heroBadge}>
