@@ -1,20 +1,65 @@
-// src/Pages/Courses/CourseDetailPage.jsx
+
+
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { allCourses } from "../../components/data/CourseData";
-import "./CourseDetailPage.css";
+import { useSelector } from "react-redux";
+import { useCourseDetail } from "../../hooks/useCourses";
+import styles from "./CourseDetailPage.module.css";
+
+function LoadingDetail() {
+  return (
+    <div
+      className={styles.page}
+      dir="rtl"
+      style={{ padding: "2rem", textAlign: "center" }}
+    >
+      <div
+        style={{
+          height: 240,
+          background: "#e0e0e0",
+          borderRadius: 12,
+          marginBottom: 24,
+        }}
+      />
+      <div
+        style={{
+          height: 20,
+          background: "#e0e0e0",
+          borderRadius: 4,
+          marginBottom: 12,
+          width: "60%",
+          margin: "0 auto 12px",
+        }}
+      />
+      <div
+        style={{
+          height: 14,
+          background: "#e0e0e0",
+          borderRadius: 4,
+          width: "80%",
+          margin: "0 auto",
+        }}
+      />
+    </div>
+  );
+}
 
 export default function CourseDetailPage() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
-  const course = allCourses.find((c) => c.id === id);
+
+  const isLoggedIn = useSelector((state) => !!state.auth?.token);
+
+  const { data: course, loading, error } = useCourseDetail(slug);
 
   const [openSection, setOpenSection] = useState(null);
 
-  if (!course) {
+  if (loading) return <LoadingDetail />;
+
+  if (error || !course) {
     return (
-      <div className="cdp-not-found" dir="rtl">
-        <p>الدورة غير موجودة</p>
+      <div className={styles.notFound} dir="rtl">
+        <p>حدث خطأ أثناء تحميل الدورة</p>
         <button onClick={() => navigate(-1)}>رجوع</button>
       </div>
     );
@@ -22,199 +67,269 @@ export default function CourseDetailPage() {
 
   const toggle = (key) => setOpenSection(openSection === key ? null : key);
 
+  const handleStartCourse = () => {
+    if (isLoggedIn) {
+      
+      navigate("/subscription", {
+        state: {
+          course: {
+            id: course.rawId || course.id, 
+            name: course.title,
+            title: course.title,
+            slug: course.slug,
+          },
+        },
+      });
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
-    <div className="cdp" dir="rtl">
-      <div className="cdp-hero-wrapper">
-        <button className="cdp-back" onClick={() => navigate(-1)}>
-          ←
-        </button>
-        <img src={course.image} alt={course.title} className="cdp-hero-img" />
-        <div className="cdp-hero-overlay" />
-        <div className="cdp-hero-content">
-          <span className="cdp-category-tag">
-            {course.type === "kids" ? "دورات للأطفال" : "دورات للكبار"}
-            {" / "}
+    <div className={styles.page} dir="rtl">
+      <div className={styles.heroWrapper}>
+        <div className={styles.heroContainer}>
+          <button className={styles.backBtn} onClick={() => navigate(-1)}>
+            ← رجوع
+          </button>
+          <span className={styles.categoryTag}>
             {course.category}
+            {course.subject ? ` / ${course.subject}` : ""}
           </span>
-          <h1 className="cdp-title">{course.title}</h1>
+          <h1 className={styles.courseTitle}>{course.title}</h1>
         </div>
       </div>
 
-      <div className="cdp-body">
-        <div className="cdp-stats">
-          <div className="cdp-stat">
-            <span className="cdp-stat-icon">⭐</span>
-            <span className="cdp-stat-val">{course.rating}</span>
-            <span className="cdp-stat-label">التقييم</span>
-          </div>
-          <div className="cdp-stat">
-            <span className="cdp-stat-icon">👥</span>
-            <span className="cdp-stat-val">{course.students}+</span>
-            <span className="cdp-stat-label">طالب</span>
-          </div>
-          <div className="cdp-stat">
-            <span className="cdp-stat-icon">⏱</span>
-            <span className="cdp-stat-val">{course.duration}</span>
-            <span className="cdp-stat-label">المدة</span>
-          </div>
-          <div className="cdp-stat">
-            <span className="cdp-stat-icon">📊</span>
-            <span className="cdp-stat-val">{course.level}</span>
-            <span className="cdp-stat-label">المستوى</span>
-          </div>
-        </div>
-
-        <div className="cdp-section">
-          <h2 className="cdp-section-title">نبذة عن الدورة</h2>
-          <p className="cdp-description">{course.description}</p>
-        </div>
-
-        <div className="cdp-accordion">
-          <div className="cdp-acc-item">
-            <button className="cdp-acc-header" onClick={() => toggle("learn")}>
-              <span>ماذا ستتعلم؟</span>
-              <span
-                className={`cdp-chevron ${openSection === "learn" ? "open" : ""}`}
-              >
-                ▼
-              </span>
-            </button>
-            {openSection === "learn" && (
-              <div className="cdp-acc-body">
-                <ul className="cdp-learn-list">
-                  {course.whatYouLearn.map((item, i) => (
-                    <li key={i} className="cdp-learn-item">
-                      <span className="cdp-check">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+      <div className={styles.layoutContainer}>
+        <div className={styles.mainContent}>
+          <div className={styles.statsContainer}>
+            <div className={styles.statItem}>
+              <span className={styles.statIcon}>⭐</span>
+              <div>
+                <div className={styles.statVal}>{course.rating || 0}</div>
+                <div className={styles.statLabel}>التقييم</div>
+              </div>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statIcon}>👥</span>
+              <div>
+                <div className={styles.statVal}>{course.students || 0}</div>
+                <div className={styles.statLabel}>تقييم</div>
+              </div>
+            </div>
+            {course.category && (
+              <div className={styles.statItem}>
+                <span className={styles.statIcon}>📚</span>
+                <div>
+                  <div className={styles.statVal} style={{ fontSize: 13 }}>
+                    {course.category}
+                  </div>
+                  <div className={styles.statLabel}>الفئة</div>
+                </div>
+              </div>
+            )}
+            {course.level && (
+              <div className={styles.statItem}>
+                <span className={styles.statIcon}>📊</span>
+                <div>
+                  <div className={styles.statVal}>{course.level}</div>
+                  <div className={styles.statLabel}>المستوى</div>
+                </div>
               </div>
             )}
           </div>
 
-          <div className="cdp-acc-item">
-            <button
-              className="cdp-acc-header"
-              onClick={() => toggle("features")}
-            >
-              <span>مميزات الدورة</span>
-              <span
-                className={`cdp-chevron ${openSection === "features" ? "open" : ""}`}
-              >
-                ▼
-              </span>
-            </button>
-            {openSection === "features" && (
-              <div className="cdp-acc-body">
-                <ul className="cdp-learn-list">
-                  {course.features.map((item, i) => (
-                    <li key={i} className="cdp-learn-item">
-                      <span className="cdp-check green">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div className={styles.section}>
+            <h2 className={styles.sectionTitle}>نبذة عن الدورة</h2>
+            <p className={styles.description}>{course.description}</p>
           </div>
 
-          <div className="cdp-acc-item">
-            <button
-              className="cdp-acc-header"
-              onClick={() => toggle("curriculum")}
-            >
-              <span>منهج التقدم</span>
-              <span
-                className={`cdp-chevron ${openSection === "curriculum" ? "open" : ""}`}
+          <div className={styles.accordion}>
+            {course.whatYouLearn?.length > 0 && (
+              <div className={styles.accItem}>
+                <button
+                  className={styles.accHeader}
+                  onClick={() => toggle("learn")}
+                >
+                  <span>
+                    <span className={styles.accIcon}>📚</span>ماذا ستتعلم؟
+                  </span>
+                  <span
+                    className={`${styles.chevron} ${openSection === "learn" ? styles.chevronOpen : ""}`}
+                  >
+                    ▼
+                  </span>
+                </button>
+                {openSection === "learn" && (
+                  <div className={styles.accBody}>
+                    <ul className={styles.learnList}>
+                      {course.whatYouLearn.map((item, i) => (
+                        <li key={i} className={styles.learnItem}>
+                          <span className={styles.checkMark}>✓</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {course.features?.length > 0 && (
+              <div className={styles.accItem}>
+                <button
+                  className={styles.accHeader}
+                  onClick={() => toggle("features")}
+                >
+                  <span>
+                    <span className={styles.accIcon}>✨</span>مميزات الدورة
+                  </span>
+                  <span
+                    className={`${styles.chevron} ${openSection === "features" ? styles.chevronOpen : ""}`}
+                  >
+                    ▼
+                  </span>
+                </button>
+                {openSection === "features" && (
+                  <div className={styles.accBody}>
+                    <ul className={styles.learnList}>
+                      {course.features.map((item, i) => (
+                        <li key={i} className={styles.learnItem}>
+                          <span className={styles.checkMark}>✓</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {course.curriculum?.length > 0 && (
+              <div className={styles.accItem}>
+                <button
+                  className={styles.accHeader}
+                  onClick={() => toggle("curriculum")}
+                >
+                  <span>
+                    <span className={styles.accIcon}>📋</span>منهج التقدم
+                  </span>
+                  <span
+                    className={`${styles.chevron} ${openSection === "curriculum" ? styles.chevronOpen : ""}`}
+                  >
+                    ▼
+                  </span>
+                </button>
+                {openSection === "curriculum" && (
+                  <div className={styles.accBody}>
+                    {course.curriculum.map((item, i) => (
+                      <div key={i} className={styles.currItem}>
+                        <span className={styles.weekBadge}>{item.week}</span>
+                        <div>
+                          <div className={styles.currTitle}>{item.title}</div>
+                          <div className={styles.currDesc}>{item.desc}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className={styles.accItem}>
+              <button
+                className={styles.accHeader}
+                onClick={() => toggle("unique")}
               >
-                ▼
-              </span>
-            </button>
-            {openSection === "curriculum" && (
-              <div className="cdp-acc-body">
-                {course.curriculum.map((item, i) => (
-                  <div key={i} className="cdp-curriculum-item">
-                    <span className="cdp-week-badge">{item.week}</span>
+                <span>
+                  <span className={styles.accIcon}>🎯</span>نظام دقيق
+                </span>
+                <span
+                  className={`${styles.chevron} ${openSection === "unique" ? styles.chevronOpen : ""}`}
+                >
+                  ▼
+                </span>
+              </button>
+              {openSection === "unique" && (
+                <div className={styles.accBody}>
+                  <p className={styles.description}>
+                    نعتمد على خطة متابعة دقيقة ومستمرة لضمان تقدم الطالب
+                    واستيعابه التام للمادة العلمية.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className={styles.accItem}>
+              <button
+                className={styles.accHeader}
+                onClick={() => toggle("cert")}
+              >
+                <span>
+                  <span className={styles.accIcon}>🏆</span>الشهادات
+                </span>
+                <span
+                  className={`${styles.chevron} ${openSection === "cert" ? styles.chevronOpen : ""}`}
+                >
+                  ▼
+                </span>
+              </button>
+              {openSection === "cert" && (
+                <div className={styles.accBody}>
+                  <p className={styles.description}>
+                    يمنح الطالب شهادة اجتياز معتمدة من الأكاديمية بعد إتمام
+                    المنهج بنجاح واجتياز الاختبار النهائي.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {course.reviews?.length > 0 && (
+            <div className={styles.section}>
+              <h2 className={styles.sectionTitle}>آراء الطلاب</h2>
+              <div className={styles.reviewsGrid}>
+                {course.reviews.map((rev, i) => (
+                  <div key={i} className={styles.review}>
+                    {rev.image && (
+                      <img
+                        src={rev.image}
+                        alt={rev.name}
+                        className={styles.revAvatar}
+                      />
+                    )}
                     <div>
-                      <div className="cdp-curriculum-title">{item.title}</div>
-                      <div className="cdp-curriculum-desc">{item.desc}</div>
+                      <div className={styles.revName}>{rev.name}</div>
+                      <div className={styles.revStars}>
+                        {"⭐".repeat(rev.rating)}
+                      </div>
+                      <div className={styles.revComment}>{rev.comment}</div>
+                      <div className={styles.revDate}>{rev.date}</div>
                     </div>
                   </div>
                 ))}
               </div>
-            )}
-          </div>
-
-          <div className="cdp-acc-item">
-            <button className="cdp-acc-header" onClick={() => toggle("unique")}>
-              <span>نظام دقيق</span>
-              <span
-                className={`cdp-chevron ${openSection === "unique" ? "open" : ""}`}
-              >
-                ▼
-              </span>
-            </button>
-          </div>
-
-          <div className="cdp-acc-item">
-            <button className="cdp-acc-header" onClick={() => toggle("cert")}>
-              <span>الشهادات</span>
-              <span
-                className={`cdp-chevron ${openSection === "cert" ? "open" : ""}`}
-              >
-                ▼
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <div className="cdp-section">
-          <h2 className="cdp-section-title">توصيات الطالب</h2>
-          <p className="cdp-tip">
-            اكتشف ثروة دروس الأكاديمية الإسلامية في الاهتمام بالمحتوى الإسلامي
-            وتعليم اللغة العربية وتعلم القرآن الكريم. معرفة أكثر حول الأكاديمية
-            الإسلامية — كيف أن الأكاديمية الإسلامية تساعدك في مسيرتك التعليمية.
-          </p>
-
-          <div className="cdp-instructor-card">
-            <img
-              src={course.instructorImage}
-              alt={course.instructor}
-              className="cdp-instructor-img"
-            />
-            <div>
-              <div className="cdp-instructor-name">{course.instructor}</div>
-              <div className="cdp-instructor-stars">{"⭐".repeat(5)}</div>
-              <div className="cdp-instructor-sub">مدرس معتمد</div>
             </div>
-          </div>
+          )}
         </div>
 
-        {course.reviews && course.reviews.length > 0 && (
-          <div className="cdp-section">
-            <h2 className="cdp-section-title">آراء الطلاب</h2>
-            {course.reviews.map((rev, i) => (
-              <div key={i} className="cdp-review">
-                <img
-                  src={rev.image}
-                  alt={rev.name}
-                  className="cdp-rev-avatar"
-                />
-                <div className="cdp-rev-body">
-                  <div className="cdp-rev-name">{rev.name}</div>
-                  <div className="cdp-rev-stars">{"⭐".repeat(rev.rating)}</div>
-                  <div className="cdp-rev-comment">{rev.comment}</div>
-                  <div className="cdp-rev-date">{rev.date}</div>
-                </div>
-              </div>
-            ))}
+        <div className={styles.sidebar}>
+          <div className={styles.stickyCard}>
+            <div className={styles.previewImgWrapper}>
+              <img
+                src={course.image}
+                alt={course.title}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <button
+              className={styles.sidebarCtaBtn}
+              onClick={handleStartCourse}
+            >
+              {isLoggedIn ? "ابدأ الدورة الآن" : "سجّل دخولك للاشتراك"}
+            </button>
           </div>
-        )}
-      </div>
-
-      <div className="cdp-cta-bar">
-        <button className="cdp-cta-btn">ابدأ الدورة الآن</button>
+        </div>
       </div>
     </div>
   );

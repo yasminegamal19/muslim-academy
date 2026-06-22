@@ -1,0 +1,890 @@
+
+.page {
+    background: #fcfcf9;
+    min-height: 100vh;
+    font-family: "Cairo", "Segoe UI", sans-serif;
+    color: #2c3e50;
+}
+
+.notFound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 16px;
+    color: #555;
+}
+
+.notFound button {
+    padding: 10px 24px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.heroWrapper {
+    background: #1b4332;
+    color: #fff;
+    padding: 40px 0;
+    margin-bottom: 32px;
+    border-bottom: 4px solid #2e7d32;
+}
+
+.heroContainer {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.backBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    transition: all 0.2s;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.categoryTag {
+    font-size: 13px;
+    color: #b7e4c7;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.courseTitle {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    max-width: 700px;
+}
+
+.layoutContainer {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px 60px 24px;
+    display: grid;
+    grid-template-columns: 7fr 4fr;
+    gap: 32px;
+}
+
+@media (max-width: 991px) {
+    .layoutContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        order: -1;
+    }
+}
+
+.statsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #f0f2f0;
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.statIcon {
+    font-size: 24px;
+}
+
+.statVal {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.statLabel {
+    font-size: 12px;
+    color: #718096;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border: 1px solid #f0f2f0;
+}
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f7f9f7;
+    position: relative;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 45px;
+    height: 2px;
+    background-color: #2e7d32;
+}
+
+.description {
+    font-size: 14.5px;
+    color: #4a5568;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.tip {
+    font-size: 13.5px;
+    color: #718096;
+    line-height: 1.7;
+    margin: 0 0 16px;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.accItem {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .01);
+    border: 1px solid #eef1ee;
+}
+
+.accHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d3748;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: right;
+}
+
+.accHeader>span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.accIcon {
+    font-size: 18px;
+}
+
+.chevron {
+    font-size: 11px;
+    color: #a0aec0;
+    transition: transform 0.25s ease;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+    color: #2e7d32;
+}
+
+.accBody {
+    padding: 8px 24px 24px 24px;
+    border-top: 1px solid #f7f9f7;
+    background: #fafbfa;
+}
+
+.learnList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 576px) {
+    .learnList {
+        grid-template-columns: 1fr;
+    }
+}
+
+.learnItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.checkMark {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.currItem {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f2f0;
+}
+
+.currItem:last-child {
+    border-bottom: none;
+}
+
+.weekBadge {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.currTitle {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.currDesc {
+    font-size: 12.5px;
+    color: #718096;
+    margin-top: 4px;
+}
+
+.instructorCard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #f7f9f7;
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid #edf2ed;
+}
+
+.instructorImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2e7d32;
+}
+
+.instructorName {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.instructorStars {
+    font-size: 12px;
+    margin: 2px 0;
+}
+
+.instructorBadge {
+    font-size: 12px;
+    color: #4a5568;
+    font-weight: 600;
+}
+
+.reviewsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review {
+    display: flex;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #edf2ed;
+}
+
+.review:last-child {
+    border-bottom: none;
+}
+
+.revAvatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.revName {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.revStars {
+    font-size: 12px;
+    margin: 2px 0;
+}
+
+.revComment {
+    font-size: 13px;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.revDate {
+    font-size: 11px;
+    color: #a0aec0;
+    margin-top: 4px;
+}
+
+.sidebar {
+    position: relative;
+}
+
+.stickyCard {
+    position: sticky;
+    top: 32px;
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #eef1ee;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.previewImgWrapper {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.sidebarCtaBtn {
+    width: 100%;
+    padding: 14px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+.sidebarCtaBtn:hover {
+    background: #1b4332;
+}
+
+.cdpOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.cdpRegModal {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cdpModalClose {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #a0aec0;
+}
+
+.cdpModalClose.dark {
+    color: #fff;
+}
+
+.cdpRegHeader {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.cdpRegBadge {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.cdpRegHeader h2 {
+    font-size: 22px;
+    margin: 12px 0 6px;
+    color: #1a1a1a;
+}
+
+.cdpRegBody {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cdpField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cdpField label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.cdpField input,
+.cdpField select {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.cdpPhoneRow {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+}
+
+.errorInput {
+    border-color: #e53e3e !important;
+}
+
+.cdpErr {
+    color: #e53e3e;
+    font-size: 12px;
+}
+
+.cdpRegFooter {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.cdpRegSubmit {
+    width: 100%;
+    padding: 12px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.cdpRegNote {
+    font-size: 12px;
+    color: #a0aec0;
+    margin-top: 12px;
+}
+
+.cdpRegNote a {
+    color: #2e7d32;
+    text-decoration: none;
+}
+
+.cdpMeeting {
+    background: #1a202c;
+    min-height: 100vh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.cdpMeetHeader {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    background: #2d3748;
+}
+
+.cdpMeetTimer {
+    background: #e53e3e;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.cdpMeetVideoArea {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+}
+
+.cdpMeetInstructorBg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.8;
+}
+
+.cdpMeetSelfCam {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 120px;
+    height: 160px;
+    background: #2d3748;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cdpMeetControls {
+    background: #2d3748;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.cdpCtrlBtn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #4a5568;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cdpCtrlBtn.active {
+    background: #e53e3e;
+}
+
+.cdpCtrlBtn.end {
+    background: #e53e3e;
+    transform: rotate(135deg);
+}
+
+.cdpEndCard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #2d3748;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.cdpEndCheck {
+    width: 60px;
+    height: 60px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.cdpEndBtn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.cdpEndBtn.primary {
+    background: #2e7d32;
+    color: #fff;
+}
+
+.cdpEndBtn.secondary {
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+.cdpRatingOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.cdpRatingModal {
+    background: #fff;
+    color: #2d3748;
+    padding: 32px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+}
+
+.cdpStarsRow {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.cdpStar {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #e2e8f0;
+    cursor: pointer;
+}
+
+.cdpStar.filled {
+    color: #ecc94b;
+}
+
+.cdpRateTextarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    resize: none;
+    margin-top: 10px;
+}
+
+.cdpRateActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.cdpRateSubmit {
+    flex: 1;
+    padding: 12px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.cdpRateCancel {
+    padding: 12px 20px;
+    background: #edf2f7;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.cdpMeetChat {
+    position: absolute;
+    top: 60px;
+    bottom: 88px;
+    left: 20px;
+    width: 320px;
+    background: #fff;
+    color: #2d3748;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cdpMeetChatHeader {
+    padding: 12px 16px;
+    background: #edf2f7;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.cdpMeetChatHeader button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cdpMeetChatMsgs {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cdpMsg {
+    display: flex;
+    gap: 8px;
+}
+
+.cdpMsg.me {
+    flex-direction: row-reverse;
+}
+
+.cdpMsgAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.cdpMsgBubble {
+    background: #edf2f7;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.cdpMsg.me .cdpMsgBubble {
+    background: #e8f5e9;
+}
+
+.cdpMsgBubble p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.cdpMeetChatInput {
+    padding: 12px;
+    border-top: 1px solid #edf2ed;
+    display: flex;
+    gap: 8px;
+}
+
+.cdpMeetChatInput input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    outline: none;
+}
+
+.cdpSendBtn {
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 0 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cdpSpinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
+}

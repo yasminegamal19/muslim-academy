@@ -6,6 +6,8 @@
   },
   "topbar": {
     "dashboard": "Home",
+    "courses": "Courses",
+    "subscriptions": "Subscriptions",
     "services": "Services",
     "contact": "Contact Us",
     "islamic": "Islamy" ,

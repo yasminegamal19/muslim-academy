@@ -1,0 +1,334 @@
+.coursesPage {
+    min-height: 100vh;
+    background: #f8f9fb;
+    padding-bottom: 60px;
+}
+
+.cpHero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: #fff;
+    padding: 40px 24px 48px;
+    position: relative;
+    text-align: center;
+}
+
+.cpBackBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+.cpBackBtn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.cpHeroTitle {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.cpHeroSubtitle {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.cpTabsWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 28px 24px 0;
+}
+
+.cpTabs {
+    display: flex;
+    gap: 12px;
+    background: #fff;
+    padding: 8px;
+    border-radius: 50px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cpTab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    border: none;
+    background: transparent;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    color: #666;
+}
+
+.cpTab:hover {
+    background: #f0f0f0;
+}
+
+.cpTab.active.kids {
+    background: #2196a3;
+    color: #fff;
+}
+
+.cpTab.active.adults {
+    background: #4caf50;
+    color: #fff;
+}
+
+.cpCategoriesWrapper {
+    overflow-x: auto;
+    padding: 20px 24px 0;
+    scrollbar-width: none;
+}
+
+.cpCategoriesWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.cpCategories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cpCatBtn {
+    padding: 7px 18px;
+    border: 1.5px solid #ddd;
+    background: #fff;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-family: inherit;
+    color: #555;
+    white-space: nowrap;
+}
+
+.cpCatBtn:hover {
+    border-color: #2196a3;
+    color: #2196a3;
+}
+
+.cpCatBtn.active {
+    background: #1a1a2e;
+    color: #fff;
+    border-color: #1a1a2e;
+}
+
+.cpResultsInfo {
+    padding: 16px 24px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.cpGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cpCard {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.cpCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
+}
+
+.cpCardImgWrapper {
+    position: relative;
+    height: 175px;
+    overflow: hidden;
+}
+
+.cpCardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.cpCard:hover .cpCardImg {
+    transform: scale(1.05);
+}
+
+.cpBadge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.kidsBadge {
+    background: #2196a3;
+}
+
+.adultsBadge {
+    background: #4caf50;
+}
+
+.cpCardBody {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.cpCategory {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kidsText {
+    color: #2196a3;
+}
+
+.adultsText {
+    color: #4caf50;
+}
+
+.cpTitle {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 8px 0 4px;
+    line-height: 1.4;
+}
+
+.cpSubtitle {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 0 12px;
+}
+
+.cpMeta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.cpAvatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.cpInstructor {
+    font-size: 0.78rem;
+    color: #555;
+    flex: 1;
+}
+
+.cpRating {
+    font-size: 0.78rem;
+    color: #f5a623;
+    font-weight: 600;
+}
+
+.cpFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid #f0f0f0;
+    margin-bottom: 12px;
+}
+
+.cpDuration {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+.cpLevel {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.kidsLevel {
+    background: #e3f2fd;
+    color: #2196a3;
+}
+
+.adultsLevel {
+    background: #f0f8ee;
+    color: #4caf50;
+}
+
+.cpBtn {
+    width: 100%;
+    padding: 10px;
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: auto;
+    transition: background 0.2s;
+}
+
+.cpBtn:hover {
+    background: #111122;
+}
+
+@media (max-width: 600px) {
+    .cpGrid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .cpHeroTitle {
+        font-size: 1.7rem;
+    }
+
+    .cpTabs {
+        flex-direction: column;
+        border-radius: 16px;
+        width: 100%;
+    }
+
+    .cpTab {
+        justify-content: center;
+    }
+}

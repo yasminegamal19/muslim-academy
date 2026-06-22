@@ -1,126 +1,215 @@
+
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { kidsCoursesData, adultCoursesData } from "../../components/data/CourseData";
-import "./CoursesSection.css";
+import { useCategories, useCourses } from "../../hooks/useCourses";
+import styles from "./CoursesSection.module.css";
 
-const PREVIEW_COUNT = 6;
-
-function CourseCard({ course }) {
+function HomeCourseCard({ course, isKids }) {
   const navigate = useNavigate();
+
+  const displayName = course.name || course.title || "";
+
+  const subjectLabel =
+    typeof course.subject === "object" ? course.subject?.name : course.subject;
+
+  const categoryLabel =
+    typeof course.category === "object"
+      ? course.category?.name
+      : course.category;
+
+  const displayCategory = subjectLabel || categoryLabel || "";
 
   return (
     <div
-      className="course-card"
-      onClick={() => navigate(`/courses/${course.id}`)}
+      className={styles.ccCard}
+      onClick={() => navigate(`/courses/${course.slug}`)}
     >
-      <div className="course-card-img-wrapper">
+      <div className={styles.ccCardImgWrapper}>
         <img
           src={course.image}
-          alt={course.title}
-          className="course-card-img"
+          alt={displayName}
+          className={styles.ccCardImg}
+          loading="lazy"
         />
-        {course.badge && <span className="course-badge">{course.badge}</span>}
       </div>
-      <div className="course-card-body">
-        <span className="course-category">{course.category}</span>
-        <h3 className="course-title">{course.title}</h3>
-        <p className="course-subtitle">{course.subtitle}</p>
-        <div className="course-meta">
-          <img
-            src={course.instructorImage}
-            alt={course.instructor}
-            className="course-instructor-avatar"
-          />
-          <span className="course-instructor-name">{course.instructor}</span>
-          <span className="course-rating">
-            ⭐ {course.rating}
-            <span className="course-students"> ({course.students})</span>
+      <div className={styles.ccCardBody}>
+        <span
+          className={`${styles.ccCategory} ${isKids ? styles.kidsText : styles.adultsText}`}
+        >
+          {displayCategory}
+        </span>
+        <h3 className={styles.ccTitle}>{displayName}</h3>
+        <p className={styles.ccSubtitle}>
+          {course.description || course.subtitle}
+        </p>
+
+        <div className={styles.ccMeta}>
+          <span className={styles.ccRating}>
+            ⭐ {course.average_rating || course.rating || 0}
+            {course.total_reviews > 0 && ` (${course.total_reviews})`}
           </span>
         </div>
-        <div className="course-footer">
-          <span className="course-duration">⏱ {course.duration}</span>
-          <span className="course-level">{course.level}</span>
+
+        <div className={styles.ccFooter}>
+          <span
+            className={`${styles.ccLevel} ${isKids ? styles.kidsLevel : styles.adultsLevel}`}
+          >
+            {isKids ? "للأطفال" : "للكبار"}
+          </span>
+          <button className={styles.ccReadMoreBtn}>التفاصيل</button>
         </div>
       </div>
     </div>
   );
 }
 
+function HomeSkeletonCard() {
+  return (
+    <div className={styles.ccCard} style={{ opacity: 0.6 }}>
+      <div
+        className={styles.ccCardImgWrapper}
+        style={{ background: "#e0e0e0", height: 160 }}
+      />
+      <div className={styles.ccCardBody}>
+        <div
+          style={{
+            height: 12,
+            background: "#e0e0e0",
+            borderRadius: 4,
+            marginBottom: 8,
+            width: "30%",
+          }}
+        />
+        <div
+          style={{
+            height: 16,
+            background: "#e0e0e0",
+            borderRadius: 4,
+            marginBottom: 6,
+            width: "70%",
+          }}
+        />
+        <div
+          style={{
+            height: 12,
+            background: "#e0e0e0",
+            borderRadius: 4,
+            width: "50%",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function CoursesSection() {
-  const { i18n } = useTranslation();
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
   const isRTL = i18n.language !== "en";
 
+  const {
+    categories,
+    loading: loadingCats,
+    error: errorCats,
+  } = useCategories();
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  useEffect(() => {
+    if (categories.length > 0 && !activeCategory) {
+      setActiveCategory(categories[0]);
+    }
+  }, [categories, activeCategory]);
+
+  const {
+    data: courses,
+    loading: loadingCourses,
+    error: errorCourses,
+  } = useCourses({
+    categorySlug: activeCategory?.slug,
+  });
+
+  const checkIsKids = (name = "") => {
+    const lower = name.toLowerCase();
+    return (
+      lower.includes("child") ||
+      lower.includes("kid") ||
+      lower.includes("أطفال")
+    );
+  };
+
+  const isLoading = loadingCats || loadingCourses;
+  const hasError = errorCats || errorCourses;
+  const displayedCourses = courses.slice(0, 4);
+  const isKidsCategory = checkIsKids(activeCategory?.name);
+
   return (
-    <section className="courses-section" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="courses-section-header">
-        <h2 className="courses-section-title">دوراتنا</h2>
-        <p className="courses-section-subtitle">
-          تأسست دورات الأكاديمية الإسلامية عبر الإنترنت للأطفال والبالغين
-        </p>
-      </div>
-      <div className="courses-group">
-        <div className="courses-group-header">
-          <div className="courses-group-label kids">
-            <span className="label-icon"></span>
-            <span>KIDS COURSES</span>
-          </div>
-          <div className="courses-group-info">
-            <h3>دورات للأطفال</h3>
-            <p>
-              اللغة العربية - القرآن - التجويد
-              <br />
-              الدراسات الإسلامية ودورة خاصة
+    <section className={styles.coursesSection} dir={isRTL ? "rtl" : "ltr"}>
+      <div className={styles.csContainer}>
+        <div className={styles.csHeader}>
+          <div>
+            <h2 className={styles.csSectionTitle}>اكتشف دوراتنا المتميزة</h2>
+            <p className={styles.csSectionSubtitle}>
+              اختر القسم المناسب وابدأ رحلة التعلم الفريدة معنا اليوم
             </p>
           </div>
-        </div>
-
-        <div className="courses-grid">
-          {kidsCoursesData.slice(0, PREVIEW_COUNT).map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
-        </div>
-
-        <div className="courses-show-more">
           <button
-            className="btn-show-more kids"
-            onClick={() => navigate("/courses/kids")}
+            className={styles.csViewAllBtn}
+            onClick={() =>
+              navigate(`/courses/${isKidsCategory ? "kids" : "adults"}`)
+            }
           >
-            اقرأء المزيد
+            {isRTL ? "عرض الكل ←" : "View All ←"}
           </button>
         </div>
-      </div>
 
-      <div className="courses-group">
-        <div className="courses-group-header">
-          <div className="courses-group-label adults">
-            <span className="label-icon"></span>
-            <span>ADULTS COURSES</span>
-          </div>
-          <div className="courses-group-info">
-            <h3>دورات للكبار</h3>
-            <p>
-              القرآن والتجويد - اللغة العربية
-              <br />
-              الدراسات الإسلامية - دورة للنساء
-            </p>
+        <div className={styles.csTabsWrapper}>
+          <div className={styles.csTabs}>
+            {categories.map((cat) => {
+              const isKidsTheme = checkIsKids(cat.name);
+              const isActive = activeCategory?.slug === cat.slug;
+              return (
+                <button
+                  key={cat.slug}
+                  className={`${styles.csTab} ${
+                    isActive
+                      ? `${styles.tabActive} ${isKidsTheme ? styles.kidsTab : styles.adultsTab}`
+                      : ""
+                  }`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat.name}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div className="courses-grid">
-          {adultCoursesData.slice(0, PREVIEW_COUNT).map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
+        {hasError && (
+          <p className={styles.csErrorText}>
+            حدث خطأ أثناء تحميل البيانات: {errorCats || errorCourses}
+          </p>
+        )}
+
+        <div className={styles.csGrid}>
+          {isLoading
+            ? Array.from({ length: 4 }).map((_, i) => (
+                <HomeSkeletonCard key={i} />
+              ))
+            : displayedCourses.map((course) => (
+                <HomeCourseCard
+                  key={course.slug}
+                  course={course}
+                  isKids={isKidsCategory}
+                />
+              ))}
         </div>
 
-        <div className="courses-show-more">
-          <button
-            className="btn-show-more adults"
-            onClick={() => navigate("/courses/adults")}
-          >
-            اقرأء المزيد
-          </button>
-        </div>
+        {!isLoading && displayedCourses.length === 0 && !hasError && (
+          <p className={styles.csNoDataText}>
+            لا توجد دورات متاحة في هذا القسم حالياً.
+          </p>
+        )}
       </div>
     </section>
   );

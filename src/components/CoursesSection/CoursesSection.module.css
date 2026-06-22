@@ -1,0 +1,298 @@
+.coursesSection {
+    padding: 80px 24px;
+    max-width: 1240px;
+    margin: 0 auto;
+    font-family: 'Cairo', sans-serif;
+}
+
+.csContainer {
+    width: 100%;
+}
+
+.csHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.csSectionTitle {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    color: #0d1f0d;
+    margin: 0 0 12px;
+}
+
+.csSectionSubtitle {
+    color: #4a5d4a;
+    font-size: 0.95rem;
+    max-width: 540px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.csViewAllBtn {
+    background: transparent;
+    border: 2px solid #2e7d32;
+    color: #2e7d32;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.csViewAllBtn:hover {
+    background: #2e7d32;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.csTabsWrapper {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.csTabs {
+    display: flex;
+    gap: 12px;
+    background: #f4f7f4;
+    padding: 6px;
+    border-radius: 50px;
+    border: 1px solid rgba(13, 31, 13, 0.05);
+}
+
+.csTab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border: none;
+    background: transparent;
+    border-radius: 40px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    color: #556b55;
+}
+
+.csTab:hover {
+    background: rgba(13, 31, 13, 0.04);
+}
+
+.tabActive.kidsTab {
+    background: linear-gradient(135deg, #0288d1, #00b0ff);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(2, 136, 209, 0.2);
+}
+
+.tabActive.adultsTab {
+    background: linear-gradient(135deg, #2e7d32, #4caf50);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+}
+
+.csGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+    margin-bottom: 20px;
+}
+
+.ccCard {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(13, 31, 13, 0.04);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(13, 31, 13, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.ccCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(13, 31, 13, 0.1);
+}
+
+.ccCardImgWrapper {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    background: #f9fbf9;
+}
+
+.ccCardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.ccCard:hover .ccCardImg {
+    transform: scale(1.05);
+}
+
+.ccCardBody {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.ccCategory {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.kidsText {
+    color: #0288d1;
+}
+
+.adultsText {
+    color: #2e7d32;
+}
+
+.ccTitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0d1f0d;
+    margin: 0 0 6px;
+    line-height: 1.45;
+}
+
+.ccSubtitle {
+    font-size: 0.82rem;
+    color: #667a66;
+    margin: 0 0 16px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.ccMeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #e8eee8;
+}
+
+.ccRating {
+    font-size: 0.8rem;
+    color: #c9a227;
+    font-weight: 700;
+}
+
+.ccDuration {
+    font-size: 0.78rem;
+    color: #556b55;
+}
+
+.ccFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ccLevel {
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.kidsLevel {
+    background: #e3f2fd;
+    color: #0288d1;
+}
+
+.adultsLevel {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.ccReadMoreBtn {
+    background: #f4f7f4;
+    color: #334433;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+.ccCard:hover .ccReadMoreBtn {
+    background: #2e7d32;
+    color: #fff;
+}
+
+.csErrorText {
+    color: #e53e3e;
+    text-align: center;
+    padding: 20px;
+    font-weight: 600;
+}
+
+.csNoDataText {
+    text-align: center;
+    color: #667a66;
+    padding: 40px;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .csGrid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .csHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .csViewAllBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .coursesSection {
+        padding: 50px 16px;
+    }
+
+    .csTabs {
+        width: 100%;
+        flex-direction: column;
+        border-radius: 16px;
+    }
+
+    .csTab {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .csGrid {
+        grid-template-columns: 1fr;
+    }
+}

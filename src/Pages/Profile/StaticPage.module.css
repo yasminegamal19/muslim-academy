@@ -1,0 +1,172 @@
+
+.container {
+    min-height: 100vh;
+    background: #f7f8fa;
+    padding-bottom: 2rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: #333;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.backBtn:hover {
+    background: #f0f0f0;
+}
+
+.headerTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.bannerWrapper {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.bannerImg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.iconBanner {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0 1rem;
+}
+
+.iconCircle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f1f7f1;
+    border: 2px solid #c8e6c9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    margin: 20px 16px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.cardTitle {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 6px;
+}
+
+.updatedAt {
+    font-size: 0.78rem;
+    color: #999;
+    margin: 0 0 14px;
+}
+
+.cardText {
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.richContent {
+    margin-top: 16px;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.richContent h2,
+.richContent h3 {
+    color: #1a1a1a;
+    margin-top: 1.2rem;
+}
+
+.richContent ul,
+.richContent ol {
+    padding-right: 1.2rem;
+}
+
+.errorBox {
+    margin: 24px 16px;
+    padding: 16px;
+    background: #fff3f3;
+    border: 1px solid #ffcdd2;
+    border-radius: 12px;
+    color: #c62828;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.skeleton {
+    padding: 16px;
+}
+
+.skeletonBanner {
+    width: 100%;
+    height: 180px;
+    background: #e8e8e8;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    animation: shimmer 1.5s infinite;
+}
+
+.skeletonTitle {
+    height: 20px;
+    width: 50%;
+    background: #e8e8e8;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    animation: shimmer 1.5s infinite;
+}
+
+.skeletonLine {
+    height: 14px;
+    width: 100%;
+    background: #e8e8e8;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

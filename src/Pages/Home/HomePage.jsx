@@ -128,7 +128,6 @@ function HeroSection() {
 }
 
 export function HomePage() {
-  // الـ State المسؤولة عن تحديد الكورس المختار لعرض تفاصيله
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   return (
@@ -139,13 +138,11 @@ export function HomePage() {
       />
 
       {selectedCourse ? (
-        // إذا اختار المستخدم كورس، اعرض صفحة التفاصيل
         <CourseDetails
           course={selectedCourse}
           onBack={() => setSelectedCourse(null)}
         />
       ) : (
-        // الصفحة الرئيسية الافتراضية
         <>
           <HeroSection />
           <CoursesSection

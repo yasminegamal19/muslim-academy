@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./ContactSection.module.css";
 
-// بيانات المدرسين والمشرفين المحاكية
 const CONTACTS = [
   {
     id: 1,

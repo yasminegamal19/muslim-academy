@@ -1,0 +1,213 @@
+
+.footer {
+    background: #111d17;
+    color: #a3b8ae;
+    padding: 60px 0 24px;
+    font-family: "Cairo", "Segoe UI", sans-serif;
+    border-top: 1px solid rgba(46, 125, 50, 0.15);
+}
+
+.topSection {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brandCol {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.logo {
+    height: 50px;
+    object-fit: contain;
+    align-self: flex-start;
+}
+
+.skeletonLogo {
+    width: 140px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #a3b8ae;
+    margin: 0;
+    max-width: 420px;
+}
+
+.socials {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    color: #a3b8ae;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.socials a:hover {
+    background: #2e7d32;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.colTitle {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 20px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.colTitle::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 2px;
+    background: #2e7d32;
+    border-radius: 2px;
+}
+
+.linkList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.linkList a {
+    color: #a3b8ae;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.linkList a:hover {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #a3b8ae;
+}
+
+.infoItem svg {
+    color: #2e7d32;
+    flex-shrink: 0;
+}
+
+.infoText {
+    font-size: 14px;
+}
+
+.bottomSection {
+    padding-top: 24px;
+    text-align: center;
+}
+
+.copyRight {
+    font-size: 13px;
+    color: rgba(163, 184, 174, 0.6);
+    margin: 0;
+}
+
+@media (max-width: 992px) {
+    .topSection {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .brandCol {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 576px) {
+    .topSection {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .brandCol {
+        grid-column: span 1;
+    }
+
+    .colTitle::after {
+        right: 0;
+    }
+}
+
+.offerBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.offerBtn:hover {
+    transform: translateY(-2px);
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.infoText {
+    word-break: break-word;
+}

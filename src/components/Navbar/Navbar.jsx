@@ -19,6 +19,8 @@ import { api } from "../../store/slices/authSlice";
 
 const navLinks = [
   { to: "/", labelKey: "topbar.dashboard" },
+  { to: "/courses", labelKey: "topbar.courses" },
+  { to: "/my-subscriptions", labelKey: "topbar.subscriptions" },
   { to: "/services", labelKey: "topbar.services" },
   { to: "/contact", labelKey: "topbar.contact" },
   { to: "/islamic", labelKey: "topbar.islamic" },

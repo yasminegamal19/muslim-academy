@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Amiri:wght@400;700&display=swap');
+
+:root {
+    --green-900: #0d1f0d;
+    --green-800: #1b5e3b;
+    --green-700: #2e7d52;
+    --green-100: #e8f5ee;
+    --green-200: #b2dfcc;
+    --gold: #c9a227;
+    --text-main: #0d1f0d;
+    --text-muted: #3a5c3a;
+    --bg-page: #f7faf5;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-page);
+}
+
+.heroBg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.heroBgImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.8) brightness(0.75) contrast(1.05);
+}
+
+.heroBgOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgb(205 215 208 / 97%) 0%, rgba(7, 18, 11, 0.88) 30%, rgba(12, 28, 18, 0.55) 40%);
+}
+
+.heroInner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    min-height: 540px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.heroLeft {
+    padding: 64px 36px 64px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+    width: fit-content;
+    animation: fadeDown 0.5s ease both;
+}
+
+.badgeDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #6ee7a8;
+    animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.4;
+    }
+}
+
+.title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.3;
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    margin-bottom: 14px;
+    animation: fadeDown 0.55s 0.08s ease both;
+}
+
+.titleAccent {
+    display: block;
+    color: #7be0aa;
+    position: relative;
+    width: fit-content;
+}
+
+.titleAccent::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold) 40%, var(--gold) 60%, transparent);
+    border-radius: 2px;
+    animation: lineGrow 0.6s 0.55s ease both;
+    transform-origin: right;
+    transform: scaleX(0);
+}
+
+@keyframes lineGrow {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.92rem;
+    line-height: 1.9;
+    margin-bottom: 28px;
+    max-width: 440px;
+    animation: fadeDown 0.55s 0.16s ease both;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+    animation: fadeDown 0.55s 0.24s ease both;
+}
+
+.btnMain {
+    background: linear-gradient(135deg, #1b5e3b, #2e7d52);
+    color: #fff;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 18px rgba(27, 94, 59, 0.25);
+}
+
+.btnMain:hover {
+    background: linear-gradient(135deg, #246d46, #37945f);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(27, 94, 59, 0.3);
+}
+
+.btnGhost {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.btnGhost:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #7be0aa;
+}
+
+.pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    animation: fadeDown 0.55s 0.32s ease both;
+}
+
+.pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.heroRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+}
+
+.sliderWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.imageShowcase {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 330px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+        0 20px 50px rgba(13, 31, 13, 0.2),
+        0 10px 20px rgba(0, 0, 0, 0.05);
+    animation: floatImage 6s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.slidesTrack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slideActive {
+    opacity: 1;
+}
+
+.slideImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, width 0.25s;
+}
+
+.dotActive {
+    background: #7be0aa;
+    width: 22px;
+    border-radius: 4px;
+}
+
+.slideLabel {
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .heroInner {
+        grid-template-columns: 1fr;
+    }
+
+    .heroRight {
+        padding: 20px 0 40px 0;
+    }
+
+    .heroLeft {
+        padding: 48px 24px;
+        text-align: center;
+    }
+
+    .badge,
+    .titleAccent {
+        margin-inline: auto;
+    }
+
+    .buttons,
+    .pills {
+        justify-content: center;
+    }
+
+    .imageShowcase {
+        width: 90vw;
+        height: 260px;
+    }
+
+    .heroBgOverlay {
+        background: linear-gradient(180deg, rgba(4, 10, 6, 0.95) 0%, rgba(7, 18, 11, 0.88) 60%, rgba(12, 28, 18, 0.82) 100%);
+    }
+}

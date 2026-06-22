@@ -131,7 +131,6 @@ export default function IslamicPage() {
   );
 }
 
-// ── الـ SVGs الأصلية بتاعتك مع الحفاظ على الكلاسات الجديدة الفخمة ──
 function AthkarIcon() {
   return (
     <svg viewBox="0 0 40 40" width="32" height="32">

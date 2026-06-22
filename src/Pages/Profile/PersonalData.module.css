@@ -1,0 +1,240 @@
+.container {
+    max-width: 860px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid #e3eae3;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.backBtn:hover {
+    background: #f1f7f1;
+}
+
+.headerTitle {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #0d1f0d;
+    margin: 0;
+}
+
+.avatarSection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.avatarWrapper {
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+
+.avatarImg {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2e7d32;
+    box-shadow: 0 6px 18px rgba(46, 125, 50, 0.15);
+}
+
+.avatarPlaceholder {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #f1f7f1;
+    border: 3px solid #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2e7d32;
+    box-shadow: 0 6px 18px rgba(46, 125, 50, 0.15);
+}
+
+.cameraBtn {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #2e7d32;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cameraBtn:hover {
+    background: #1b5e20;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e3eae3;
+    border-radius: 18px;
+    padding: 28px 32px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+    margin-bottom: 28px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0d1f0d;
+    margin-bottom: 8px;
+}
+
+.input {
+    padding: 12px 16px;
+    border: 1.5px solid #e3eae3;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Cairo', sans-serif;
+    color: #0d1f0d;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #ffffff;
+    width: 100%;
+}
+
+.input:focus {
+    border-color: #2e7d32;
+}
+
+.input::placeholder {
+    color: #90a490;
+}
+
+.inputWrapper {
+    position: relative;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #90a490;
+    pointer-events: none;
+}
+
+.inputWithIcon {
+    padding-left: 40px;
+}
+
+.selectWrapper {
+    position: relative;
+}
+
+.select {
+    width: 100%;
+    padding: 12px 16px;
+    padding-left: 32px;
+    border: 1.5px solid #e3eae3;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Cairo', sans-serif;
+    color: #0d1f0d;
+    background: #ffffff;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.select:focus {
+    border-color: #2e7d32;
+}
+
+.selectIcon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #90a490;
+    pointer-events: none;
+}
+
+.saveBtn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(46, 125, 50, 0.22);
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.saveBtn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+.saveBtn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fullWidth {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 580px) {
+    .container {
+        margin: 0;
+        padding: 20px 16px 60px;
+    }
+
+    .card {
+        padding: 22px 18px;
+    }
+}

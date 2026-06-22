@@ -1,0 +1,348 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&family=Cairo:wght@400;500;600&display=swap");
+
+.pageWrapper {
+  --color-primary: #0f5c4c;
+  --color-primary-dark: #0a4536;
+  --color-primary-light: #e6f2ee;
+  --color-accent: #c8932f;
+  --color-accent-light: #fbf1de;
+  --color-bg: #faf9f5;
+  --color-surface: #ffffff;
+  --color-text: #1c2620;
+  --color-text-muted: #707b74;
+  --color-border: #e8e4da;
+
+  font-family: "Cairo", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding: 32px 5% 60px;
+  box-sizing: border-box;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-family: "Cairo", sans-serif;
+  font-size: 14px;
+  padding: 0;
+  margin-bottom: 20px;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--color-primary);
+}
+
+.backLink svg {
+  transform: scaleX(-1);
+}
+
+.courseHeader {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 22px 24px;
+  margin-bottom: 32px;
+}
+
+.teacherRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.teacherAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.teacherLabel {
+  display: block;
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+}
+
+.teacherName {
+  margin: 2px 0 0;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.courseTitle {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--color-primary-dark);
+}
+
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineRow {
+  display: flex;
+  gap: 18px;
+}
+
+.timelineMarkerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.timelineMarker {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-primary-dark);
+  color: #fff;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timelineLine {
+  width: 2px;
+  flex: 1;
+  background: var(--color-border);
+  margin: 4px 0;
+}
+
+.lectureContent {
+  flex: 1;
+  padding-bottom: 32px;
+  min-width: 0;
+}
+
+.lectureHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.lectureTitle {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.lectureDate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.lectureEmpty {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 0;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.itemCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.itemStatusIcon {
+  flex-shrink: 0;
+  display: flex;
+}
+
+.doneIcon {
+  color: var(--color-primary);
+}
+
+.pendingIcon {
+  color: var(--color-border);
+}
+
+.itemBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemTitle {
+  margin: 0 0 4px;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.itemText {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.itemMeta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.statusTag,
+.scoreTag {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.doneTag {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.pendingTag {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.scoreTag {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.actionButton {
+  flex-shrink: 0;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-family: "Cairo", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.actionButton:hover {
+  background: var(--color-primary-dark);
+}
+
+
+.reportCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+
+.reportStats {
+  display: flex;
+  gap: 22px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.reportStat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reportStatLabel {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+}
+
+.reportStatValue {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-primary-dark);
+}
+
+.reportNotes {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  border-top: 1px solid var(--color-border);
+  padding-top: 10px;
+}
+
+.notFound {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.backButton {
+  margin-top: 14px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-family: "Cairo", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .pageWrapper {
+    padding: 24px 4% 48px;
+  }
+
+  .courseTitle {
+    font-size: 20px;
+  }
+
+  .itemCard {
+    flex-wrap: wrap;
+  }
+}

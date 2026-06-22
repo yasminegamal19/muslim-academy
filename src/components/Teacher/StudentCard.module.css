@@ -1,0 +1,169 @@
+.card {
+    background: #ffffff;
+    border: 1px solid #e3eae3;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+}
+
+.card:hover {
+    box-shadow: 0 6px 18px rgba(46, 125, 50, 0.07);
+}
+
+.topRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.avatarWrapper {
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e3eae3;
+}
+
+.avatarPlaceholder {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #f1f7f1;
+    border: 2px solid #e3eae3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2e7d32;
+}
+
+.nameBlock {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.label {
+    font-size: 0.75rem;
+    color: #90a490;
+    font-weight: 600;
+}
+
+.name {
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: #0d1f0d;
+}
+
+.fineBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    background: #fff8f0;
+    border: 1.5px solid #f4c790;
+    border-radius: 10px;
+    padding: 6px 14px;
+    min-width: 64px;
+}
+
+.fineLabel {
+    font-size: 0.72rem;
+    color: #b06000;
+    font-weight: 700;
+}
+
+.fineValue {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #e65100;
+}
+
+.sectionLabel {
+    font-size: 0.82rem;
+    color: #90a490;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 9px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.btnExam {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1.5px solid #a5d6a7;
+}
+
+.btnHomework {
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1.5px solid #90caf9;
+}
+
+.btnReport {
+    background: #fce4ec;
+    color: #c62828;
+    border: 1.5px solid #f48fb1;
+}
+
+.followGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.followItem {
+    background: #f7fbf7;
+    border: 1px solid #e3eae3;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.followKey {
+    font-size: 0.75rem;
+    color: #90a490;
+    font-weight: 600;
+}
+
+.followVal {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0d1f0d;
+}
+
+.green {
+    color: #2e7d32;
+}
+
+.orange {
+    color: #e65100;
+}

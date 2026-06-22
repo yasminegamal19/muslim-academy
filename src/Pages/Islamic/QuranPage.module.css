@@ -1,0 +1,447 @@
+.page {
+    min-height: 100vh;
+    background: #f8fafc;
+    padding: 30px 0 60px;
+    font-family: 'Alexandria', sans-serif;
+    direction: rtl;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 16px;
+}
+
+.rightHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.backBtn {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #475569;
+}
+
+.mainTitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.dashboardLayout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lastReadCard {
+    background: linear-gradient(135deg, #aed581 0%, #8bc34a 100%);
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(139, 195, 74, 0.2);
+}
+
+.lastReadInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+}
+
+.lastReadLabel {
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lastReadInfo h3 {
+    margin: 4px 0 0 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.lastReadInfo p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.lastReadImg {
+    width: 90px;
+    height: 90px;
+    opacity: 0.15;
+    position: absolute;
+    left: 10px;
+    bottom: -10px;
+}
+
+.searchWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    right: 14px;
+    color: #94a3b8;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 44px 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: white;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.searchInput:focus {
+    border-color: #8bc34a;
+    box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.1);
+}
+
+.indexTabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #e2e8f0;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.indexTab {
+    background: none;
+    border: none;
+    padding: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.indexTabActive {
+    background: white;
+    color: #8bc34a;
+}
+
+.surahList {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 10px;
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+.surahRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 6px;
+}
+
+.surahRow:hover {
+    background: #f8fafc;
+}
+
+.surahRowActive {
+    background: #f1f8e9;
+}
+
+.surahNumberWrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.surahNumberBox {
+    width: 36px;
+    height: 36px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238bc34a' stroke-width='1.5'%3E%3Cpolygon points='12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9' /%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #558b2f;
+}
+
+.surahMetaNames {
+    display: flex;
+    flex-direction: column;
+}
+
+.surahEngName {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.surahMetaSub {
+    font-size: 10px;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+}
+
+.surahArName {
+    font-size: 16px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.displayArea {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 40px;
+    min-height: 700px;
+    position: relative;
+}
+
+.surahViewHeader {
+    text-align: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.surahMetaHeader {
+    font-size: 13px;
+    color: #8bc34a;
+    font-weight: 600;
+}
+
+.surahMainTitle {
+    font-size: 28px;
+    color: #1e293b;
+    margin: 8px 0 16px 0;
+    font-weight: bold;
+}
+
+.basmalahWrapper {
+    margin-top: 10px;
+}
+
+.basmalahImg {
+    height: 45px;
+    object-fit: contain;
+    filter: grayscale(0.2);
+}
+
+.viewToggleNav {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.toggleNavBtn {
+    background: #f4f6f8;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.toggleNavBtnActive {
+    background: #8bc34a;
+    color: white;
+}
+
+.mushafTextContainer {
+    font-size: 24px;
+    line-height: 2.2;
+    color: #0f172a;
+    text-align: center;
+    font-weight: 500;
+    word-spacing: 4px;
+}
+
+.verseSpan {
+    display: inline;
+}
+
+.verseNumberBadge {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #c5e1a5;
+    background: #f1f8e9;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #558b2f;
+    margin: 0 8px 0 12px;
+}
+
+.tafseerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tafseerRowCard {
+    background: #ffffff;
+    border-radius: 14px;
+}
+
+.tafseerVerseText {
+    font-size: 18px;
+    color: #8bc34a;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.tafseerExplanationBox {
+    background: #fcfdfe;
+    border: 1px solid #f1f5f9;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.8;
+}
+
+.audioPlayerSection {
+    margin-top: 60px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playerMetaSide {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.readerAvatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.readerInfoText h5 {
+    margin: 0 0 2px 0;
+    font-size: 13px;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+.readerInfoText p {
+    margin: 0;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.playerControlsCenter {
+    display: flex;
+    align-items: center;
+}
+
+.mainPlayBtn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #8bc34a;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(139, 195, 74, 0.3);
+    transition: 0.2s;
+}
+
+.mainPlayBtn:hover {
+    transform: scale(1.05);
+}
+
+.playerActionsLeft {
+    display: flex;
+    gap: 10px;
+}
+
+.actionBtn {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.actionBtn:hover {
+    border-color: #8bc34a;
+    color: #8bc34a;
+}
+
+@media (max-width: 992px) {
+    .dashboardLayout {
+        grid-template-columns: 1fr;
+    }
+}

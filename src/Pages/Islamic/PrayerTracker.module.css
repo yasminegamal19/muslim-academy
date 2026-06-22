@@ -1,0 +1,412 @@
+.page {
+    min-height: 100vh;
+    background: #f4f7f6;
+    padding: 30px 0 60px;
+    font-family: 'Alexandria', sans-serif;
+    direction: rtl;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.rightHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.backBtn {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #475569;
+}
+
+.mainTitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.locationDateMeta {
+    display: flex;
+    gap: 20px;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #64748b;
+    background: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.timesOverviewSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.timesGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.timeCard {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.timeCardActive {
+    background: #8bc34a;
+    border-color: #7cb342;
+    color: white;
+}
+
+.timeIcon {
+    font-size: 20px;
+}
+
+.timeName {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.timeCardActive .timeName {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.timeValue {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.timeCardActive .timeValue {
+    color: white;
+}
+
+.heroBanner {
+    background: linear-gradient(135deg, #aed581 0%, #8bc34a 100%);
+    border-radius: 24px;
+    padding: 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(139, 195, 74, 0.15);
+}
+
+.heroInfo {
+    z-index: 2;
+}
+
+.currentTag {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.currentTime {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 8px 0;
+}
+
+.nextPrayerText {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.highlightTime {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.heroIllustration {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 400px;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0,100 L20,60 L40,100 L60,40 L80,100 L100,20 L100,100 Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") no-repeat bottom left;
+    background-size: cover;
+}
+
+.trackerContentLayout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: start;
+}
+
+.sectionHeaderTitle h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    color: #1e293b;
+}
+
+.sectionHeaderTitle p {
+    margin: 0 0 20px 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.prayersStack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.prayerRow {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.rowDone {
+    border-color: #dcedc8;
+    background: #f1f8e9;
+}
+
+.prayerRightGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.prayerImg {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.prayerNames h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    color: #334155;
+}
+
+.prayerNames span {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.statusToggleBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btnPending {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.btnPending:hover {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.btnDone {
+    background: #8bc34a;
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 195, 74, 0.2);
+}
+
+.btnDone:hover {
+    background: #7cb342;
+}
+
+.statsSidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stickyWrapper {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.userGreetingCard {
+    background: linear-gradient(135deg, #ffffff 0%, #f9fbf9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238bc34a' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'%3E%3C/polygon%3E%3C/svg%3E");
+    background-position: top left 15px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+}
+
+.avatarWrapper {
+    position: relative;
+}
+
+.userAvatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #8bc34a;
+}
+
+.onlineBadge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 12px;
+    height: 12px;
+    background: #4caf50;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.greetingTexts h4 {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+    color: #558b2f;
+    font-weight: 700;
+}
+
+.greetingTexts p {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.progressAnalyticsCard {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.progressHeaderInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8bc34a;
+    margin-bottom: 16px;
+}
+
+.progressHeaderInfo h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.bigProgressNumber {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0 0 16px 0;
+}
+
+.subMaxText {
+    font-size: 13px;
+    font-weight: 400;
+    color: #64748b;
+    display: block;
+    margin-top: 4px;
+}
+
+.progressBarTrack {
+    height: 10px;
+    background: #f1f5f9;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.progressBarFill {
+    height: 100%;
+    background: linear-gradient(90deg, #aed581, #8bc34a);
+    border-radius: 20px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motivationalFooter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #558b2f;
+    background: #f1f8e9;
+    padding: 10px 14px;
+    border-radius: 10px;
+}
+
+@media (max-width: 992px) {
+    .trackerContentLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .timesGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .timesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

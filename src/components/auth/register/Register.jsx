@@ -161,8 +161,8 @@ export default function RegisterPage() {
         <div className={styles.RegisterCard}>
           <div className={styles.logoContainer}>
             <img
-              src="/logo raw-kemya.jfif"
-              alt="Raw-Kemya Logo"
+              src="/logo muslim.png"
+              alt="Muslim Academy Logo"
               className={styles.formLogo}
             />
           </div>

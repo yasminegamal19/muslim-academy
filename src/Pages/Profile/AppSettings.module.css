@@ -1,0 +1,187 @@
+.container {
+    max-width: 860px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid #e3eae3;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.backBtn:hover {
+    background: #f1f7f1;
+}
+
+.headerTitle {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #0d1f0d;
+    margin: 0;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e3eae3;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    transition: background 0.18s;
+}
+
+.rowBorder {
+    border-bottom: 1px solid #f2f5f2;
+}
+
+.row:hover {
+    background: #f7fbf7;
+}
+
+.rowLeft {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.iconBox {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f1f7f1;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+    flex-shrink: 0;
+}
+
+.row:hover .iconBox {
+    background: #2e7d32;
+    color: #ffffff;
+}
+
+.rowLabel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0d1f0d;
+}
+
+.chevron {
+    color: #90a490;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.row:hover .chevron {
+    transform: translateX(-4px);
+    color: #2e7d32;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #cdd5cd;
+    border-radius: 24px;
+    transition: 0.28s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: 0.28s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.switch input:checked+.slider {
+    background: #8bc34a;
+}
+
+.switch input:checked+.slider::before {
+    transform: translateX(22px);
+}
+
+.deleteCard {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    background: #fff8f8;
+    border: 1px solid #fde0e3;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.deleteCard:hover {
+    background: #fff0f2;
+}
+
+.deleteIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #fff0f2;
+    color: #dc3545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.deleteLabel {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #dc3545;
+}
+
+@media (max-width: 580px) {
+    .container {
+        margin: 0;
+        padding: 20px 16px 60px;
+    }
+}

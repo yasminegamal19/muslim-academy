@@ -1,0 +1,150 @@
+.container {
+    max-width: 860px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+    font-family: 'Cairo', sans-serif;
+    direction: rtl;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid #e3eae3;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.backBtn:hover {
+    background: #f1f7f1;
+}
+
+.headerTitle {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #0d1f0d;
+    margin: 0;
+}
+
+.logoBanner {
+    background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+    border: 1px solid #e3eae3;
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logoCircle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #e3eae3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.1);
+}
+
+.logoTitle {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0d1f0d;
+    margin: 0 0 8px;
+}
+
+.logoSub {
+    font-size: 0.95rem;
+    color: #556b55;
+    margin: 0;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e3eae3;
+    border-radius: 18px;
+    padding: 26px 30px;
+    margin-bottom: 24px;
+}
+
+.cardTitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #2e7d32;
+    margin: 0 0 12px;
+}
+
+.cardText {
+    font-size: 0.95rem;
+    color: #556b55;
+    line-height: 1.85;
+    margin: 0;
+}
+
+.sectionsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.sectionCard {
+    background: #ffffff;
+    border: 1px solid #e3eae3;
+    border-radius: 18px;
+    padding: 24px 18px;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.sectionCard:hover {
+    border-color: #2e7d32;
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.07);
+    transform: translateY(-2px);
+}
+
+.sectionEmoji {
+    font-size: 1.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sectionTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0d1f0d;
+    margin: 0 0 8px;
+}
+
+.sectionText {
+    font-size: 0.88rem;
+    color: #556b55;
+    line-height: 1.75;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .sectionsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 580px) {
+    .container {
+        margin: 0;
+        padding: 20px 16px 60px;
+    }
+}

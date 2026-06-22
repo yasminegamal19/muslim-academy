@@ -1,4 +1,3 @@
-// src/data/coursesData.js
 
 export const kidsCoursesData = [
   {

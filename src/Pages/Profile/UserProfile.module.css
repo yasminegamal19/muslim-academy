@@ -1,0 +1,303 @@
+.profileWrapper {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+}
+
+.containerBox,
+.containerBoxMaxWidth {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+    border: 1px solid #f2f5f2;
+}
+
+.containerBoxMaxWidth {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.userHeroCard {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    padding: 30px;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 35px;
+}
+
+.userImg {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.userMeta h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.userMeta p {
+    margin: 4px 0 0;
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+.profileMenuGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.menuBox {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: #fdfdfd;
+    border: 1px solid #f0f3f0;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.menuBox:hover {
+    border-color: #2a5298;
+    background: #f7f9fc;
+    transform: translateY(-2px);
+}
+
+.boxIcon {
+    font-size: 2rem;
+    background: #eef3f9;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.boxTxt h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: #223;
+}
+
+.boxTxt p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: #778;
+}
+
+.viewHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 35px;
+}
+
+.backBtn {
+    background: #f0f2f5;
+    border: none;
+    font-size: 1.3rem;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.avatarEditWrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 35px;
+}
+
+.editableAvatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cameraBadge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #2a5298;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.webFormGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formGroup label {
+    font-weight: 600;
+    color: #445;
+    font-size: 0.95rem;
+}
+
+.formGroup input,
+.formGroup select {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #dcdfdc;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: .2s;
+}
+
+.formGroup input:focus {
+    border-color: #2a5298;
+    box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.08);
+}
+
+.fullWidthRow {
+    grid-column: span 2;
+    margin-top: 15px;
+}
+
+.saveChangesBtn {
+    width: 100%;
+    padding: 16px;
+    background: #8bc34a;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.saveChangesBtn:hover {
+    background: #7cb342;
+}
+
+.settingsRows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settingToggleRow,
+.settingLinkRow,
+.deleteAccountRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border: 1px solid #f0f2f0;
+    border-radius: 14px;
+}
+
+.settingToggleRow h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.settingToggleRow p {
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    color: #778;
+}
+
+.settingLinkRow {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.settingLinkRow:hover {
+    background: #f9faf9;
+    border-color: #d0d5d0;
+}
+
+.deleteAccountRow {
+    border-color: #ffebee;
+    color: #d32f2f;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.deleteAccountRow:hover {
+    background: #fff8f8;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #8bc34a;
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+@media (max-width: 768px) {
+
+    .profileMenuGrid,
+    .webFormGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .fullWidthRow {
+        grid-column: span 1;
+    }
+}

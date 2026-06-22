@@ -66,8 +66,9 @@ export default function ForgotPassword() {
   return (
     <div className={styles.ForgotContainer}>
       <div className={styles.ForgotCard}>
-        <img src="/logo raw-kemya.jfif" alt="logo" className={styles.logo} />
-
+        <div className={styles.logoBanner}>
+        <img src="/logo muslim.png" alt=" Muslim logo" className={styles.logo} />
+        </div>
         <h2>{t("forgotPassword.title") || "استعادة كلمة المرور"}</h2>
         <p className={styles.desc}>
           {t("forgotPassword.desc") ||
