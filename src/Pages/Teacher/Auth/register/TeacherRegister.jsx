@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import styles from "./Register.module.css";
+import styles from "./TeacherRegister.module.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  registerUser,
+  registerTeacher,
   clearError,
   clearRegisterSuccess,
-  registerTeacher,
 } from "../../../../store/slices/authSlice";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -37,12 +36,12 @@ const isEmailExistsError = (err) => {
   );
 };
 
-export default function RegisterPage() {
+export default function TeacherRegister() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
+  const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -50,6 +49,7 @@ const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
     password: "",
     password_confirmation: "",
     birth_date: "",
+    timezone: "UTC",
   });
 
   const [phoneValue, setPhoneValue] = useState("");
@@ -66,14 +66,16 @@ const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
     password_confirmation: "",
   });
 
- useEffect(() => {
-   if (!teacherRegisterSuccess) return;
-   dispatch(clearRegisterSuccess());
-   navigate("/teacher/verify-otp", {
-     state: { email: formData.email.trim() },
-   });
- }, [teacherRegisterSuccess, dispatch, navigate, formData.email]);
- 
+  useEffect(() => {
+    if (!teacherRegisterSuccess) return;
+    dispatch(clearRegisterSuccess());
+    navigate("/teacher/verify-otp", {
+      state: {
+        email: formData.email.trim(),
+        phone: `+${phoneValue}`,
+      },
+    });
+  }, [teacherRegisterSuccess, dispatch, navigate, formData.email, phoneValue]);
 
   useEffect(() => {
     if (!error) return;
@@ -94,7 +96,7 @@ const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
           ? Object.values(error).flat().join(" | ")
           : "حدث خطأ غير متوقع";
 
-    toast.error(` ${msg}`, { position: "top-center" });
+    toast.error(msg, { position: "top-center" });
     dispatch(clearError());
   }, [error, dispatch]);
 
@@ -121,6 +123,8 @@ const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
     };
     if (!formData.name.trim()) newErrors.name = "الاسم مطلوب";
     if (!formData.email.trim()) newErrors.email = "البريد الإلكتروني مطلوب";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()))
+      newErrors.email = "يرجى إدخال بريد إلكتروني صحيح";
     if (!phoneValue) newErrors.phone = "رقم الهاتف مطلوب";
     if (formData.password.length < 8)
       newErrors.password = "كلمة المرور 8 أحرف على الأقل";
@@ -135,21 +139,22 @@ const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
     e.preventDefault();
     if (!validate()) return;
 
-const data = new FormData();
-data.append("name", formData.name.trim());
-data.append("email", formData.email.trim());
-data.append("password", formData.password);
-data.append("password_confirmation", formData.password_confirmation);
-data.append("birth_date", formData.birth_date);
-data.append("phone", `+${phoneValue}`);
-data.append("governorate_id", "1");
-data.append("country_id", "1");
-data.append("timezone", "UTC"); 
-if (imageFile) {
-  data.append("image", imageFile);
-}
+    const data = new FormData();
+    data.append("name", formData.name.trim());
+    data.append("email", formData.email.trim());
+    data.append("password", formData.password);
+    data.append("password_confirmation", formData.password_confirmation);
+    data.append("birth_date", formData.birth_date);
+    data.append("phone", `+${phoneValue}`);
+    data.append("timezone", formData.timezone || "UTC");
+    data.append("country_id", "1");
+    data.append("governorate_id", "1");
 
-dispatch(registerTeacher(data));
+    if (imageFile) {
+      data.append("image", imageFile);
+    }
+
+    dispatch(registerTeacher(data));
   };
 
   return (
@@ -163,19 +168,26 @@ dispatch(registerTeacher(data));
               className={styles.formLogo}
             />
           </div>
-          <h2>{t("register.title")}</h2>
-          <p className={styles.desc}>{t("register.desc")}</p>
+
+          <h2>{t("teacherRegister.title") || "إنشاء حساب معلم"}</h2>
+          <p className={styles.desc}>
+            {t("teacherRegister.desc") ||
+              "انضم إلى منصتنا كمعلم وشارك علمك مع الآخرين"}
+          </p>
 
           <form onSubmit={handleSubmit} noValidate>
+
             <div className={styles.inputGroup}>
-              <label htmlFor="name">{t("register.fullName")}</label>
+              <label htmlFor="name">
+                {t("register.fullName") || "الاسم الكامل"}
+              </label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder={t("register.fullNamePlaceholder")}
+                placeholder={t("register.fullNamePlaceholder") || "اسمك الكامل"}
                 className={errors.name ? styles.inputError : ""}
               />
               {errors.name && (
@@ -193,13 +205,14 @@ dispatch(registerTeacher(data));
                 name="birth_date"
                 value={formData.birth_date}
                 onChange={handleChange}
-                className={errors.birth_date ? styles.inputError : ""}
               />
             </div>
 
             <div className="row">
               <div className={`${styles.inputGroup} col-12 col-md-6`}>
-                <label htmlFor="email">{t("register.email")}</label>
+                <label htmlFor="email">
+                  {t("register.email") || "البريد الإلكتروني"}
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -214,7 +227,7 @@ dispatch(registerTeacher(data));
               </div>
 
               <div className={`${styles.inputGroup} col-12 col-md-6`}>
-                <label htmlFor="phone">{t("register.phone")}</label>
+                <label>{t("register.phone") || "رقم الهاتف"}</label>
                 <div className={errors.phone ? styles.phoneError : ""}>
                   <PhoneInput
                     country={"sa"}
@@ -236,17 +249,43 @@ dispatch(registerTeacher(data));
             </div>
 
             <div className={styles.inputGroup}>
-              <label>الصورة الشخصية</label>
+              <label htmlFor="timezone">
+                {t("teacherRegister.timezone") || "المنطقة الزمنية"}
+              </label>
+              <select
+                id="timezone"
+                name="timezone"
+                value={formData.timezone}
+                onChange={handleChange}
+                className={styles.select}
+              >
+                <option value="UTC">UTC (التوقيت العالمي)</option>
+                <option value="Asia/Riyadh">Asia/Riyadh (السعودية)</option>
+                <option value="Africa/Cairo">Africa/Cairo (مصر)</option>
+                <option value="Asia/Dubai">Asia/Dubai (الإمارات)</option>
+                <option value="Asia/Kuwait">Asia/Kuwait (الكويت)</option>
+                <option value="Asia/Baghdad">Asia/Baghdad (العراق)</option>
+                <option value="Africa/Casablanca">
+                  Africa/Casablanca (المغرب)
+                </option>
+                <option value="Europe/London">Europe/London</option>
+                <option value="America/New_York">America/New_York</option>
+              </select>
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label>{t("register.profileImage") || "الصورة الشخصية"}</label>
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
+                className={styles.fileInput}
               />
               {imagePreview && (
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  style={{ width: "50px", marginTop: "10px" }}
+                  className={styles.imagePreview}
                 />
               )}
             </div>
@@ -255,7 +294,9 @@ dispatch(registerTeacher(data));
               <div
                 className={`${styles.inputGroup} ${styles.passwordGroup} col-12 col-md-6`}
               >
-                <label htmlFor="password">{t("register.password")}</label>
+                <label htmlFor="password">
+                  {t("register.password") || "كلمة المرور"}
+                </label>
                 <div className={styles.passwordWrap}>
                   <input
                     type={showPassword ? "text" : "password"}
@@ -281,7 +322,7 @@ dispatch(registerTeacher(data));
                 className={`${styles.inputGroup} ${styles.passwordGroup} col-12 col-md-6`}
               >
                 <label htmlFor="confirmPassword">
-                  {t("register.confirmPassword")}
+                  {t("register.confirmPassword") || "تأكيد كلمة المرور"}
                 </label>
                 <div className={styles.passwordWrap}>
                   <input
@@ -314,18 +355,30 @@ dispatch(registerTeacher(data));
               className={`${styles.button} ${styles.buttonRegister}`}
               disabled={loading}
             >
-              {loading ? " جاري إنشاء الحساب..." : t("register.submit")}
+              {loading
+                ? "جاري إنشاء الحساب..."
+                : t("teacherRegister.submit") || "إنشاء حساب معلم"}
             </button>
           </form>
 
           <p className={styles.signup}>
-            {t("register.haveAccount")}{" "}
+            {t("register.haveAccount") || "لديك حساب بالفعل؟"}{" "}
             <button
               type="button"
               className={styles.joinNow}
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/teacher/login")}
             >
-              {t("register.login")}
+              {t("register.login") || "تسجيل الدخول"}
+            </button>
+          </p>
+
+          <p className={styles.switchRole}>
+            <button
+              type="button"
+              className={styles.switchBtn}
+              onClick={() => navigate("/select-role")}
+            >
+              ← {t("roleSelection.back") || "العودة لاختيار الدور"}
             </button>
           </p>
         </div>

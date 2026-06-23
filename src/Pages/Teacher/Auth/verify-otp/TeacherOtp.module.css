@@ -1,0 +1,171 @@
+.otp {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    padding: 24px 16px;
+    font-family: "Cairo", "Segoe UI", sans-serif;
+    direction: rtl;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px 32px;
+    text-align: center;
+}
+
+.iconBox {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #059669, #047857);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: #fff;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #064e3b;
+    margin-bottom: 8px;
+}
+
+.desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.emailHighlight {
+    font-weight: 600;
+    color: #059669;
+    direction: ltr;
+    display: inline-block;
+}
+
+.otpBox {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    direction: ltr;
+}
+
+.otpInput {
+    width: 52px;
+    height: 56px;
+    border: 2px solid #d1d5db;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    background: #f9fafb;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.otpInput:focus {
+    outline: none;
+    border-color: #059669;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+}
+
+.otpFilled {
+    border-color: #059669;
+    background: #f0fdf4;
+    color: #065f46;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    background: linear-gradient(135deg, #059669, #047857);
+    color: #fff;
+}
+
+.button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #047857, #065f46);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.resend {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 16px;
+}
+
+.resendBtn {
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: inherit;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.resendActive {
+    color: #059669;
+    font-weight: 600;
+}
+
+.resendDisabled {
+    color: #d1d5db;
+    cursor: not-allowed;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

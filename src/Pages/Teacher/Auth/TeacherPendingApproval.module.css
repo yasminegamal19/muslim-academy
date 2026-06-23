@@ -1,0 +1,168 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    padding: 24px 16px;
+    font-family: "Cairo", "Segoe UI", sans-serif;
+    direction: rtl;
+}
+
+.card {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+}
+
+.iconBox {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.iconPending {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #d97706;
+}
+
+.iconRejected {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #dc2626;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.desc {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 36px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    color: #374151;
+    font-weight: 600;
+    min-width: 90px;
+}
+
+.stepIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stepDone {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.stepWaiting {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.stepLine {
+    flex: 1;
+    height: 2px;
+    background: #e5e7eb;
+    margin-bottom: 22px;
+    min-width: 20px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btnContact {
+    background: linear-gradient(135deg, #059669, #047857);
+    color: #fff;
+    border: none;
+}
+
+.btnContact:hover {
+    background: linear-gradient(135deg, #047857, #065f46);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+.btnBack {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1.5px solid #e5e7eb;
+}
+
+.btnBack:hover {
+    background: #e5e7eb;
+}
+
+.logoWrap {
+    margin-top: 8px;
+}
+
+.logo {
+    height: 40px;
+    object-fit: contain;
+    opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 32px 20px;
+    }
+
+    .steps {
+        gap: 0;
+    }
+
+    .step {
+        min-width: 70px;
+        font-size: 0.7rem;
+    }
+}

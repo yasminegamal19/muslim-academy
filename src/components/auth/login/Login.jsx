@@ -51,7 +51,7 @@ export default function LoginPage() {
       autoClose: 1500,
       position: "top-center",
     });
-    navigate(location.state?.from?.pathname || "/");
+    navigate(location.state?.from?.pathname || "/student-dashboard");
   }, [isAuthenticated, navigate, location.state, t]);
 
   useEffect(() => {

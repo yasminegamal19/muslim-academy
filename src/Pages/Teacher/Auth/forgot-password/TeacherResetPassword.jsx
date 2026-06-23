@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import styles from "./ForgotPassword.module.css";
+import styles from "./TeacherForgotPassword.module.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  resetPassword,
+  teacherResetPassword,
   clearError,
   clearForgotState,
 } from "../../../../store/slices/authSlice";
 import { toast } from "react-toastify";
 
-export default function ResetPassword() {
+export default function TeacherResetPassword() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function ResetPassword() {
 
   const email = location.state?.email || "";
 
-  const { loading, passwordReset, error } = useSelector((s) => s.auth);
+  const { loading, teacherPasswordReset, error } = useSelector((s) => s.auth);
 
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
@@ -29,30 +29,26 @@ export default function ResetPassword() {
 
   useEffect(() => {
     if (!email) {
-      console.warn(
-        "[ResetPassword] email not found in location.state — redirecting",
-      );
       toast.error("حدث خطأ، يرجى إعادة محاولة استعادة الحساب");
-      navigate("/forgot-password");
+      navigate("/teacher/forgot-password");
     }
   }, [email, navigate]);
 
   useEffect(() => {
-    if (!passwordReset) return;
+    if (!teacherPasswordReset) return;
     dispatch(clearForgotState());
     toast.success("تم تغيير كلمة المرور بنجاح!", {
       autoClose: 2000,
       position: "top-center",
     });
     navigate("/success-password");
-  }, [passwordReset, dispatch, navigate]);
+  }, [teacherPasswordReset, dispatch, navigate]);
 
   useEffect(() => {
     if (!error) return;
-    toast.error(
-      ` ${typeof error === "string" ? error : "فشل تغيير كلمة المرور"}`,
-      { position: "top-center" },
-    );
+    toast.error(typeof error === "string" ? error : "فشل تغيير كلمة المرور", {
+      position: "top-center",
+    });
     dispatch(clearError());
   }, [error, dispatch]);
 
@@ -65,27 +61,29 @@ export default function ResetPassword() {
     if (password !== password_confirmation)
       return setLocalError("كلمتا المرور غير متطابقتين");
 
-    dispatch(resetPassword({ email, password, password_confirmation }));
+    dispatch(teacherResetPassword({ email, password, password_confirmation }));
   };
 
   return (
     <div className={styles.ForgotContainer}>
       <div className={styles.ForgotCard}>
-        <img src="/logo raw-kemya.jfif" alt="logo" className={styles.logo} />
+        <div className={styles.logoBanner}>
+          <img src="/logo muslim.png" alt="logo" className={styles.logo} />
+        </div>
 
         <h2>{t("forgotPassword.resetTitle") || "تعيين كلمة مرور جديدة"}</h2>
         <p className={styles.desc}>
           {t("forgotPassword.resetDesc") || "أدخل كلمة المرور الجديدة لحسابك"}
         </p>
 
-        {localError && <div className={styles.errorBanner}> {localError}</div>}
+        {localError && <div className={styles.errorBanner}>{localError}</div>}
 
         <form onSubmit={handleSubmit} noValidate>
-          <div className={`${styles.inputGroup} ${styles.passwordGroup}`}>
+          <div className={styles.inputGroup} style={{ position: "relative" }}>
             <label>
               {t("forgotPassword.newPassword") || "كلمة المرور الجديدة"}
             </label>
-            <div className={styles.passwordWrap}>
+            <div style={{ position: "relative" }}>
               <input
                 type={showNew ? "text" : "password"}
                 value={password}
@@ -93,13 +91,21 @@ export default function ResetPassword() {
                   setPassword(e.target.value);
                   setLocalError("");
                 }}
-                placeholder={
-                  t("forgotPassword.newPasswordPlaceholder") || "••••••••"
-                }
+                placeholder="••••••••"
                 required
+                style={{ paddingLeft: "40px" }}
               />
               <span
-                className={styles.togglePassword}
+                style={{
+                  position: "absolute",
+                  left: "12px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  cursor: "pointer",
+                  color: "#9ca3af",
+                  display: "flex",
+                  alignItems: "center",
+                }}
                 onClick={() => setShowNew(!showNew)}
               >
                 {showNew ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -107,11 +113,11 @@ export default function ResetPassword() {
             </div>
           </div>
 
-          <div className={`${styles.inputGroup} ${styles.passwordGroup}`}>
+          <div className={styles.inputGroup} style={{ position: "relative" }}>
             <label>
               {t("forgotPassword.confirmPassword") || "تأكيد كلمة المرور"}
             </label>
-            <div className={styles.passwordWrap}>
+            <div style={{ position: "relative" }}>
               <input
                 type={showConfirm ? "text" : "password"}
                 value={password_confirmation}
@@ -119,13 +125,21 @@ export default function ResetPassword() {
                   setPasswordConfirmation(e.target.value);
                   setLocalError("");
                 }}
-                placeholder={
-                  t("forgotPassword.confirmPasswordPlaceholder") || "••••••••"
-                }
+                placeholder="••••••••"
                 required
+                style={{ paddingLeft: "40px" }}
               />
               <span
-                className={styles.togglePassword}
+                style={{
+                  position: "absolute",
+                  left: "12px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  cursor: "pointer",
+                  color: "#9ca3af",
+                  display: "flex",
+                  alignItems: "center",
+                }}
                 onClick={() => setShowConfirm(!showConfirm)}
               >
                 {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -139,7 +153,7 @@ export default function ResetPassword() {
             disabled={loading}
           >
             {loading
-              ? " جاري الحفظ..."
+              ? "جاري الحفظ..."
               : t("forgotPassword.submit") || "حفظ كلمة المرور"}
           </button>
         </form>
@@ -147,7 +161,7 @@ export default function ResetPassword() {
         <button
           type="button"
           className={styles.backLink}
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/teacher/login")}
         >
           ← {t("forgotPassword.backToLogin") || "العودة لتسجيل الدخول"}
         </button>

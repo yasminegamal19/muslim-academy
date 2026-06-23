@@ -1,33 +1,36 @@
 import { useState, useRef, useEffect } from "react";
-import styles from "./Otp.module.css";
+import styles from "./TeacherOtp.module.css";
 import { Shield, Clock, RefreshCw } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  forgotVerifyOtp,
-  forgotResendOtp,
+  teacherForgotVerifyOtp,
+  teacherForgotResendOtp,
   clearForgotState,
   clearError,
-} from "../../../store/slices/authSlice";
+} from "../../../../store/slices/authSlice";
 import { toast } from "react-toastify";
 
 const RESEND_SECONDS = 60;
+const OTP_LENGTH = 5;
 
-export default function VerifyPasswordOtp() {
+export default function TeacherForgotVerifyOtp() {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const email = location.state?.email || "";
-
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const { otpLoading, forgotOtpVerified, forgotOtpResent, error } = useSelector(
-    (s) => s.auth,
-  );
+  const email = location.state?.email || "";
 
-  const [otp, setOtp] = useState(["", "", "", "", ""]);
+  const {
+    otpLoading,
+    teacherForgotOtpVerified,
+    teacherForgotOtpResent,
+    error,
+  } = useSelector((s) => s.auth);
+
+  const [otp, setOtp] = useState(Array(OTP_LENGTH).fill(""));
   const inputsRef = useRef([]);
   const [seconds, setSeconds] = useState(RESEND_SECONDS);
   const [canResend, setCanResend] = useState(false);
@@ -52,7 +55,7 @@ export default function VerifyPasswordOtp() {
 
   useEffect(() => {
     if (!email) {
-      navigate("/forgot-password");
+      navigate("/teacher/forgot-password");
       return;
     }
     startTimer();
@@ -60,37 +63,39 @@ export default function VerifyPasswordOtp() {
   }, [email, navigate]);
 
   useEffect(() => {
-    if (!forgotOtpVerified) return;
+    if (!teacherForgotOtpVerified) return;
     dispatch(clearForgotState());
-    navigate("/reset-password", { state: { email } });
-  }, [forgotOtpVerified, dispatch, navigate, email]);
+    navigate("/teacher/forgot-password/reset", { state: { email } });
+  }, [teacherForgotOtpVerified, dispatch, navigate, email]);
 
   useEffect(() => {
-    if (!forgotOtpResent) return;
+    if (!teacherForgotOtpResent) return;
     dispatch(clearForgotState());
     startTimer();
-    toast.success(t("otpRe.resentSuccess") || "تم إعادة إرسال الكود!", {
+    setOtp(Array(OTP_LENGTH).fill(""));
+    setSubmitted(false);
+    inputsRef.current[0]?.focus();
+    toast.success("تم إعادة إرسال الكود بنجاح!", {
       autoClose: 2000,
       position: "top-center",
     });
-  }, [forgotOtpResent, dispatch, t]);
+  }, [teacherForgotOtpResent, dispatch]);
 
   useEffect(() => {
     if (!error) return;
     setSubmitted(false);
-    toast.error(
-      `${typeof error === "string" ? error : t("otpRe.invalidCode") || "كود التحقق غير صحيح"}`,
-      { position: "top-center" },
-    );
+    toast.error(typeof error === "string" ? error : "كود التحقق غير صحيح", {
+      position: "top-center",
+    });
     dispatch(clearError());
-  }, [error, dispatch, t]);
+  }, [error, dispatch]);
 
   const handleChange = (value, index) => {
     if (!/^[0-9]?$/.test(value)) return;
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
-    if (value && index < 4) inputsRef.current[index + 1]?.focus();
+    if (value && index < OTP_LENGTH - 1) inputsRef.current[index + 1]?.focus();
   };
 
   const handleKeyDown = (e, index) => {
@@ -103,29 +108,29 @@ export default function VerifyPasswordOtp() {
     const pasted = e.clipboardData
       .getData("text")
       .replace(/\D/g, "")
-      .slice(0, 5);
+      .slice(0, OTP_LENGTH);
     if (!pasted) return;
-    const newOtp = [...otp];
+    const newOtp = Array(OTP_LENGTH).fill("");
     pasted.split("").forEach((ch, i) => {
       newOtp[i] = ch;
     });
     setOtp(newOtp);
-    inputsRef.current[Math.min(pasted.length - 1, 4)]?.focus();
+    inputsRef.current[Math.min(pasted.length, OTP_LENGTH - 1)]?.focus();
   };
 
   const handleSubmit = () => {
     const token = otp.join("");
-    if (token.length < 5 || submitted) return;
+    if (token.length < OTP_LENGTH || submitted || otpLoading) return;
     setSubmitted(true);
-    dispatch(forgotVerifyOtp({ email, token }));
+    dispatch(teacherForgotVerifyOtp({ email, token }));
   };
 
   const handleResend = () => {
     if (!canResend || otpLoading) return;
-    setOtp(["", "", "", "", ""]);
+    setOtp(Array(OTP_LENGTH).fill(""));
     setSubmitted(false);
     inputsRef.current[0]?.focus();
-    dispatch(forgotResendOtp(email));
+    dispatch(teacherForgotResendOtp(email));
   };
 
   const formatTime = (s) => {
@@ -145,20 +150,10 @@ export default function VerifyPasswordOtp() {
           <div className={styles.iconBox}>
             <Shield size={34} />
           </div>
-
-          <h2 className={styles.title}>
-            {t("otpRe.title") || "التحقق من الهوية"}
-          </h2>
-
+          <h2 className={styles.title}>التحقق من الهوية</h2>
           <p className={styles.desc}>
-            {t("otpRe.desc") || "أدخل كود التحقق المرسل إلى بريدك:"}
-            <br />
-            {email && (
-              <span className={styles.emailHighlight} dir="ltr">
-                {" "}
-                {email}
-              </span>
-            )}
+            أدخل كود التحقق المرسل إلى بريدك:
+            {email && <span className={styles.emailHighlight}> {email}</span>}
           </p>
 
           <div className={styles.otpBox} onPaste={handlePaste}>
@@ -180,8 +175,8 @@ export default function VerifyPasswordOtp() {
             <Clock size={15} />
             <span>
               {canResend
-                ? t("otpRe.timerExpired") || "انتهى الوقت"
-                : `${t("otpRe.timer") || "الوقت المتبقي"} ${formatTime(seconds)}`}
+                ? "انتهى الوقت"
+                : `الوقت المتبقي ${formatTime(seconds)}`}
             </span>
           </div>
 
@@ -189,22 +184,25 @@ export default function VerifyPasswordOtp() {
             className={styles.button}
             onClick={handleSubmit}
             disabled={!otpComplete || otpLoading || submitted}
+            type="button"
           >
-            {otpLoading
-              ? t("otpRe.loading") || " جاري التحقق..."
-              : t("otpRe.button") || "تحقق"}
+            {otpLoading ? "جاري التحقق..." : "تحقق"}
           </button>
 
           <p className={styles.resend}>
-            {t("otpRe.resendText") || "لم تستلم الكود؟"}{" "}
+            لم تستلم الكود؟{" "}
             <button
-              className={`${styles.resendBtn} ${canResend && !otpLoading ? styles.resendActive : styles.resendDisabled}`}
+              className={`${styles.resendBtn} ${
+                canResend && !otpLoading
+                  ? styles.resendActive
+                  : styles.resendDisabled
+              }`}
               onClick={handleResend}
               disabled={!canResend || otpLoading}
               type="button"
             >
               <RefreshCw size={13} />
-              {t("otpRe.resend") || "إعادة الإرسال"}
+              إعادة الإرسال
             </button>
           </p>
         </div>

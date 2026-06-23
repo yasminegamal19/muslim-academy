@@ -15,6 +15,7 @@ import {
   LogOut,
   ChevronLeft,
   ArrowRight,
+  BookOpen,
 } from "lucide-react";
 
 export default function ProfileMenu() {
@@ -53,6 +54,12 @@ export default function ProfileMenu() {
       path: "/wallet",
     },
     {
+      id: "sessions",
+      icon: <BookOpen size={20} />,
+      label: "حصصي",
+      path: "/sessions",
+    },
+    {
       id: "lang",
       icon: <Globe size={20} />,
       label: "اللغه العربيه",
@@ -70,7 +77,7 @@ export default function ProfileMenu() {
       label: "من نحن",
       path: "/about",
     },
-    {   
+    {
       id: "how-it-works",
       icon: <Sliders size={20} />,
       label: "كيف نعمل",

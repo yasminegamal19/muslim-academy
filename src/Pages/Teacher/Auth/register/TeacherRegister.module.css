@@ -1,0 +1,220 @@
+
+
+.register {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    padding: 24px 16px;
+    font-family: "Cairo", "Segoe UI", sans-serif;
+    direction: rtl;
+}
+
+.RegisterContainer {
+    width: 100%;
+    max-width: 640px;
+}
+
+.RegisterCard {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px 36px;
+}
+
+.logoContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.formLogo {
+    height: 60px;
+    object-fit: contain;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #064e3b;
+    margin-bottom: 6px;
+}
+
+.desc {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.inputGroup {
+    margin-bottom: 18px;
+}
+
+.inputGroup label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.inputGroup input,
+.select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #111;
+    background: #f9fafb;
+    transition: border-color 0.2s;
+    font-family: inherit;
+    appearance: none;
+}
+
+.inputGroup input:focus,
+.select:focus {
+    outline: none;
+    border-color: #059669;
+    background: #fff;
+}
+
+.inputError {
+    border-color: #ef4444 !important;
+}
+
+.fieldError {
+    display: block;
+    font-size: 0.78rem;
+    color: #ef4444;
+    margin-top: 4px;
+}
+
+.passwordGroup {
+    position: relative;
+}
+
+.passwordWrap {
+    position: relative;
+}
+
+.passwordWrap input {
+    padding-left: 40px;
+}
+
+.togglePassword {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+}
+
+.togglePassword:hover {
+    color: #059669;
+}
+
+.phoneContainer {
+    width: 100% !important;
+}
+
+.phoneError .react-tel-input .form-control {
+    border-color: #ef4444 !important;
+}
+
+.fileInput {
+    font-size: 0.85rem;
+}
+
+.imagePreview {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    border: 2px solid #059669;
+}
+
+.select {
+    cursor: pointer;
+}
+
+.button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    margin-top: 8px;
+}
+
+.buttonRegister {
+    background: linear-gradient(135deg, #059669, #047857);
+    color: #fff;
+}
+
+.buttonRegister:hover:not(:disabled) {
+    background: linear-gradient(135deg, #047857, #065f46);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35);
+}
+
+.buttonRegister:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.signup {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 20px;
+}
+
+.joinNow {
+    background: none;
+    border: none;
+    color: #059669;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+}
+
+.joinNow:hover {
+    text-decoration: underline;
+}
+
+.switchRole {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.switchBtn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.switchBtn:hover {
+    color: #059669;
+}
+
+@media (max-width: 480px) {
+    .RegisterCard {
+        padding: 28px 16px;
+    }
+}

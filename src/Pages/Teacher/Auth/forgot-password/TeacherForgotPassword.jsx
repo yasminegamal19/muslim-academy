@@ -1,41 +1,41 @@
 import { useState, useEffect } from "react";
-import styles from "./ForgotPassword.module.css";
+import styles from "./TeacherForgotPassword.module.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  forgotPassword,
+  teacherForgotPassword,
   clearError,
   clearForgotState,
 } from "../../../../store/slices/authSlice";
 import { toast } from "react-toastify";
 
-export default function ForgotPassword() {
+export default function TeacherForgotPassword() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { otpLoading, forgotOtpSent, error } = useSelector((s) => s.auth);
+  const { otpLoading, teacherForgotOtpSent, error } = useSelector(
+    (s) => s.auth,
+  );
 
   const [email, setEmail] = useState("");
   const [localError, setLocalError] = useState("");
 
   useEffect(() => {
-    if (!forgotOtpSent) return;
-
+    if (!teacherForgotOtpSent) return;
     dispatch(clearForgotState());
     toast.success("تم إرسال كود التحقق على بريدك الإلكتروني!", {
       autoClose: 2000,
       position: "top-center",
     });
-
-    navigate("/forgot-verify-otp", { state: { email: email.trim() } });
-  }, [forgotOtpSent, dispatch, navigate, email]);
+    navigate("/teacher/forgot-verify-otp", { state: { email: email.trim() } });
+  }, [teacherForgotOtpSent, dispatch, navigate, email]);
 
   useEffect(() => {
     if (!error) return;
     toast.error(
-      `${typeof error === "string" ? error : "البريد الإلكتروني غير مسجل"}`,
+      typeof error === "string" ? error : "البريد الإلكتروني غير مسجل",
       { position: "top-center" },
     );
     dispatch(clearError());
@@ -46,8 +46,7 @@ export default function ForgotPassword() {
       setLocalError("البريد الإلكتروني مطلوب");
       return false;
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.trim())) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setLocalError("يرجى إدخال بريد إلكتروني صحيح");
       return false;
     }
@@ -57,18 +56,21 @@ export default function ForgotPassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLocalError("");
-
     if (!validate()) return;
-
-    dispatch(forgotPassword(email.trim()));
+    dispatch(teacherForgotPassword(email.trim()));
   };
 
   return (
     <div className={styles.ForgotContainer}>
       <div className={styles.ForgotCard}>
         <div className={styles.logoBanner}>
-        <img src="/logo muslim.png" alt=" Muslim logo" className={styles.logo} />
+          <img
+            src="/logo muslim.png"
+            alt="Muslim logo"
+            className={styles.logo}
+          />
         </div>
+
         <h2>{t("forgotPassword.title") || "استعادة كلمة المرور"}</h2>
         <p className={styles.desc}>
           {t("forgotPassword.desc") ||
@@ -90,7 +92,7 @@ export default function ForgotPassword() {
                 setEmail(e.target.value);
                 if (localError) setLocalError("");
               }}
-              placeholder="example@mail.com"
+              placeholder="teacher@example.com"
               dir="ltr"
             />
           </div>
@@ -109,7 +111,7 @@ export default function ForgotPassword() {
         <button
           type="button"
           className={styles.backLink}
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/teacher/login")}
         >
           ← {t("forgotPassword.backToLogin") || "العودة لتسجيل الدخول"}
         </button>

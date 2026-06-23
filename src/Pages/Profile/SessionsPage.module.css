@@ -1,0 +1,502 @@
+.page {
+    min-height: 100vh;
+    background: #f5f7fa;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 16px 16px;
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+.headerTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.tabsWrapper {
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.tabsWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.tabs {
+    display: flex;
+    padding: 0 12px;
+    gap: 4px;
+    min-width: max-content;
+}
+
+.tab {
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.tabActive {
+    color: #4f46e5;
+    border-bottom-color: #4f46e5;
+    font-weight: 700;
+}
+
+.content {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.teacherInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.teacherAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatarFallback {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ede9fe;
+    color: #4f46e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacherName {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.sessionTitle {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.metaRow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #555;
+}
+
+.metaIcon {
+    color: #888;
+    flex-shrink: 0;
+}
+
+.duration {
+    color: #aaa;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+.extrasRow {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.extraTag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #f0f4ff;
+    color: #4f46e5;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.cardActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.btnJoin {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btnJoin:hover {
+    background: #3730a3;
+}
+
+.btnCancelCard {
+    flex: 1;
+    padding: 10px;
+    background: #fff;
+    color: #e53e3e;
+    border: 1.5px solid #e53e3e;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btnCancelCard:hover {
+    background: #fff5f5;
+}
+
+.badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.badgeLive {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.badgeScheduled {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badgePending {
+    background: #fef9c3;
+    color: #a16207;
+}
+
+.badgeEnded {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.badgeCancelled {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.badgeDefault {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 16px;
+    text-align: center;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e0e0e0;
+    border-top-color: #4f46e5;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loadingText {
+    font-size: 14px;
+    color: #888;
+}
+
+.errorIcon {
+    color: #e53e3e;
+}
+
+.errorText {
+    font-size: 14px;
+    color: #555;
+}
+
+.emptyIcon {
+    color: #c7c7c7;
+}
+
+.emptyText {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.retryBtn {
+    padding: 8px 20px;
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.modal {
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modalTitle {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.modalClose {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+
+.modalBody {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sessionSummary {
+    background: #f8f9ff;
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.sessionSummaryTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 4px;
+}
+
+.sessionSummaryDate {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.fieldLabel {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+.required {
+    color: #e53e3e;
+}
+
+.textarea {
+    width: 100%;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.textarea:focus {
+    border-color: #4f46e5;
+}
+
+.rescheduleNote {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.fieldGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input {
+    width: 100%;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    border-color: #4f46e5;
+}
+
+.errorMsg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff5f5;
+    color: #c53030;
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.modalFooter {
+    display: flex;
+    gap: 10px;
+    padding: 12px 20px 24px;
+}
+
+.btnCancel {
+    flex: 1;
+    padding: 12px;
+    background: #f3f4f6;
+    color: #555;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btnConfirm {
+    flex: 2;
+    padding: 12px;
+    background: #e53e3e;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btnConfirm:hover {
+    background: #c53030;
+}
+
+.btnConfirm:disabled {
+    background: #f9a8a8;
+    cursor: not-allowed;
+}

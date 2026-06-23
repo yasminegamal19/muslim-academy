@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import styles from "./Login.module.css";
+import styles from "./TeacherLogin.module.css";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,14 +29,20 @@ const isUnverifiedError = (err) => {
   return UNVERIFIED_KEYWORDS.some((kw) => msg.includes(kw.toLowerCase()));
 };
 
-export default function TeacherLoginPage() {
+export default function TeacherLogin() {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { loading, error, isAuthenticated, otpLoading, teacherApprovalStatus } =
-    useSelector((s) => s.auth);
+  const {
+    loading,
+    error,
+    isAuthenticated,
+    otpLoading,
+    teacherApprovalStatus,
+    role,
+  } = useSelector((s) => s.auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,22 +50,36 @@ export default function TeacherLoginPage() {
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [showResendBlock, setShowResendBlock] = useState(false);
 
-  const isPending =
-    teacherApprovalStatus && teacherApprovalStatus !== "approved";
-
   useEffect(() => {
-    if (!isAuthenticated) return;
-    toast.success(t("common.welcome"), {
+    if (!isAuthenticated || role !== "teacher") return;
+    toast.success(t("common.welcome") || "أهلاً بك!", {
       autoClose: 1500,
       position: "top-center",
     });
-    navigate(location.state?.from?.pathname || "/teacher/sessions");
-  }, [isAuthenticated, navigate, location.state, t]);
+    navigate(location.state?.from?.pathname || "/teacher/dashboard");
+  }, [isAuthenticated, role, navigate, location.state, t]);
+
+  
+
+
+  useEffect(() => {
+    if (!teacherApprovalStatus || teacherApprovalStatus === "approved") return;
+    navigate("/teacher/pending-approval", {
+      state: { status: teacherApprovalStatus },
+    });
+  }, [teacherApprovalStatus, navigate]);
+
+  useEffect(() => {
+    console.log({
+      isAuthenticated,
+      teacherApprovalStatus,
+      role,
+    });
+  }, [isAuthenticated, teacherApprovalStatus, role]);
+
 
   useEffect(() => {
     if (!error) return;
-
-    if (isPending) return;
 
     if (isUnverifiedError(error)) {
       setShowResendBlock(true);
@@ -72,19 +92,14 @@ export default function TeacherLoginPage() {
       password: typeof error === "string" ? error : "بيانات الدخول غير صحيحة",
     }));
     dispatch(clearError());
-  }, [error, isPending, dispatch]);
+  }, [error, dispatch]);
 
   const validate = () => {
     const newErrors = { email: "", password: "" };
-
-    if (!email.trim()) {
-      newErrors.email = "البريد الإلكتروني مطلوب";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    if (!email.trim()) newErrors.email = "البريد الإلكتروني مطلوب";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
       newErrors.email = "يرجى إدخال بريد إلكتروني صحيح";
-    }
-
     if (!password.trim()) newErrors.password = "كلمة المرور مطلوبة";
-
     setErrors(newErrors);
     return !newErrors.email && !newErrors.password;
   };
@@ -93,13 +108,7 @@ export default function TeacherLoginPage() {
     e.preventDefault();
     setShowResendBlock(false);
     if (!validate()) return;
-
-    dispatch(
-      loginTeacher({
-        email: email.trim(),
-        password,
-      }),
-    );
+    dispatch(loginTeacher({ email: email.trim(), password }));
   };
 
   const handleResendOtp = async () => {
@@ -113,14 +122,11 @@ export default function TeacherLoginPage() {
 
     try {
       await dispatch(resendTeacherOtp(email.trim())).unwrap();
-
       dispatch(clearOtpState());
-
-      toast.success(t("common.otpSent") || "تم إرسال كود التحقق بنجاح", {
+      toast.success("تم إرسال كود التحقق بنجاح", {
         autoClose: 2000,
         position: "top-center",
       });
-
       navigate("/teacher/verify-otp", { state: { email: email.trim() } });
     } catch (err) {
       toast.error(
@@ -170,21 +176,18 @@ export default function TeacherLoginPage() {
         </div>
 
         <div className={styles.loginCard}>
-          <h2>تسجيل دخول المعلم</h2>
-          <p className={styles.desc}>سجل دخولك للوصول إلى لوحة المعلم</p>
+          <div className={styles.logoWrap}>
+            <img
+              src="/logo muslim.png"
+              alt="Muslim Academy"
+              className={styles.logo}
+            />
+          </div>
 
-          {isPending && error && (
-            <div className={styles.unverifiedBanner}>
-              <div className={styles.unverifiedText}>
-                <p className={styles.unverifiedTitle}>
-                  {teacherApprovalStatus === "rejected"
-                    ? "تم رفض طلب الانضمام"
-                    : "الحساب قيد المراجعة"}
-                </p>
-                <p className={styles.unverifiedSub}>{error}</p>
-              </div>
-            </div>
-          )}
+          <h2>{t("teacherLogin.title") || "تسجيل دخول المعلم"}</h2>
+          <p className={styles.desc}>
+            {t("teacherLogin.desc") || "أهلاً بك، سجّل دخولك للمتابعة"}
+          </p>
 
           {showResendBlock && (
             <div className={styles.unverifiedBanner}>
@@ -207,18 +210,19 @@ export default function TeacherLoginPage() {
 
           <form onSubmit={handleSubmit} noValidate>
             <div className={styles.inputGroup}>
-              <label htmlFor="email">البريد الإلكتروني</label>
+              <label htmlFor="email">
+                {t("login.email") || "البريد الإلكتروني"}
+              </label>
               <input
                 type="email"
                 id="email"
-                name="email"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                   setShowResendBlock(false);
                   if (errors.email) setErrors((p) => ({ ...p, email: "" }));
                 }}
-                placeholder="example@mail.com"
+                placeholder="teacher@example.com"
                 className={errors.email ? styles.inputError : ""}
                 dir="ltr"
               />
@@ -229,34 +233,37 @@ export default function TeacherLoginPage() {
 
             <div className={`${styles.inputGroup} ${styles.passwordGroup}`}>
               <div className={styles.passwordHeader}>
-                <label htmlFor="password">كلمة المرور</label>
+                <label htmlFor="password">
+                  {t("login.password") || "كلمة المرور"}
+                </label>
                 <button
                   type="button"
                   className={styles.forgotLink}
                   onClick={() => navigate("/teacher/forgot-password")}
                 >
-                  نسيت كلمة المرور؟
+                  {t("login.forgot") || "نسيت كلمة المرور؟"}
                 </button>
               </div>
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (errors.password)
-                    setErrors((p) => ({ ...p, password: "" }));
-                }}
-                placeholder="كلمة المرور"
-                className={errors.password ? styles.inputError : ""}
-              />
-              <span
-                className={styles.togglePassword}
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </span>
+              <div className={styles.passwordWrap}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (errors.password)
+                      setErrors((p) => ({ ...p, password: "" }));
+                  }}
+                  placeholder="كلمة المرور"
+                  className={errors.password ? styles.inputError : ""}
+                />
+                <span
+                  className={styles.togglePassword}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </span>
+              </div>
               {errors.password && (
                 <span className={styles.fieldError}>{errors.password}</span>
               )}
@@ -267,18 +274,28 @@ export default function TeacherLoginPage() {
               className={`${styles.button} ${styles.buttonLogin}`}
               disabled={loading}
             >
-              {loading ? "جاري الدخول..." : "تسجيل الدخول"}
+              {loading ? "جاري الدخول..." : t("login.submit") || "تسجيل الدخول"}
             </button>
           </form>
 
           <p className={styles.signup}>
-            معلم جديد؟{" "}
+            {t("login.noAccount") || "ليس لديك حساب؟"}{" "}
             <button
               type="button"
               className={styles.joinNow}
               onClick={() => navigate("/teacher/register")}
             >
-              سجل حساب معلم
+              {t("login.signup") || "سجّل الآن"}
+            </button>
+          </p>
+
+          <p className={styles.switchRole}>
+            <button
+              type="button"
+              className={styles.switchBtn}
+              onClick={() => navigate("/select-role")}
+            >
+              ← {t("roleSelection.back") || "العودة لاختيار الدور"}
             </button>
           </p>
         </div>

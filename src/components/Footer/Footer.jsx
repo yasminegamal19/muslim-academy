@@ -62,17 +62,7 @@ export default function Footer() {
 
             <p className={styles.description}>{settings?.desc}</p>
 
-            {settings?.promotion && (
-              <a
-                href={settings.promotion}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.offerBtn}
-              >
-                أحدث العروض
-              </a>
-            )}
-
+           
             <div className={styles.socials}>
               {settings?.facebook && (
                 <a

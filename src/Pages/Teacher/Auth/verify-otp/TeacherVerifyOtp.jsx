@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import styles from "./Otp.module.css";
+import styles from "./TeacherOtp.module.css";
 import { Shield, Clock, RefreshCw } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -118,18 +118,20 @@ export default function TeacherVerifyOtp() {
   const handleSubmit = () => {
     const token = otp.join("");
     if (token.length < OTP_LENGTH || submitted || otpLoading) return;
+
     if (canResend) {
       toast.error("انتهى الوقت، يرجى إعادة إرسال الكود");
       return;
     }
+
     setSubmitted(true);
     dispatch(verifyTeacherOtp({ email, token }));
   };
 
   const handleResend = () => {
-    if (!canResend || otpLoading) return;
+    if (otpLoading || !canResend) return;
     if (!email) {
-      toast.error("البريد الإلكتروني غير موجود، من فضلك ارجع وحاول مرة أخرى");
+      toast.error("البريد الإلكتروني غير موجود");
       return;
     }
     dispatch(resendTeacherOtp(email));
@@ -152,9 +154,11 @@ export default function TeacherVerifyOtp() {
           <div className={styles.iconBox}>
             <Shield size={34} />
           </div>
-          <h2 className={styles.title}>تفعيل حساب المعلم</h2>
+          <h2 className={styles.title}>
+            {t("otp.title") || "التحقق من البريد الإلكتروني"}
+          </h2>
           <p className={styles.desc}>
-            تم إرسال كود التحقق إلى البريد الإلكتروني
+            {t("otp.emailDesc") || "تم إرسال كود التحقق إلى"}
             {email && <span className={styles.emailHighlight}> {email}</span>}
           </p>
 
@@ -188,11 +192,11 @@ export default function TeacherVerifyOtp() {
             onClick={handleSubmit}
             disabled={!otpComplete || otpLoading || submitted || canResend}
           >
-            {otpLoading ? "جاري التحقق..." : "تحقق"}
+            {otpLoading ? "جاري التحقق..." : t("otp.button") || "تحقق"}
           </button>
 
           <p className={styles.resend}>
-            لم تستلم الكود؟{" "}
+            {t("otp.resendText") || "لم تستلم الكود؟"}{" "}
             <button
               className={`${styles.resendBtn} ${
                 canResend ? styles.resendActive : styles.resendDisabled
@@ -202,7 +206,7 @@ export default function TeacherVerifyOtp() {
               type="button"
             >
               <RefreshCw size={13} className={otpLoading ? styles.spin : ""} />
-              إعادة الإرسال
+              {t("otp.resend") || "إعادة الإرسال"}
             </button>
           </p>
         </div>

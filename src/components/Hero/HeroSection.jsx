@@ -71,7 +71,7 @@ function AppSlider() {
 
 export function HeroSection() {
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} >
       <div className={styles.heroBg}>
         <img
           src="/quran2.jfif"

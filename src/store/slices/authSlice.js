@@ -180,7 +180,6 @@ export const resetPassword = createAsyncThunk(
   },
 );
 
-
 export const loginTeacher = createAsyncThunk(
   "auth/loginTeacher",
   async (userData, { rejectWithValue }) => {
@@ -205,8 +204,13 @@ export const registerTeacher = createAsyncThunk(
       const response = await api.post("/teacher/register", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+      console.log("REGISTER RESPONSE", response.data);
       return response.data;
     } catch (error) {
+      console.log("FULL ERROR", error);
+      console.log("ERROR RESPONSE", error.response);
+      console.log("ERROR DATA", error.response?.data);
+
       return rejectWithValue(
         error.response?.data?.errors ||
           error.response?.data?.message ||
@@ -337,14 +341,40 @@ export const teacherResetPassword = createAsyncThunk(
 );
 
 const getTeacherApprovalStatus = (teacher) => {
-  if (!teacher) return "approved"; 
+  if (!teacher) return "approved";
+
   const raw = teacher.status ?? teacher.approval_status ?? teacher.is_approved;
 
   if (raw === undefined || raw === null) return "approved";
+
   if (raw === true || raw === 1 || raw === "1") return "approved";
+
   if (raw === false || raw === 0 || raw === "0") return "pending";
 
-  return String(raw).toLowerCase();
+  const status = String(raw).trim().toLowerCase();
+
+  if (
+    status === "approved" ||
+    status === "مقبول" ||
+    status === "active" ||
+    status === "accepted"
+  ) {
+    return "approved";
+  }
+
+  if (
+    status === "pending" ||
+    status === "قيد المراجعة" ||
+    status === "under review"
+  ) {
+    return "pending";
+  }
+
+  if (status === "rejected" || status === "مرفوض") {
+    return "rejected";
+  }
+
+  return status;
 };
 
 const authSlice = createSlice({
@@ -352,7 +382,7 @@ const authSlice = createSlice({
   initialState: {
     user: JSON.parse(localStorage.getItem("user")) || null,
     token: localStorage.getItem("token") || null,
-    role: localStorage.getItem("role") || null, 
+    role: localStorage.getItem("role") || null,
     isAuthenticated: !!localStorage.getItem("token"),
     loading: false,
     error: null,
