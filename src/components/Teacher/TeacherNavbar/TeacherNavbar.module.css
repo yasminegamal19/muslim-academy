@@ -1,0 +1,557 @@
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 12px 24px;
+    background: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.mainRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.menuBtn {
+    display: none;
+    font-size: 22px;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.brandSection {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo {
+    height: 70px;
+    width: 100%;
+    object-fit: contain;
+    color: transparent;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo:hover {
+    transform: scale(1.04);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.navLink {
+    position: relative;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.navLink:hover {
+    color: var(--primary-kemya);
+    background: rgba(12, 104, 57, 0.04);
+}
+
+.active {
+    color: var(--primary-kemya) !important;
+    background: rgba(12, 104, 57, 0.08);
+    border: 1px solid rgba(12, 104, 57, 0.15);
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.iconBtn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.iconBtn:hover {
+    border-color: var(--primary-kemya);
+    color: var(--primary-kemya);
+    background: var(--bg-card);
+}
+
+.langDropdown {
+    position: relative;
+}
+
+.langTrigger {
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: none;
+    background: var(--primary-kemya);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.langTrigger:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(12, 104, 57, 0.2);
+}
+
+.langMenu {
+    min-width: 150px;
+    margin-top: 8px;
+    padding: 6px;
+    background: var(--bg-light);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.langItem {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 6px;
+    text-align: start;
+    padding: 8px 12px;
+    font-size: 13px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.langItem:hover {
+    background: rgba(12, 104, 57, 0.04);
+    color: var(--primary-kemya);
+}
+
+.langItemActive {
+    background: var(--primary-kemya) !important;
+    color: #fff !important;
+}
+
+.profileMenu {
+    position: absolute;
+    top: 48px;
+    inset-inline-end: 0;
+    width: 160px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.profileMenu button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: start;
+}
+
+.profileMenu button:hover {
+    background: rgba(12, 104, 57, 0.04);
+    color: var(--primary-kemya);
+}
+
+.logout {
+    color: #dc3545 !important;
+    border-top: 1px solid var(--border-color) !important;
+}
+
+.mobileMenu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-light) !important;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    padding: 64px 24px;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobileLink {
+    display: block;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.mobileLink:hover {
+    background: rgba(12, 104, 57, 0.04);
+    color: var(--primary-kemya);
+}
+
+.mobileLinkActive {
+    color: var(--primary-kemya);
+    background: rgba(12, 104, 57, 0.08);
+    border: 1px solid rgba(12, 104, 57, 0.15);
+}
+
+@media (max-width: 768px) {
+    .menuBtn {
+        display: block;
+    }
+
+    .links {
+        display: none;
+    }
+
+    .langTrigger span {
+        display: none;
+    }
+
+    .langTrigger {
+        width: 38px;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+.profileBtn {
+    background: none;
+    border: 1px solid #dedfe1;
+    cursor: pointer;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background 0.18s;
+}
+
+.profileBtn:hover {
+    background: rgba(12, 104, 57, 0.06);
+}
+
+.profileBtnAuth {
+    gap: 6px;
+    color: #1a1f1c;
+}
+
+.welcomeText {
+    font-size: 14px;
+    color: #1a1f1c;
+    white-space: nowrap;
+}
+
+.welcomeText strong {
+    color: #0c6839;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+    transition: transform 0.2s;
+}
+
+.notifWrapper {
+    position: relative;
+}
+
+.notifDropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 0;
+    width: 380px;
+    max-height: 520px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid #edf2f7;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeInNotif 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInNotif {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notifHeader {
+    padding: 18px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    background: #ffffff;
+}
+
+.notifHeader h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.notifBodyContainer {
+    flex: 1;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.notifScrollArea {
+    max-height: 440px;
+    overflow-y: auto;
+    padding: 12px 16px;
+}
+
+.notifGroup {
+    margin-bottom: 18px;
+}
+
+.groupTimelineTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 10px 4px;
+    text-align: right;
+}
+
+.notifCard {
+    position: relative;
+    background: #f9fbc83b;
+    border: 1px solid #f5f8d5;
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+    transition: all 0.25s ease;
+    overflow: hidden;
+}
+
+.paymentRequiredBg {
+    background: #f9fbc83b;
+    border: 1px solid #e2f0d3;
+}
+
+.unreadCard {
+    border-right: 3px solid #8bc34a;
+}
+
+.notifContentWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.notifTextSide {
+    flex: 1;
+    text-align: right;
+}
+
+.notifTextSide h5 {
+    margin: 0 0 4px 0;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.notifTextSide p {
+    margin: 0;
+    font-size: 11.5px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.notifIconContainer {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.session_start,
+.session_end {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.payment_required {
+    background: #8bc34a;
+    color: #ffffff;
+}
+
+.prayer_reminder {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.payment_failed {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.deleteNotifBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    background: #dc2626;
+    color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
+    z-index: 2;
+}
+
+.notifCard:hover .deleteNotifBtn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notifCard:hover {
+    padding-right: 60px;
+}
+
+.notifEmptyState {
+    padding: 60px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.emptyBellIcon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #8bc34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.notifEmptyState h4 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.notifEmptyState p {
+    margin: 0;
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.notifFeedback {
+    padding: 40px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e2e8f0;
+    border-top-color: #8bc34a;
+    border-radius: 50%;
+    margin: 0 auto 12px auto;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(300deg);
+    }
+}

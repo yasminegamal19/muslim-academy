@@ -23,7 +23,7 @@ export default function ExamsListPage() {
     try {
       setLoading(true);
       setError(null);
-      const response = await api.get(`/quizzes?page=${currentPage}`);
+      const response = await api.get(`/api/quizzes?page=${currentPage}`);
       const result = response.data;
 
       if (result.code === 200) {

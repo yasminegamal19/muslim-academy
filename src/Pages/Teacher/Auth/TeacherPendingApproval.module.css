@@ -3,20 +3,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-card) 100%);
     padding: 24px 16px;
     font-family: "Cairo", "Segoe UI", sans-serif;
-    direction: rtl;
 }
 
 .card {
     background: #fff;
-    border-radius: 24px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.05),
+        0 0 30px rgba(12, 104, 57, 0.04);
     padding: 48px 40px;
     width: 100%;
     max-width: 480px;
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .iconBox {
@@ -30,25 +36,27 @@
 }
 
 .iconPending {
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.3);
     color: #d97706;
 }
 
 .iconRejected {
-    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
     color: #dc2626;
 }
 
 .title {
     font-size: 1.6rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: var(--text-main);
     margin-bottom: 12px;
 }
 
 .desc {
     font-size: 0.9rem;
-    color: #6b7280;
+    color: var(--text-muted);
     line-height: 1.7;
     margin-bottom: 32px;
 }
@@ -67,7 +75,7 @@
     align-items: center;
     gap: 6px;
     font-size: 0.78rem;
-    color: #374151;
+    color: var(--text-main);
     font-weight: 600;
     min-width: 90px;
 }
@@ -82,19 +90,19 @@
 }
 
 .stepDone {
-    background: #d1fae5;
-    color: #059669;
+    background: rgba(12, 104, 57, 0.12);
+    color: var(--primary-kemya);
 }
 
 .stepWaiting {
-    background: #fef3c7;
+    background: rgba(251, 191, 36, 0.12);
     color: #d97706;
 }
 
 .stepLine {
     flex: 1;
     height: 2px;
-    background: #e5e7eb;
+    background: var(--border-color);
     margin-bottom: 22px;
     min-width: 20px;
 }
@@ -110,36 +118,44 @@
     display: block;
     width: 100%;
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s;
     font-family: inherit;
     text-decoration: none;
     text-align: center;
 }
 
 .btnContact {
-    background: linear-gradient(135deg, #059669, #047857);
+    background: var(--primary-kemya);
     color: #fff;
     border: none;
 }
 
 .btnContact:hover {
-    background: linear-gradient(135deg, #047857, #065f46);
-    transform: translateY(-1px);
+    transform: scale(1.03);
     color: #fff;
 }
 
+.btnContact:active {
+    transform: scale(0.98);
+}
+
 .btnBack {
-    background: #f3f4f6;
-    color: #374151;
-    border: 1.5px solid #e5e7eb;
+    background: var(--bg-light);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
 }
 
 .btnBack:hover {
-    background: #e5e7eb;
+    background: var(--border-color);
+    transform: scale(1.03);
+}
+
+.btnBack:active {
+    transform: scale(0.98);
 }
 
 .logoWrap {
@@ -149,7 +165,7 @@
 .logo {
     height: 40px;
     object-fit: contain;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 @media (max-width: 480px) {

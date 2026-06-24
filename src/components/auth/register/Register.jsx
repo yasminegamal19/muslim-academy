@@ -239,7 +239,7 @@ export default function RegisterPage() {
             </div>
 
             <div className={styles.inputGroup}>
-              <label>الصورة الشخصية</label>
+              <label>{t("register.image")}</label>
               <input
                 type="file"
                 accept="image/*"

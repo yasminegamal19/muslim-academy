@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import i18n from "../../i18n/i18n";
 
-const BASE_URL = "https://muslim-academy.betamoneta.com/api";
+const BASE_URL = "https://dashboard.muslim-academy.net";
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -27,7 +27,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await api.post("/login", {
+      const response = await api.post("/api/login", {
         email: userData.email,
         password: userData.password,
       });
@@ -46,7 +46,7 @@ export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await api.post("/register", formData, {
+      const response = await api.post("/api/register", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -71,7 +71,7 @@ export const verifyOtp = createAsyncThunk(
       form.append("email", email);
       form.append("token", token);
 
-      const response = await api.post("/verify-otp", form, {
+      const response = await api.post("/api/verify-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -92,7 +92,7 @@ export const resendOtp = createAsyncThunk(
       const form = new FormData();
       form.append("email", email);
 
-      const response = await api.post("/resend-otp", form, {
+      const response = await api.post("/api/resend-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -111,7 +111,7 @@ export const forgotPassword = createAsyncThunk(
       const form = new FormData();
       form.append("email", email);
 
-      const response = await api.post("/forgot/password", form, {
+      const response = await api.post("/api/forgot/password", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -130,7 +130,7 @@ export const forgotVerifyOtp = createAsyncThunk(
       const form = new FormData();
       form.append("email", email);
       form.append("token", token);
-      const response = await api.post("/forgot/verify-otp", form, {
+      const response = await api.post("/api/forgot/verify-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -148,7 +148,7 @@ export const forgotResendOtp = createAsyncThunk(
     try {
       const form = new FormData();
       form.append("email", email);
-      const response = await api.post("/forgot/resend-otp", form, {
+      const response = await api.post("/api/forgot/resend-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -168,7 +168,7 @@ export const resetPassword = createAsyncThunk(
       form.append("email", email);
       form.append("password", password);
       form.append("password_confirmation", password_confirmation);
-      const response = await api.post("/forgot/reset-password", form, {
+      const response = await api.post("/api/forgot/reset-password", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -184,7 +184,7 @@ export const loginTeacher = createAsyncThunk(
   "auth/loginTeacher",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await api.post("/teacher/login", {
+      const response = await api.post("/api/teacher/login", {
         email: userData.email,
         password: userData.password,
       });
@@ -201,7 +201,7 @@ export const registerTeacher = createAsyncThunk(
   "auth/registerTeacher",
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await api.post("/teacher/register", formData, {
+      const response = await api.post("/api/teacher/register", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("REGISTER RESPONSE", response.data);
@@ -231,7 +231,7 @@ export const verifyTeacherOtp = createAsyncThunk(
       form.append("email", email);
       form.append("token", token);
 
-      const response = await api.post("/teacher/verify-otp", form, {
+      const response = await api.post("/api/teacher/verify-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -252,7 +252,7 @@ export const resendTeacherOtp = createAsyncThunk(
       const form = new FormData();
       form.append("email", email);
 
-      const response = await api.post("/teacher/resend-otp", form, {
+      const response = await api.post("/api/teacher/resend-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -271,7 +271,7 @@ export const teacherForgotPassword = createAsyncThunk(
       const form = new FormData();
       form.append("email", email);
 
-      const response = await api.post("/teacher/forgot/password", form, {
+      const response = await api.post("/api/teacher/forgot/password", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -290,7 +290,7 @@ export const teacherForgotVerifyOtp = createAsyncThunk(
       const form = new FormData();
       form.append("email", email);
       form.append("token", token);
-      const response = await api.post("/teacher/forgot/verify-otp", form, {
+      const response = await api.post("/api/teacher/forgot/verify-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -308,7 +308,7 @@ export const teacherForgotResendOtp = createAsyncThunk(
     try {
       const form = new FormData();
       form.append("email", email);
-      const response = await api.post("/teacher/forgot/resend-otp", form, {
+      const response = await api.post("/api/teacher/forgot/resend-otp", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
@@ -328,9 +328,13 @@ export const teacherResetPassword = createAsyncThunk(
       form.append("email", email);
       form.append("password", password);
       form.append("password_confirmation", password_confirmation);
-      const response = await api.post("/teacher/forgot/reset-password", form, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await api.post(
+        "/api/teacher/forgot/reset-password",
+        form,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(

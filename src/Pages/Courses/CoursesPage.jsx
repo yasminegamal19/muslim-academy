@@ -69,38 +69,27 @@ function CourseCard({ course, isKids }) {
 
 function SkeletonCard() {
   return (
-    <div className={styles.cpCard} style={{ opacity: 0.5 }}>
+    <div className={`${styles.cpCard} ${styles.skeletonCard}`}>
       <div
-        className={styles.cpCardImgWrapper}
-        style={{ background: "#e0e0e0", height: 175 }}
+        className={`${styles.cpCardImgWrapper} ${styles.skeletonField}`}
+        style={{ height: 175 }}
       />
       <div className={styles.cpCardBody}>
-        <div
-          style={{
-            height: 12,
-            background: "#e0e0e0",
-            borderRadius: 4,
-            marginBottom: 8,
-            width: "40%",
-          }}
-        />
-        <div
-          style={{
-            height: 16,
-            background: "#e0e0e0",
-            borderRadius: 4,
-            marginBottom: 6,
-            width: "80%",
-          }}
-        />
-        <div
-          style={{
-            height: 12,
-            background: "#e0e0e0",
-            borderRadius: 4,
-            width: "60%",
-          }}
-        />
+        <div className={`${styles.skeletonField} ${styles.skCategory}`} />
+        <div className={`${styles.skeletonField} ${styles.skTitle}`} />
+        <div className={`${styles.skeletonField} ${styles.skSubtitle}`} />
+        <div className={styles.cpMeta}>
+          <div className={`${styles.skeletonField} ${styles.skAvatar}`} />
+          <div className={`${styles.skeletonField} ${styles.skInstructor}`} />
+        </div>
+        <div className={styles.cpFooter} style={{ borderTop: "none" }}>
+          <div className={`${styles.skeletonField} ${styles.skFooterItem}`} />
+          <div
+            className={`${styles.skeletonField} ${styles.skFooterItem}`}
+            style={{ width: 60 }}
+          />
+        </div>
+        <div className={`${styles.skeletonField} ${styles.skBtnField}`} />
       </div>
     </div>
   );
@@ -164,15 +153,16 @@ export default function CoursesPage() {
     <div className={styles.coursesPage} dir={isRTL ? "rtl" : "ltr"}>
       <div className={styles.cpHero}>
         <button className={styles.cpBackBtn} onClick={() => navigate(-1)}>
-          {isRTL ? "← رجوع" : "← Back"}
+          <span>{isRTL ? "← رجوع" : "← Back"}</span>
         </button>
-        <h1 className={styles.cpHeroTitle}>دوراتنا</h1>
+        <h1 className={styles.cpHeroTitle}>دوراتنا المتاحة</h1>
         <p className={styles.cpHeroSubtitle}>
           تأسست دورات الأكاديمية الإسلامية عبر الإنترنت لمختلف الفئات والمستويات
+          تحت إشراف نخبة من المتخصصين
         </p>
       </div>
 
-\      <div className={styles.cpTabsWrapper}>
+      <div className={styles.cpTabsWrapper}>
         <div className={styles.cpTabs}>
           {categories.map((cat) => {
             const isKidsTheme = checkIsKids(cat.name);
@@ -187,7 +177,7 @@ export default function CoursesPage() {
                 }`}
                 onClick={() => setSelectedCategory(cat)}
               >
-                 {cat.name}
+                {cat.name}
               </button>
             );
           })}
@@ -212,16 +202,21 @@ export default function CoursesPage() {
 
       <div className={styles.cpResultsInfo}>
         {isLoading ? (
-          <span>جاري تحميل البيانات...</span>
+          <span className={styles.infoLoading}>
+            جاري تحديث قائمة الدورات...
+          </span>
         ) : hasError ? (
-          <span style={{ color: "#e53e3e" }}>
-            حدث خطأ: {errorCats || errorCourses}
-          </span>
+          <div className={styles.errorContainer}>
+            <span>حدث خطأ أثناء جلب البيانات: {errorCats || errorCourses}</span>
+          </div>
         ) : (
-          <span>
-            {filteredCourses.length} دورة متاحة في قسم "{selectedCategory?.name}
-            "{activeSubject !== "الكل" && ` / ${activeSubject}`}
-          </span>
+          <p className={styles.infoText}>
+            يتم عرض <strong>{filteredCourses.length}</strong> دورة في قسم "
+            <span>{selectedCategory?.name}</span>"
+            {activeSubject !== "الكل" && (
+              <span className={styles.subMark}> / {activeSubject}</span>
+            )}
+          </p>
         )}
       </div>
 
@@ -238,9 +233,9 @@ export default function CoursesPage() {
       </div>
 
       {!isLoading && filteredCourses.length === 0 && !hasError && (
-        <p style={{ textAlign: "center", padding: "3rem", opacity: 0.6 }}>
-          لا توجد دورات متاحة حالياً في هذا القسم.
-        </p>
+        <div className={styles.noDataBox}>
+          <p>لا توجد دورات متاحة حالياً في هذا القسم الفرعي.</p>
+        </div>
       )}
     </div>
   );

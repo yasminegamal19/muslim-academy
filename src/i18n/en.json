@@ -1,8 +1,132 @@
 {
-  "common":{
+  "common": {
     "welcome": "Welcome",
     "profile": "Profile",
     "logout": "Logout"
+  },
+  "roleSelection": {
+    "title": "Welcome to the Muslim Academy",
+    "subtitle": "How would you like to join us?",
+    "student": "Student",
+    "studentDesc": "Join as a student and start your learning journey",
+    "teacher": "Teacher",
+    "teacherDesc": "Join as a teacher and share your knowledge with others"
+  },
+  "teacherLogin": {
+    "title": "Teacher Login",
+    "desc": "Welcome back, please login to continue",
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "passwordRequired": "Password is required"
+    }
+  },
+  "teacherRegister": {
+    "title": "Create Teacher Account",
+    "desc": "Join our platform as a teacher and share your knowledge",
+    "timezone": "Timezone",
+    "submit": "Register as Teacher"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "desc": "Muslim Academy , Your beacon for excellence in Islamic and Arabic studies",
+    "email": "Email Address",
+    "password": "Password",
+    "forgot": "Forgot Password?",
+    "submit": "Sign In",
+    "or": "or",
+    "google": "Sign in with Google",
+    "noAccount": "Don't have an account?",
+    "signup": "Join us now"
+  },
+  "register": {
+    "title": "Create New Account",
+    "desc": "Muslim Academy",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "birthDate": "Date of Birth",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+966666666",
+    "image": "Personal Image",
+    "profileImage": "Profile Picture",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "submit": "Create Account",
+    "haveAccount": "Already have an account?",
+    "login": "Sign In"
+  },
+  "forgotPassword": {
+    "title": "Forgot Password?",
+    "desc": "Enter your email address and we will send you a verification code to reset your password.",
+    "email": "Email Address",
+    "sendCode": "Send Verification Code",
+    "backToLogin": "Back to Sign In",
+    "sending": "Sending...",
+    "emailRequired": "Email address is required",
+    "successMessage": "Verification code has been sent to your email!",
+    "unregisteredEmail": "This email address is not registered",
+    "resetTitle": "Set New Password",
+    "resetDesc": "Enter a new secure password for your account",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "newPasswordPlaceholder": "••••••••",
+    "confirmPasswordPlaceholder": "••••••••",
+    "submit": "Save Password",
+    "saving": "Saving...",
+    "passMinLength": "Password must be at least 8 characters",
+    "passMismatch": "Passwords do not match",
+    "resetSuccess": "Password updated successfully!",
+    "resetError": "Failed to reset password"
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "desc": "Enter your new password below",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "submit": "Update Password",
+    "success": "Password updated successfully"
+  },
+  "successPassword": {
+    "title": "Password Changed Successfully!",
+    "desc": "Your password has been updated. You can now log in securely using your new credentials.",
+    "button": "Proceed to Sign In",
+    "footerLang": "English (US)",
+    "footerVersion": "SUPPLY CHAIN PROTOCOL V1.0.0"
+  },
+  "successRegister": {
+    "title": "Account Created Successfully!",
+    "subtitle": "Muslim Academy",
+    "button": "Proceed to Sign In",
+    "footer": "Back to Home"
+  },
+  "otp": {
+    "title": "Verification Code",
+    "desc": "Enter the 5-digit code sent to",
+    "forgotTitle": "Identity Verification",
+    "forgotDesc": "Enter the verification code sent to",
+    "button": "Verify Code",
+    "loading": "Verifying...",
+    "resendText": "Didn't receive the code?",
+    "resend": "Resend",
+    "timer": "Resend available in",
+    "timerExpired": "Code expired",
+    "resentSuccess": "Verification code resent successfully!",
+    "invalidCode": "Invalid verification code"
+  },
+  "otpRe": {
+    "title": "Identity Verification",
+    "desc": "Please enter the verification code sent to",
+    "button": "Verify",
+    "loading": "Verifying...",
+    "resendText": "Didn't receive the code?",
+    "resend": "Resend Code",
+    "timer": "Time remaining",
+    "timerExpired": "Time expired",
+    "resentSuccess": "Verification code resent successfully!",
+    "invalidCode": "Invalid verification code"
   },
   "topbar": {
     "dashboard": "Home",
@@ -10,7 +134,7 @@
     "subscriptions": "Subscriptions",
     "services": "Services",
     "contact": "Contact Us",
-    "islamic": "Islamy" ,
+    "islamic": "Islamy",
     "orders": "Orders",
     "profile": "Profile",
     "navigation": "Main Navigation",

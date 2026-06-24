@@ -6,7 +6,7 @@ export default function useSiteSettings() {
   useEffect(() => {
     const loadSettings = async () => {
       try {
-        const res = await api.get("/settings");
+        const res = await api.get("/api/settings");
 
         if (
           res.data.code === 200 &&

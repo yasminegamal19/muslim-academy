@@ -4,7 +4,7 @@ import styles from "./SubscriptionPage.module.css";
 import Toast from "../../components/Toast/Toast";
 import { api } from "../../store/slices/authSlice";
 
-const PLANS_URL = "https://muslim-academy.betamoneta.com/api/plans/grouped";
+const PLANS_URL = "https://dashboard.muslim-academy.net/api/plans/grouped";
 
 const ALL_DAYS = [
   { value: 0, label: "الأحد" },
@@ -131,7 +131,7 @@ export default function SubscriptionPage() {
 for (const pair of formData.entries()) {
   console.log(pair[0], pair[1]);
 }
-      const res = await api.post("/subscriptions", formData, {
+      const res = await api.post("/api/subscriptions", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

@@ -45,7 +45,7 @@ export default function ExamPage() {
         setFetchLoading(true);
         setFetchError(null);
 
-        const res = await api.get(`/quizzes/${examId}`);
+        const res = await api.get(`/api/quizzes/${examId}`);
 
         if (res.data?.code === 200 && res.data?.data) {
           const data = res.data.data;
@@ -81,7 +81,7 @@ export default function ExamPage() {
       setAttemptError(null);
       setStage("starting");
 
-      const res = await api.post(`/quizzes/${examId}/attempt`);
+      const res = await api.post(`/api/quizzes/${examId}/attempt`);
 
       if (res.data?.code === 200 && res.data?.data) {
         const data = res.data.data;
@@ -115,7 +115,7 @@ export default function ExamPage() {
     );
 
     try {
-      const res = await api.post(`/quizzes/${examId}/submit`, {
+      const res = await api.post(`/api/quizzes/${examId}/submit`, {
         answers: formattedAnswers,
       });
 

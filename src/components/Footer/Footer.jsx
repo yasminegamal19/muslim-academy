@@ -26,7 +26,7 @@ export default function Footer() {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await api.get("/settings");
+        const res = await api.get("/api/settings");
 
         if (
           res.data.code === 200 &&

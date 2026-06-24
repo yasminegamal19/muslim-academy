@@ -29,7 +29,7 @@ function TeacherDrawer({ teacher, onClose }) {
       setLoading(true);
       setError("");
       try {
-        const res = await api.get(`/teachers/${teacher.id}`);
+        const res = await api.get(`/api/teachers/${teacher.id}`);
         setDetails(res.data?.data);
       } catch (e) {
         const code = e?.response?.data?.code;
@@ -181,7 +181,7 @@ export default function ContactSection() {
       setTeachersLoading(true);
       setTeachersError("");
       try {
-        const res = await api.get("/teachers");
+        const res = await api.get("/api/teachers");
         const list = Array.isArray(res.data?.data) ? res.data.data : [];
         setTeachers(list);
         if (list.length > 0) setActiveTeacher(list[0]);
@@ -199,7 +199,7 @@ export default function ContactSection() {
     setMsgsLoading(true);
     setMsgsError("");
     try {
-      const res = await api.get(`/chats/${teacherId}`);
+      const res = await api.get(`/api/chats/${teacherId}`);
       const data = res.data?.data;
       setMessages(Array.isArray(data) ? data : []);
     } catch (e) {
@@ -243,7 +243,7 @@ export default function ContactSection() {
     try {
       const body = new FormData();
       body.append("message", text);
-      await api.post(`/chats/${activeTeacher.id}`, body, {
+      await api.post(`/api/chats/${activeTeacher.id}`, body, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       fetchMessages(activeTeacher.id);

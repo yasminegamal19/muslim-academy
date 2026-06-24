@@ -37,9 +37,11 @@ const isEmailExistsError = (err) => {
 };
 
 export default function TeacherRegister() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const isAr = i18n.language === "ar";
 
   const { loading, error, teacherRegisterSuccess } = useSelector((s) => s.auth);
 
@@ -83,7 +85,9 @@ export default function TeacherRegister() {
     if (isEmailExistsError(error)) {
       setErrors((p) => ({
         ...p,
-        email: "هذا البريد الإلكتروني مسجّل بالفعل، جرب بريدًا آخر",
+        email: isAr
+          ? "هذا البريد الإلكتروني مسجّل بالفعل، جرب بريدًا آخر"
+          : "This email is already registered, try another one",
       }));
       dispatch(clearError());
       return;
@@ -94,11 +98,13 @@ export default function TeacherRegister() {
         ? error
         : typeof error === "object"
           ? Object.values(error).flat().join(" | ")
-          : "حدث خطأ غير متوقع";
+          : isAr
+            ? "حدث خطأ غير متوقع"
+            : "An unexpected error occurred";
 
     toast.error(msg, { position: "top-center" });
     dispatch(clearError());
-  }, [error, dispatch]);
+  }, [error, dispatch, isAr]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -121,15 +127,34 @@ export default function TeacherRegister() {
       password: "",
       password_confirmation: "",
     };
-    if (!formData.name.trim()) newErrors.name = "الاسم مطلوب";
-    if (!formData.email.trim()) newErrors.email = "البريد الإلكتروني مطلوب";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()))
-      newErrors.email = "يرجى إدخال بريد إلكتروني صحيح";
-    if (!phoneValue) newErrors.phone = "رقم الهاتف مطلوب";
-    if (formData.password.length < 8)
-      newErrors.password = "كلمة المرور 8 أحرف على الأقل";
-    if (formData.password !== formData.password_confirmation)
-      newErrors.password_confirmation = "كلمتا المرور غير متطابقتين";
+
+    if (!formData.name.trim()) {
+      newErrors.name = isAr ? "الاسم مطلوب" : "Name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = isAr ? "البريد الإلكتروني مطلوب" : "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      newErrors.email = isAr
+        ? "يرجى إدخال بريد إلكتروني صحيح"
+        : "Please enter a valid email address";
+    }
+
+    if (!phoneValue) {
+      newErrors.phone = isAr ? "رقم الهاتف مطلوب" : "Phone number is required";
+    }
+
+    if (formData.password.length < 8) {
+      newErrors.password = isAr
+        ? "كلمة المرور 8 أحرف على الأقل"
+        : "Password must be at least 8 characters";
+    }
+
+    if (formData.password !== formData.password_confirmation) {
+      newErrors.password_confirmation = isAr
+        ? "كلمتا المرور غير متطابقتين"
+        : "Passwords do not match";
+    }
 
     setErrors(newErrors);
     return Object.values(newErrors).every((v) => v === "");
@@ -169,17 +194,22 @@ export default function TeacherRegister() {
             />
           </div>
 
-          <h2>{t("teacherRegister.title") || "إنشاء حساب معلم"}</h2>
+          <h2>
+            {t("teacherRegister.title") ||
+              (isAr ? "إنشاء حساب معلم" : "Create Teacher Account")}
+          </h2>
           <p className={styles.desc}>
             {t("teacherRegister.desc") ||
-              "انضم إلى منصتنا كمعلم وشارك علمك مع الآخرين"}
+              (isAr
+                ? "انضم إلى منصتنا كمعلم وشارك علمك مع الآخرين"
+                : "Join our platform as a teacher and share your knowledge")}
           </p>
 
           <form onSubmit={handleSubmit} noValidate>
-
             <div className={styles.inputGroup}>
               <label htmlFor="name">
-                {t("register.fullName") || "الاسم الكامل"}
+                {t("register.fullName") ||
+                  (isAr ? "الاسم الكامل" : "Full Name")}
               </label>
               <input
                 type="text"
@@ -187,7 +217,10 @@ export default function TeacherRegister() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder={t("register.fullNamePlaceholder") || "اسمك الكامل"}
+                placeholder={
+                  t("register.fullNamePlaceholder") ||
+                  (isAr ? "اسمك الكامل" : "Your full name")
+                }
                 className={errors.name ? styles.inputError : ""}
               />
               {errors.name && (
@@ -197,7 +230,8 @@ export default function TeacherRegister() {
 
             <div className={styles.inputGroup}>
               <label htmlFor="birth_date">
-                {t("register.birthDate") || "تاريخ الميلاد"}
+                {t("register.birthDate") ||
+                  (isAr ? "تاريخ الميلاد" : "Birth Date")}
               </label>
               <input
                 type="date"
@@ -211,7 +245,8 @@ export default function TeacherRegister() {
             <div className="row">
               <div className={`${styles.inputGroup} col-12 col-md-6`}>
                 <label htmlFor="email">
-                  {t("register.email") || "البريد الإلكتروني"}
+                  {t("register.email") ||
+                    (isAr ? "البريد الإلكتروني" : "Email Address")}
                 </label>
                 <input
                   type="email"
@@ -220,6 +255,7 @@ export default function TeacherRegister() {
                   value={formData.email}
                   onChange={handleChange}
                   className={errors.email ? styles.inputError : ""}
+                  dir="ltr"
                 />
                 {errors.email && (
                   <span className={styles.fieldError}>{errors.email}</span>
@@ -227,7 +263,10 @@ export default function TeacherRegister() {
               </div>
 
               <div className={`${styles.inputGroup} col-12 col-md-6`}>
-                <label>{t("register.phone") || "رقم الهاتف"}</label>
+                <label>
+                  {t("register.phone") ||
+                    (isAr ? "رقم الهاتف" : "Phone Number")}
+                </label>
                 <div className={errors.phone ? styles.phoneError : ""}>
                   <PhoneInput
                     country={"sa"}
@@ -250,7 +289,8 @@ export default function TeacherRegister() {
 
             <div className={styles.inputGroup}>
               <label htmlFor="timezone">
-                {t("teacherRegister.timezone") || "المنطقة الزمنية"}
+                {t("teacherRegister.timezone") ||
+                  (isAr ? "المنطقة الزمنية" : "Timezone")}
               </label>
               <select
                 id="timezone"
@@ -259,14 +299,28 @@ export default function TeacherRegister() {
                 onChange={handleChange}
                 className={styles.select}
               >
-                <option value="UTC">UTC (التوقيت العالمي)</option>
-                <option value="Asia/Riyadh">Asia/Riyadh (السعودية)</option>
-                <option value="Africa/Cairo">Africa/Cairo (مصر)</option>
-                <option value="Asia/Dubai">Asia/Dubai (الإمارات)</option>
-                <option value="Asia/Kuwait">Asia/Kuwait (الكويت)</option>
-                <option value="Asia/Baghdad">Asia/Baghdad (العراق)</option>
+                <option value="UTC">
+                  {isAr ? "UTC (التوقيت العالمي)" : "UTC (Universal Time)"}
+                </option>
+                <option value="Asia/Riyadh">
+                  {isAr ? "Asia/Riyadh (السعودية)" : "Asia/Riyadh (KSA)"}
+                </option>
+                <option value="Africa/Cairo">
+                  {isAr ? "Africa/Cairo (مصر)" : "Africa/Cairo (Egypt)"}
+                </option>
+                <option value="Asia/Dubai">
+                  {isAr ? "Asia/Dubai (الإمارات)" : "Asia/Dubai (UAE)"}
+                </option>
+                <option value="Asia/Kuwait">
+                  {isAr ? "Asia/Kuwait (الكويت)" : "Asia/Kuwait (Kuwait)"}
+                </option>
+                <option value="Asia/Baghdad">
+                  {isAr ? "Asia/Baghdad (العراق)" : "Asia/Baghdad (Iraq)"}
+                </option>
                 <option value="Africa/Casablanca">
-                  Africa/Casablanca (المغرب)
+                  {isAr
+                    ? "Africa/Casablanca (المغرب)"
+                    : "Africa/Casablanca (Morocco)"}
                 </option>
                 <option value="Europe/London">Europe/London</option>
                 <option value="America/New_York">America/New_York</option>
@@ -274,7 +328,10 @@ export default function TeacherRegister() {
             </div>
 
             <div className={styles.inputGroup}>
-              <label>{t("register.profileImage") || "الصورة الشخصية"}</label>
+              <label>
+                {t("register.profileImage") ||
+                  (isAr ? "الصورة الشخصية" : "Profile Picture")}
+              </label>
               <input
                 type="file"
                 accept="image/*"
@@ -295,7 +352,8 @@ export default function TeacherRegister() {
                 className={`${styles.inputGroup} ${styles.passwordGroup} col-12 col-md-6`}
               >
                 <label htmlFor="password">
-                  {t("register.password") || "كلمة المرور"}
+                  {t("register.password") ||
+                    (isAr ? "كلمة المرور" : "Password")}
                 </label>
                 <div className={styles.passwordWrap}>
                   <input
@@ -322,7 +380,8 @@ export default function TeacherRegister() {
                 className={`${styles.inputGroup} ${styles.passwordGroup} col-12 col-md-6`}
               >
                 <label htmlFor="confirmPassword">
-                  {t("register.confirmPassword") || "تأكيد كلمة المرور"}
+                  {t("register.confirmPassword") ||
+                    (isAr ? "تأكيد كلمة المرور" : "Confirm Password")}
                 </label>
                 <div className={styles.passwordWrap}>
                   <input
@@ -356,19 +415,23 @@ export default function TeacherRegister() {
               disabled={loading}
             >
               {loading
-                ? "جاري إنشاء الحساب..."
-                : t("teacherRegister.submit") || "إنشاء حساب معلم"}
+                ? isAr
+                  ? "جاري إنشاء الحساب..."
+                  : "Creating account..."
+                : t("teacherRegister.submit") ||
+                  (isAr ? "إنشاء حساب معلم" : "Register as Teacher")}
             </button>
           </form>
 
           <p className={styles.signup}>
-            {t("register.haveAccount") || "لديك حساب بالفعل؟"}{" "}
+            {t("register.haveAccount") ||
+              (isAr ? "لديك حساب بالفعل؟" : "Already have an account?")}{" "}
             <button
               type="button"
               className={styles.joinNow}
               onClick={() => navigate("/teacher/login")}
             >
-              {t("register.login") || "تسجيل الدخول"}
+              {t("register.login") || (isAr ? "تسجيل الدخول" : "Login")}
             </button>
           </p>
 
@@ -378,7 +441,9 @@ export default function TeacherRegister() {
               className={styles.switchBtn}
               onClick={() => navigate("/select-role")}
             >
-              ← {t("roleSelection.back") || "العودة لاختيار الدور"}
+              {isAr
+                ? `← ${t("roleSelection.back") || "العودة لاختيار الدور"}`
+                : `${t("roleSelection.back") || "Back to role selection"} →`}
             </button>
           </p>
         </div>

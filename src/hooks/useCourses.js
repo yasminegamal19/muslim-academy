@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 
-const BASE_URL = "https://muslim-academy.betamoneta.com/api";
+const BASE_URL = "https://dashboard.muslim-academy.net";
 
 function detectType(categoryName = "") {
   const lower = categoryName.toLowerCase();
@@ -52,7 +52,7 @@ export function useCategories() {
   useEffect(() => {
     async function fetchCats() {
       try {
-        const res = await fetch(`${BASE_URL}/categories`);
+        const res = await fetch(`${BASE_URL}/api/categories`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         setCategories(json.data || []);
@@ -86,7 +86,7 @@ export function useCourses({ categorySlug, subjectSlug, page = 1 } = {}) {
         if (subjectSlug) params.set("filter_by[subject]", subjectSlug);
         if (page > 1) params.set("page", page);
 
-        const url = `${BASE_URL}/courses${params.toString() ? "?" + params.toString() : ""}`;
+        const url = `${BASE_URL}/api/courses${params.toString() ? "?" + params.toString() : ""}`;
         const res = await fetch(url, { signal: controller.signal });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -130,7 +130,7 @@ export function useCourseDetail(slug) {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`${BASE_URL}/courses/${slug}`, {
+        const res = await fetch(`${BASE_URL}/api/courses/${slug}`, {
           signal: controller.signal,
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);

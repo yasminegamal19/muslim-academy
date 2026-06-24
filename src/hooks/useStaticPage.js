@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = "https://muslim-academy.betamoneta.com/api";
+const BASE_URL = "https://dashboard.muslim-academy.net";
 
 
 export function useStaticPage(endpoint) {

@@ -1,0 +1,319 @@
+
+.card {
+    background: #ffffff;
+    border: 1.5px solid #e3eae3;
+    border-radius: 18px;
+    padding: 20px 20px 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(46, 125, 50, 0.06);
+    transition: box-shadow 0.22s ease, transform 0.22s ease;
+    direction: rtl;
+    font-family: 'Cairo', 'Segoe UI', sans-serif;
+}
+
+.card:hover {
+    box-shadow: 0 8px 28px rgba(46, 125, 50, 0.12);
+    transform: translateY(-3px);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 0 18px 18px 0;
+    background: linear-gradient(to bottom, #4caf50, #2e7d32);
+}
+
+.card_live::before {
+    background: linear-gradient(to bottom, #ef5350, #c62828);
+}
+
+.card_ended::before {
+    background: linear-gradient(to bottom, #90a4ae, #546e7a);
+}
+
+.card_cancelled::before {
+    background: linear-gradient(to bottom, #ffa726, #e65100);
+}
+
+.statusBadge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+}
+
+.badgeLive {
+    background: #ef5350;
+    color: #fff;
+    animation: pulseBadge 1.6s infinite;
+}
+
+.badgeUpcoming {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.badgeScheduled {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.badgeEnded {
+    background: #eceff1;
+    color: #546e7a;
+}
+
+.badgeCancelled {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+@keyframes pulseBadge {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.liveDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    flex-shrink: 0;
+    animation: pulseDot 1.2s infinite;
+}
+
+@keyframes pulseDot {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4);
+    }
+}
+
+.headerRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 28px;
+    margin-bottom: 12px;
+}
+
+.mainInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.courseTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0d1f0d;
+    margin: 0 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.studentName {
+    font-size: 0.85rem;
+    color: #556b55;
+    margin: 0;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid #e3eae3;
+    flex-shrink: 0;
+}
+
+.metaGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin-bottom: 10px;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.metaIcon {
+    color: #81a881;
+    flex-shrink: 0;
+}
+
+.metaText {
+    font-size: 0.82rem;
+    color: #556b55;
+}
+
+.countdownBox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f7f1;
+    border-radius: 10px;
+    padding: 7px 12px;
+    margin-bottom: 10px;
+}
+
+.countdownIcon {
+    color: #2e7d32;
+    flex-shrink: 0;
+}
+
+.countdownLabel {
+    font-size: 0.82rem;
+    color: #556b55;
+    font-weight: 600;
+}
+
+.countdown {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #2e7d32;
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    margin-right: auto;
+}
+
+.extrasRow {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.extraChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 12px;
+}
+
+.footerRow {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.actionBtn {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.18s, transform 0.15s;
+}
+
+.actionBtn:hover:not(:disabled) {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+.actionBtn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.btnStart {
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(46, 125, 50, 0.25);
+}
+
+.btnJoin {
+    background: linear-gradient(135deg, #ef5350, #c62828);
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(198, 40, 40, 0.25);
+}
+
+.btnEnd {
+    background: #fff;
+    color: #c62828;
+    border: 1.5px solid #ef9a9a;
+    box-shadow: none;
+}
+
+.btnEnd:hover:not(:disabled) {
+    background: #ffebee;
+}
+
+.endedTag,
+.cancelledTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 10px;
+}
+
+.endedTag {
+    background: #eceff1;
+    color: #546e7a;
+}
+
+.cancelledTag {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

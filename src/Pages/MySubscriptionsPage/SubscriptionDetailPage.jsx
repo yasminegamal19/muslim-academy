@@ -114,7 +114,7 @@ export default function SubscriptionDetailPage() {
     (async () => {
       try {
         setLoading(true);
-        const res = await api.get(`/subscriptions/${subscriptionId}`);
+        const res = await api.get(`/api/subscriptions/${subscriptionId}`);
         if (res.data?.code === 200 && res.data?.data) {
           setSub(res.data.data);
         } else {

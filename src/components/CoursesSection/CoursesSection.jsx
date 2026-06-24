@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -64,40 +63,25 @@ function HomeCourseCard({ course, isKids }) {
   );
 }
 
+// السكيتون المطور بتأثير النبض السلس (Shimmer) مع الحفاظ على هيكل كارتك المكتمل
 function HomeSkeletonCard() {
   return (
-    <div className={styles.ccCard} style={{ opacity: 0.6 }}>
+    <div className={`${styles.ccCard} ${styles.skeletonCard}`}>
       <div
-        className={styles.ccCardImgWrapper}
-        style={{ background: "#e0e0e0", height: 160 }}
+        className={`${styles.ccCardImgWrapper} ${styles.skeletonField}`}
+        style={{ height: 180 }}
       />
       <div className={styles.ccCardBody}>
-        <div
-          style={{
-            height: 12,
-            background: "#e0e0e0",
-            borderRadius: 4,
-            marginBottom: 8,
-            width: "30%",
-          }}
-        />
-        <div
-          style={{
-            height: 16,
-            background: "#e0e0e0",
-            borderRadius: 4,
-            marginBottom: 6,
-            width: "70%",
-          }}
-        />
-        <div
-          style={{
-            height: 12,
-            background: "#e0e0e0",
-            borderRadius: 4,
-            width: "50%",
-          }}
-        />
+        <div className={`${styles.skeletonField} ${styles.skBadge}`} />
+        <div className={`${styles.skeletonField} ${styles.skTitle}`} />
+        <div className={`${styles.skeletonField} ${styles.skDesc}`} />
+        <div className={styles.ccMeta} style={{ borderBottom: "none" }}>
+          <div className={`${styles.skeletonField} ${styles.skRating}`} />
+        </div>
+        <div className={styles.ccFooter}>
+          <div className={`${styles.skeletonField} ${styles.skLevelBtn}`} />
+          <div className={`${styles.skeletonField} ${styles.skMoreBtn}`} />
+        </div>
       </div>
     </div>
   );
@@ -147,7 +131,7 @@ export default function CoursesSection() {
     <section className={styles.coursesSection} dir={isRTL ? "rtl" : "ltr"}>
       <div className={styles.csContainer}>
         <div className={styles.csHeader}>
-          <div>
+          <div className={styles.csHeaderTexts}>
             <h2 className={styles.csSectionTitle}>اكتشف دوراتنا المتميزة</h2>
             <p className={styles.csSectionSubtitle}>
               اختر القسم المناسب وابدأ رحلة التعلم الفريدة معنا اليوم
@@ -159,7 +143,8 @@ export default function CoursesSection() {
               navigate(`/courses/${isKidsCategory ? "kids" : "adults"}`)
             }
           >
-            {isRTL ? "عرض الكل ←" : "View All ←"}
+            <span>{isRTL ? "عرض الكل" : "View All"}</span>
+            <span className={styles.arrowIcon}>{isRTL ? "←" : "→"}</span>
           </button>
         </div>
 
@@ -186,9 +171,11 @@ export default function CoursesSection() {
         </div>
 
         {hasError && (
-          <p className={styles.csErrorText}>
-            حدث خطأ أثناء تحميل البيانات: {errorCats || errorCourses}
-          </p>
+          <div className={styles.errorContainer}>
+            <p className={styles.csErrorText}>
+              حدث خطأ أثناء تحميل البيانات: {errorCats || errorCourses}
+            </p>
+          </div>
         )}
 
         <div className={styles.csGrid}>
@@ -206,9 +193,11 @@ export default function CoursesSection() {
         </div>
 
         {!isLoading && displayedCourses.length === 0 && !hasError && (
-          <p className={styles.csNoDataText}>
-            لا توجد دورات متاحة في هذا القسم حالياً.
-          </p>
+          <div className={styles.noDataContainer}>
+            <p className={styles.csNoDataText}>
+              لا توجد دورات متاحة في هذا القسم حالياً.
+            </p>
+          </div>
         )}
       </div>
     </section>

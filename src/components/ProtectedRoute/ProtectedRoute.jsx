@@ -14,9 +14,10 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(role)) {
-    const defaultPath = role === "teacher" ? "/teacher/sessions" : "/";
+    const defaultPath = role === "teacher" ? "/teacher/dashboard" : "/";
     return <Navigate to={defaultPath} replace />;
   }
+
 
   return children;
 };

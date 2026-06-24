@@ -93,7 +93,7 @@ export default function MySubscriptionsPage() {
     (async () => {
       try {
         setLoading(true);
-        const res = await api.get("/subscriptions");
+        const res = await api.get("/api/subscriptions");
         if (res.data?.code === 200) {
           setSubscriptions(res.data.data || []);
         } else {

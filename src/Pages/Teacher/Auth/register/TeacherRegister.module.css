@@ -1,14 +1,11 @@
-
-
 .register {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-card) 100%);
     padding: 24px 16px;
     font-family: "Cairo", "Segoe UI", sans-serif;
-    direction: rtl;
 }
 
 .RegisterContainer {
@@ -18,9 +15,16 @@
 
 .RegisterCard {
     background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.05),
+        0 0 30px rgba(12, 104, 57, 0.04);
     padding: 40px 36px;
+    transition: all 0.3s ease;
+}
+
+.RegisterCard:hover {
+    transform: translateY(-5px) scale(1.01);
 }
 
 .logoContainer {
@@ -37,13 +41,13 @@ h2 {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #064e3b;
+    color: var(--primary-kemya);
     margin-bottom: 6px;
 }
 
 .desc {
     text-align: center;
-    color: #6b7280;
+    color: var(--text-muted);
     font-size: 0.9rem;
     margin-bottom: 28px;
 }
@@ -56,20 +60,21 @@ h2 {
     display: block;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #374151;
+    color: var(--text-main);
     margin-bottom: 6px;
+    text-align: start;
 }
 
 .inputGroup input,
 .select {
     width: 100%;
-    padding: 10px 14px;
-    border: 1.5px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 0.9rem;
-    color: #111;
-    background: #f9fafb;
-    transition: border-color 0.2s;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background: var(--bg-light);
+    transition: all 0.2s;
     font-family: inherit;
     appearance: none;
 }
@@ -77,12 +82,14 @@ h2 {
 .inputGroup input:focus,
 .select:focus {
     outline: none;
-    border-color: #059669;
+    border-color: var(--primary-kemya);
     background: #fff;
+    box-shadow: 0 0 0 4px rgba(12, 104, 57, 0.15);
 }
 
 .inputError {
-    border-color: #ef4444 !important;
+    border: 1.5px solid #f87171 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12) !important;
 }
 
 .fieldError {
@@ -90,6 +97,7 @@ h2 {
     font-size: 0.78rem;
     color: #ef4444;
     margin-top: 4px;
+    text-align: start;
 }
 
 .passwordGroup {
@@ -98,37 +106,41 @@ h2 {
 
 .passwordWrap {
     position: relative;
-}
-
-.passwordWrap input {
-    padding-left: 40px;
-}
-
-.togglePassword {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #9ca3af;
     display: flex;
     align-items: center;
 }
 
+.passwordWrap input {
+    padding-inline-end: 40px;
+}
+
+.togglePassword {
+    position: absolute;
+    inset-inline-end: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
 .togglePassword:hover {
-    color: #059669;
+    color: var(--primary-kemya);
 }
 
 .phoneContainer {
     width: 100% !important;
 }
 
-.phoneError .react-tel-input .form-control {
+.phoneError :global(.react-tel-input) :global(.form-control) {
     border-color: #ef4444 !important;
 }
 
 .fileInput {
     font-size: 0.85rem;
+    color: var(--text-main);
 }
 
 .imagePreview {
@@ -137,7 +149,7 @@ h2 {
     border-radius: 50%;
     object-fit: cover;
     margin-top: 10px;
-    border: 2px solid #059669;
+    border: 2px solid var(--primary-kemya);
 }
 
 .select {
@@ -148,73 +160,75 @@ h2 {
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s;
     font-family: inherit;
     margin-top: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .buttonRegister {
-    background: linear-gradient(135deg, #059669, #047857);
+    background: var(--primary-kemya);
     color: #fff;
 }
 
 .buttonRegister:hover:not(:disabled) {
-    background: linear-gradient(135deg, #047857, #065f46);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35);
+    transform: scale(1.05);
+    /* نفس تأثير الهوفير لأزرار الطالب */
+}
+
+.buttonRegister:active {
+    transform: scale(0.98);
 }
 
 .buttonRegister:disabled {
-    opacity: 0.65;
+    opacity: 0.5;
     cursor: not-allowed;
+    transform: none;
 }
 
-.signup {
+.signup,
+.switchRole {
     text-align: center;
     font-size: 0.875rem;
-    color: #6b7280;
+    color: var(--text-muted);
     margin-top: 20px;
 }
 
-.joinNow {
+.joinNow,
+.switchBtn {
     background: none;
     border: none;
-    color: #059669;
+    color: var(--primary-kemya);
     font-weight: 700;
     cursor: pointer;
     font-size: inherit;
     font-family: inherit;
-    padding: 0;
+    padding: 0 4px;
 }
 
-.joinNow:hover {
+.joinNow:hover,
+.switchBtn:hover {
     text-decoration: underline;
 }
 
-.switchRole {
-    text-align: center;
-    margin-top: 12px;
-}
-
-.switchBtn {
-    background: none;
-    border: none;
-    color: #9ca3af;
-    font-size: 0.82rem;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-.switchBtn:hover {
-    color: #059669;
-}
-
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .RegisterCard {
-        padding: 28px 16px;
+        max-width: 100%;
+        padding: 25px 18px;
+        border-radius: 14px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .inputGroup input,
+    .select {
+        padding: 10px 12px;
+        font-size: 13px;
     }
 }

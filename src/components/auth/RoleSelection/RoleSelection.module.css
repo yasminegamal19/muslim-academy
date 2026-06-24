@@ -3,19 +3,70 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e9 100%);
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(12, 104, 57, 0.12),
+            transparent 40%),
+        radial-gradient(circle at bottom right,
+            rgba(19, 133, 75, 0.08),
+            transparent 35%),
+        #f8faf9;
+
     padding: 20px;
-    font-family: "Cairo", "Segoe UI", sans-serif;
+    position: relative;
+    font-family: "Cairo", sans-serif;
+}
+
+.rtl {
     direction: rtl;
 }
 
+.ltr {
+    direction: ltr;
+}
+
+.langSwitcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.langBtn {
+    border: none;
+    background: var(--primary-kemya);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.langBtn:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
 .card {
-    background: #fff;
-    border-radius: 24px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
-    padding: 48px 40px;
     width: 100%;
-    max-width: 520px;
+    max-width: 600px;
+
+    background: rgba(255, 255, 255, .96);
+
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(12, 104, 57, .08);
+
+    border-radius: 28px;
+
+    padding: 48px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, .08);
+
     text-align: center;
 }
 
@@ -24,96 +75,139 @@
 }
 
 .logo {
-    height: 64px;
+    width: 110px;
+    height: auto;
     object-fit: contain;
 }
 
-.title {
-    font-size: 1.8rem;
+.brandName {
+    margin-top: 12px;
+    font-size: 20px;
     font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 8px;
+    color: var(--primary-kemya);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 1rem;
-    color: #666;
+    font-size: 15px;
+    color: var(--text-muted);
     margin-bottom: 36px;
 }
 
 .roles {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
 }
 
 .roleCard {
+    width: 100%;
+
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 20px 24px;
-    border-radius: 16px;
-    border: 2px solid transparent;
-    background: #f8fafc;
+    gap: 18px;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    border: 1px solid var(--border-color);
+
+    background: white;
+
     cursor: pointer;
-    transition: all 0.25s ease;
-    text-align: right;
-    width: 100%;
-    position: relative;
+
+    transition: .3s;
 }
 
 .roleCard:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
+    transform: translateY(-4px);
 
-.studentCard:hover {
-    border-color: #4f46e5;
-    background: #f5f3ff;
-}
+    border-color: var(--primary-kemya);
 
-.teacherCard:hover {
-    border-color: #059669;
-    background: #f0fdf4;
+    background: rgba(12, 104, 57, 0.03);
+
+    box-shadow: 0 12px 24px rgba(12, 104, 57, 0.12);
 }
 
 .roleIcon {
-    font-size: 2.4rem;
+    width: 60px;
+    height: 60px;
+
+    border-radius: 18px;
+
+    background: rgba(12, 104, 57, .08);
+
+    color: var(--primary-kemya);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     flex-shrink: 0;
 }
 
+.roleContent {
+    flex: 1;
+    text-align: start;
+}
+
 .roleTitle {
-    font-size: 1.2rem;
+    margin: 0 0 6px;
+    font-size: 20px;
     font-weight: 700;
-    color: #1a1a2e;
-    margin: 0 0 4px;
+    color: var(--text-main);
 }
 
 .roleDesc {
-    font-size: 0.875rem;
-    color: #666;
     margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .roleArrow {
-    position: absolute;
-    left: 20px;
-    font-size: 1.2rem;
-    color: #aaa;
-    transition: all 0.2s;
+    font-size: 24px;
+    color: var(--primary-kemya);
+    transition: .3s;
 }
 
-.roleCard:hover .roleArrow {
-    left: 14px;
-    color: #555;
+.rtl .roleCard:hover .roleArrow {
+    transform: translateX(-8px);
 }
 
-@media (max-width: 480px) {
+.ltr .roleCard:hover .roleArrow {
+    transform: translateX(8px);
+}
+
+@media (max-width: 768px) {
     .card {
-        padding: 32px 20px;
+        padding: 32px 22px;
     }
 
     .title {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+    }
+
+    .roleCard {
+        padding: 18px;
+    }
+
+    .roleTitle {
+        font-size: 18px;
+    }
+
+    .roleDesc {
+        font-size: 13px;
+    }
+
+    .logo {
+        width: 90px;
     }
 }

@@ -18,7 +18,7 @@ import { logout } from "../../store/slices/authSlice";
 import { api } from "../../store/slices/authSlice";
 
 const navLinks = [
-  { to: "/", labelKey: "topbar.dashboard" },
+  { to: "/student-dashboard", labelKey: "topbar.dashboard" },
   { to: "/courses", labelKey: "topbar.courses" },
   { to: "/my-subscriptions", labelKey: "topbar.subscriptions" },
   { to: "/services", labelKey: "topbar.services" },
@@ -64,7 +64,7 @@ function Navbar() {
           setUserName(user.name);
           return;
         }
-        const res = await api.get("/profile");
+        const res = await api.get("/api/profile");
         if (res.status === 200 || res.data.code === 200) {
           setUserName(res.data.data.name);
         }
@@ -85,7 +85,7 @@ function Navbar() {
     if (!isAuthenticated) return;
     setNotifLoading(true);
     try {
-      const res = await api.get("/notifications");
+      const res = await api.get("/api/notifications");
       if (res.data.code === 200) {
         setNotifications(res.data.data || []);
       }

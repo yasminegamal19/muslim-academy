@@ -19,31 +19,31 @@ const TABS = [
   {
     key: "upcoming",
     label: "القادمة",
-    endpoint: "/sessions/upcoming",
+    endpoint: "/api/sessions/upcoming",
     single: true,
   },
   {
     key: "scheduled",
     label: "المجدولة",
-    endpoint: "/sessions/scheduled",
+    endpoint: "/api/sessions/scheduled",
     single: false,
   },
   {
     key: "pending",
     label: "معلقة",
-    endpoint: "/sessions/pending",
+    endpoint: "/api/sessions/pending",
     single: false,
   },
   {
     key: "ended",
     label: "المنتهية",
-    endpoint: "/sessions/ended",
+    endpoint: "/api/sessions/ended",
     single: false,
   },
   {
     key: "cancelled",
     label: "الملغية",
-    endpoint: "/sessions/cancelled",
+    endpoint: "/api/sessions/cancelled",
     single: false,
   },
 ];
@@ -98,7 +98,7 @@ function CancelModal({ session, onClose, onSuccess }) {
       if (rescheduleDate) body.append("reschedule_date", rescheduleDate);
       if (rescheduleTime) body.append("reschedule_time", rescheduleTime);
 
-      await api.post(`/sessions/${session.slug}/cancel`, body);
+      await api.post(`/api/sessions/${session.slug}/cancel`, body);
       onSuccess();
     } catch (e) {
       setError(e?.response?.data?.message || "حدث خطأ، حاول مرة أخرى");
@@ -313,9 +313,7 @@ export default function SessionsPage() {
 
   const handleJoin = async (session) => {
     try {
-      const res = await api.post(
-        `/sessions/${session.slug}/join`,
-      );
+      const res = await api.post(`/api/sessions/${session.slug}/join`);
       const link = res.data?.data?.join_link;
       if (link) window.open(link, "_blank");
     } catch (e) {

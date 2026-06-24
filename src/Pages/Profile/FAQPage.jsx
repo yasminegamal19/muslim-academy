@@ -14,7 +14,7 @@ const FAQPage = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://muslim-academy.betamoneta.com/api/faq",
+          "https://dashboard.muslim-academy.net/faq",
         );
 
         if (response.data && response.data.code === 200) {

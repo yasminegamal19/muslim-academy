@@ -3,10 +3,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-card) 100%);
     padding: 24px 16px;
     font-family: "Cairo", "Segoe UI", sans-serif;
-    direction: rtl;
 }
 
 .container {
@@ -16,41 +15,49 @@
 
 .card {
     background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.05),
+        0 0 30px rgba(12, 104, 57, 0.04);
     padding: 40px 32px;
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .iconBox {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #059669, #047857);
+    background: var(--primary-kemya);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
     color: #fff;
+    box-shadow: 0 8px 20px rgba(12, 104, 57, 0.15);
 }
 
 .title {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #064e3b;
+    color: var(--primary-kemya);
     margin-bottom: 8px;
 }
 
 .desc {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: var(--text-muted);
     margin-bottom: 28px;
     line-height: 1.6;
 }
 
 .emailHighlight {
     font-weight: 600;
-    color: #059669;
+    color: var(--primary-kemya);
     direction: ltr;
     display: inline-block;
 }
@@ -66,28 +73,28 @@
 .otpInput {
     width: 52px;
     height: 56px;
-    border: 2px solid #d1d5db;
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     text-align: center;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #1a1a2e;
-    background: #f9fafb;
-    transition: all 0.2s;
+    color: var(--text-main);
+    background: var(--bg-light);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: inherit;
 }
 
 .otpInput:focus {
     outline: none;
-    border-color: #059669;
+    border-color: var(--primary-kemya);
     background: #fff;
-    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+    box-shadow: 0 0 0 4px rgba(12, 104, 57, 0.15);
 }
 
 .otpFilled {
-    border-color: #059669;
-    background: #f0fdf4;
-    color: #065f46;
+    border-color: var(--primary-kemya);
+    background: rgba(12, 104, 57, 0.05);
+    color: var(--primary-kemya);
 }
 
 .timer {
@@ -95,7 +102,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    color: #6b7280;
+    color: var(--text-muted);
     font-size: 0.85rem;
     margin-bottom: 20px;
 }
@@ -104,20 +111,23 @@
     width: 100%;
     padding: 12px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     font-family: inherit;
-    background: linear-gradient(135deg, #059669, #047857);
+    background: var(--primary-kemya);
     color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .button:hover:not(:disabled) {
-    background: linear-gradient(135deg, #047857, #065f46);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35);
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.98);
 }
 
 .button:disabled {
@@ -129,7 +139,7 @@
 
 .resend {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: var(--text-muted);
     margin-top: 16px;
 }
 
@@ -143,16 +153,20 @@
     gap: 4px;
     font-family: inherit;
     padding: 0;
-    transition: color 0.2s;
+    transition: all 0.2s ease;
 }
 
 .resendActive {
-    color: #059669;
+    color: var(--primary-kemya);
     font-weight: 600;
 }
 
+.resendActive:hover {
+    text-decoration: underline;
+}
+
 .resendDisabled {
-    color: #d1d5db;
+    color: var(--border-color);
     cursor: not-allowed;
 }
 

@@ -4,8 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import useSiteSettings from "./hooks/useSiteSettings";
 
 import Navbar from "./components/Navbar/Navbar";
@@ -30,6 +29,7 @@ import TeacherForgotPassword from "./Pages/Teacher/Auth/forgot-password/TeacherF
 import TeacherForgotVerifyOtp from "./Pages/Teacher/Auth/verify-otp/TeacherForgotVerifyOtp";
 import TeacherResetPassword from "./Pages/Teacher/Auth/forgot-password/TeacherResetPassword";
 
+import StudentLayout from "./Layouts/StudentLayout";
 import Main from "./Pages/Layouts/Main";
 import CoursesPage from "./Pages/Courses/CoursesPage";
 import CourseDetailPage from "./Pages/Courses/CourseDetailPage";
@@ -68,12 +68,15 @@ import SessionsPage from "./Pages/Profile/SessionsPage";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import TeacherSessions from "./Pages/Teacher/Sessions/TeacherSessions";
 import TeacherDashboard from "./Pages/Teacher/Dashboard/TeacherDashboard";
+import TeacherLayout from "./Pages/Teacher/Layout/TeacherLayout";
 
 function App() {
   const location = useLocation();
   useSiteSettings();
+  const { i18n } = useTranslation();
 
   const authPages = [
+    "/", 
     "/select-role",
     "/login",
     "/register",
@@ -96,8 +99,6 @@ function App() {
 
   const isAuthPage = authPages.includes(location.pathname);
 
-  const { i18n } = useTranslation();
-
   useEffect(() => {
     document.documentElement.dir = i18n.language === "en" ? "ltr" : "rtl";
     document.documentElement.lang = i18n.language;
@@ -105,59 +106,68 @@ function App() {
 
   return (
     <div className="App">
-      {!isAuthPage && <Navbar />}
+      {/* {!isAuthPage && <Navbar />} */}
 
       <Routes>
         <Route path="/" element={<RoleSelection />} />
-        <Route path="/student-dashboard" element={<Main />} />
 
-        {/*  Courses  */}
-        <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/courses/kids" element={<CoursesPage />} />
-        <Route path="/courses/adults" element={<CoursesPage />} />
-        <Route path="/courses/:slug" element={<CourseDetailPage />} />
-        <Route path="/subscription" element={<SubscriptionPage />} />
-        <Route path="/my-subscriptions" element={<MySubscriptionsPage />} />
-        <Route
-          path="/my-subscriptions/:subscriptionId"
-          element={<SubscriptionDetailPage />}
-        />
+        <Route element={<StudentLayout />}>
+          <Route
+            path="/student-dashboard"
+            element={
+              <ProtectedRoute allowedRoles={["student"]}>
+                <Main />
+              </ProtectedRoute>
+            }
+          />
+          {/* Courses */}
+          <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/courses/kids" element={<CoursesPage />} />
+          <Route path="/courses/adults" element={<CoursesPage />} />
+          <Route path="/courses/:slug" element={<CourseDetailPage />} />
+          <Route path="/subscription" element={<SubscriptionPage />} />
+          <Route path="/my-subscriptions" element={<MySubscriptionsPage />} />
+          <Route
+            path="/my-subscriptions/:subscriptionId"
+            element={<SubscriptionDetailPage />}
+          />
 
-        {/*  Services */}
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/library" element={<Library />} />
-        <Route path="/services/fees" element={<Expenses />} />
-        <Route path="/services/ask-scholars" element={<AskScholars />} />
-        <Route path="/services/gifts" element={<Gifts />} />
-        <Route path="/services/:serviceType" element={<ServiceCourses />} />
-        <Route
-          path="/services/:serviceType/:courseId"
-          element={<CourseDetail />}
-        />
-        <Route path="/services/exams" element={<ExamsListPage />} />
-        <Route path="/services/exams/:examId" element={<ExamPage />} />
+          {/* Services */}
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/library" element={<Library />} />
+          <Route path="/services/fees" element={<Expenses />} />
+          <Route path="/services/ask-scholars" element={<AskScholars />} />
+          <Route path="/services/gifts" element={<Gifts />} />
+          <Route path="/services/:serviceType" element={<ServiceCourses />} />
+          <Route
+            path="/services/:serviceType/:courseId"
+            element={<CourseDetail />}
+          />
+          <Route path="/services/exams" element={<ExamsListPage />} />
+          <Route path="/services/exams/:examId" element={<ExamPage />} />
 
-        {/*  Islamic  */}
-        <Route path="/islamic" element={<IslamicSection />} />
-        <Route path="/islamic/athkar" element={<AthkarPage />} />
-        <Route path="/islamic/tasbeh" element={<Tasbeh />} />
-        <Route path="/islamic/quran" element={<QuranPage />} />
-        <Route path="/islamic/prayer-tracker" element={<PrayerTracker />} />
+          {/* Islamic */}
+          <Route path="/islamic" element={<IslamicSection />} />
+          <Route path="/islamic/athkar" element={<AthkarPage />} />
+          <Route path="/islamic/tasbeh" element={<Tasbeh />} />
+          <Route path="/islamic/quran" element={<QuranPage />} />
+          <Route path="/islamic/prayer-tracker" element={<PrayerTracker />} />
 
-        {/*  Profile */}
-        <Route path="/profile-menu" element={<ProfileMenu />} />
-        <Route path="/user-profile" element={<UserProfile />} />
-        <Route path="/personal-data" element={<PersonalData />} />
-        <Route path="/sessions" element={<SessionsPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/settings" element={<AppSettings />} />
-        <Route path="/how-it-works" element={<HowItWorks />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="/terms" element={<TermsPage />} />
-        <Route path="/faq" element={<FAQPage />} />
+          {/* Profile */}
+          <Route path="/profile-menu" element={<ProfileMenu />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/personal-data" element={<PersonalData />} />
+          <Route path="/sessions" element={<SessionsPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/settings" element={<AppSettings />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+        </Route>
 
-        {/*  Student Auth */}
+        {/* Student Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-otp" element={<VerifyOtp />} />
@@ -168,7 +178,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/success-password" element={<SuccessPassword />} />
 
-        {/*  Teacher Auth  */}
+        {/* Teacher Auth */}
         <Route path="/teacher/login" element={<TeacherLogin />} />
         <Route path="/teacher/register" element={<TeacherRegister />} />
         <Route path="/teacher/verify-otp" element={<TeacherVerifyOtp />} />
@@ -191,27 +201,34 @@ function App() {
 
         {/* Teacher Protected Pages */}
         <Route
-          path="/teacher/sessions"
           element={
             <ProtectedRoute allowedRoles={["teacher"]}>
-              <TeacherSessions />
+              <TeacherLayout />
             </ProtectedRoute>
           }
-        />
-        <Route
-          path="/teacher/dashboard"
-          element={
-            <ProtectedRoute allowedRoles={["teacher"]}>
-              <TeacherDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        {/*  Fallback  */}
+        >
+          <Route
+            path="/teacher/sessions"
+            element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherSessions />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teacher/dashboard"
+            element={
+              <ProtectedRoute allowedRoles={["teacher"]}>
+                <TeacherDashboard />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
-      {!isAuthPage && <Footer />}
+      {/* {!isAuthPage && <Footer />} */}
     </div>
   );
 }
